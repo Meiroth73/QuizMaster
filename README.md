@@ -1,2 +1,2 @@
-# QuizHub
- A simple qite with quizes
+# QuizMaster
+ A simple site with Quizes
