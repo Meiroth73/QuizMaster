@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    width: 100%;
+    height: auto;
+}
+
+.no-select {
+    user-select: none;
+}
+
+header {
+    width: 100%;
+    /* height: 400px; */
+    height: auto;
+}
+
+nav {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    background-color: #113740;
+}
+
+.nav-logo, .nav-div-login, .nav-links {
+    display: flex;
+}
+
+.nav-logo, .nav-div-login {
+    width: 20%;
+    height: 100%;
+}
+
+.nav-logo {
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    cursor: pointer;
+    font-size: 35px;
+    display: flex;
+    text-decoration: none;
+}
+
+.logo-part-1 {
+    color: #f28322;
+}
+
+.logo-part-2 {
+    color: #f2bb27;
+    
+}
+
+.nav-links {
+    width: 60%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-btn {
+    padding: 10px 25px;
+    font-size: 22px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #ddd;
+}
+
+.nav-login, .nav-register, .backslash {
+    font-size: 22px;
+    padding: 10px 5px;
+    color: #ccc;
+    text-decoration: none;
+}
+
+.nav-div-login  {
+    justify-content: center;
+    align-items: center;
+}
