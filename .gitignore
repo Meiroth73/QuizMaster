@@ -13,3 +13,6 @@ info.txt
 project/
 .\#index.html
 Dockerfile
+database/export01.sql
+x.php
+database/date quizmaster.sql

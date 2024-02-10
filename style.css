@@ -92,13 +92,16 @@ nav {
     align-items: center;
 }
 
+/* motivation section */
+
 .section-motivation {
     width: 100%;
-    height: 1000px;
+    height: auto;
     padding: 100px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    margin-bottom: 15px;
 }
 
 .motivation-box {
@@ -136,4 +139,57 @@ nav {
     font-size: 20px;
     text-align: center;
     letter-spacing: .7px;
+}
+
+/* Section with 7 random topics */
+
+.section-topic {
+    width: 100%;
+    height: 900px;
+}
+
+.section-topic h2 {
+    text-align: center;
+    font-size: 32px;
+    margin: 40px;
+    color: #345;
+}
+
+.topic-row {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+
+.topic-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.topic-box p {
+    font-size: 30px
+}
+
+.topic-box i {
+    font-size: 32px;
+    padding: 30px;
+}
+
+.topic-row a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 21vh;
+    border: 1px solid black;
+    margin: 20px 15px;
+    text-decoration: none;
+    color: #345;
+    border-radius: -102px;
 }

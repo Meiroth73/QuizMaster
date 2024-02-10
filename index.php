@@ -1,9 +1,22 @@
+<?php 
+    require_once("./config/config.php");
+
+    try {
+        $connection = new PDO("mysql:host=$database_host;dbname=$database_name", $database_user, $database_password);
+        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        die("Error: ".$e->getMessage());
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuizMaster</title>
+    <link rel="shortcut icon" href="./image/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -58,5 +71,33 @@
             <img src="./image/istockphoto-1189341947-612x612.jpg" alt="obraz">
         </div>
     </section>
+    <section class="section-topic">
+        <h2>7 losowych tematów</h2>
+        <?php 
+            $sqlQuery = "SELECT topic.id, topic.category_id, topic.title, category.iconclass FROM topic JOIN category ON topic.category_id = category.id ORDER BY RAND() LIMIT 1";
+            $tabTopicIncludeID = array();
+            for($i = 1; $i < 4; $i++) {
+                echo "<div class='topic-row'>";
+                $n = ($i == 2) ? 3 : 2;
+                for($j = 1; $j <= $n; $x = 10) {
+                    $queryResult = $connection->query($sqlQuery);
+                    $row = $queryResult->fetch(PDO::FETCH_ASSOC);
+                    if (!in_array($row['category_id'], $tabTopicIncludeID)) {
+                        array_push($tabTopicIncludeID, $row['category_id']);
+                        $j++;
+                        // echo "<a href='./x.php/?x=".$row['id']."'>";
+                        echo "<a href='./'>";
+                        echo "<div class='topic-box'>";
+                        echo "<i class='fa-solid ".$row['iconclass']."'></i>";
+                        echo "<p>".$row['title']."</p>";
+                        echo "</div>";
+                        echo "</a>";
+                    }
+                }
+                echo "</div>";
+            }
+        ?>
+    </section>
+    <script src="main.js"></script>
 </body>
 </html>
