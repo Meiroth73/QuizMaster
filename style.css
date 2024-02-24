@@ -11,6 +11,10 @@
 body {
     width: 100%;
     height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 /* global classes styles */
@@ -24,6 +28,7 @@ body {
 header {
     width: 100%;
     height: auto;
+    z-index: 100;
 }
 
 nav {
@@ -72,12 +77,21 @@ nav {
     align-items: center;
 }
 
-.nav-btn {
+.nav-links > .nav-btn {
     padding: 10px 25px;
     font-size: 22px;
     text-decoration: none;
     text-transform: uppercase;
     color: #ddd;
+    transition-duration: .35s;
+}
+
+.nav-links > .nav-btn:hover {
+    color: #fff;
+}
+
+.nav-links:hover > .nav-btn:not(:hover) {
+    color: #bbb;
 }
 
 .nav-login, .nav-register, .backslash {
@@ -150,7 +164,7 @@ nav {
 
 .section-topic h2 {
     text-align: center;
-    font-size: 32px;
+    font-size: 40px;
     margin: 40px;
     color: #345;
 }
@@ -159,6 +173,7 @@ nav {
     width: 100%;
     height: auto;
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
@@ -192,4 +207,60 @@ nav {
     text-decoration: none;
     color: #345;
     border-radius: -102px;
+}
+
+/* category section */
+
+.section-category {
+    width: 80%;
+    height: 1170px;
+    margin-top: 50px;
+}
+
+.section-category div {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.section-category h4 {
+    text-align: center;
+    font-size: 35px;
+    margin: 50px;
+}
+
+.category-box {
+    width: 340px;
+    height: 150px;
+    margin: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid rgba(0, 0, 0, .5);
+    border-radius: 27px;
+    text-decoration: none;
+    filter: brightness(.7);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition-duration: .5s;
+}
+
+.category-box p {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    transition-duration: .5s;
+    text-align: center;
+}
+
+.category-box:hover {
+    filter: brightness(.99);
+    border: 2px solid rgba(255, 255, 255, .1);
+}
+
+.category-box:is(:nth-child(3), :nth-child(7), :nth-child(23), :nth-child(29), :nth-child(11)) p {
+    color: black;
 }

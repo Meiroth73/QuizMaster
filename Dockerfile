@@ -1,8 +1,8 @@
-FROM php:8.3
-LABEL maintainer="x"
-ADD . /var/www/html
+# FROM php:8.3
+# LABEL maintainer="x"
+# ADD . /var/www/html
 
-#WORKDIR /app
-#ADD . .
+# #WORKDIR /app
+# #ADD . .
 
-EXPOSE 80
+# EXPOSE 80

@@ -85,7 +85,6 @@
                     if (!in_array($row['category_id'], $tabTopicIncludeID)) {
                         array_push($tabTopicIncludeID, $row['category_id']);
                         $j++;
-                        // echo "<a href='./x.php/?x=".$row['id']."'>";
                         echo "<a href='./'>";
                         echo "<div class='topic-box'>";
                         echo "<i class='fa-solid ".$row['iconclass']."'></i>";
@@ -97,6 +96,22 @@
                 echo "</div>";
             }
         ?>
+    </section>
+    <section class="section-category">
+        <h4>Dostępne kategorie</h4>
+        <div>
+            <?php
+                $sqlQuery = "SELECT * FROM category";
+                $queryResult = $connection->query($sqlQuery);
+                foreach($queryResult as $row) {
+                    echo "<a href='./f' class='category-box' style='background-image: url(./image/category/" . $row['image'] . ");'>";
+                    echo "<p>".$row['title']."</p>";
+                    echo "<a>";
+                }
+
+            ?>
+        </div>
+
     </section>
     <script src="main.js"></script>
 </body>
