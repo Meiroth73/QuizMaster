@@ -17,6 +17,11 @@
     <title>QuizMaster</title>
     <link rel="shortcut icon" href="./image/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -45,8 +50,8 @@
     <section class="section-motivation">
         <div class="motivation-box motivation-box-1">
             <div class="motivation-text-box">
-                <h4>Sprawć swoje umiejętności z QuizMaster</h4>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit quas minima libero amet! In repellendus magnam quo molestias unde sit sint quibusdam veritatis eveniet corporis, et aliquid sunt adipisci obcaecati.</p>
+                <h4>Odkrywaj Świat Wiedzy z QuizMaster</h4>
+                <p>Witaj w przestrzeni, gdzie nauka staje się pasją, a edukacja staje się podróżą pełną odkryć i inspiracji. Nasza strona to oaza dla poszukiwaczy wiedzy, entuzjastów nauki i wszystkich, którzy pragną rozwinąć swoje umiejętności i pogłębić swoją wiedzę</p>
             </div>
         </div>
         <div class="motivation-box motivation-box-2">
@@ -57,14 +62,14 @@
         </div>
         <div class="motivation-box motivation-box-4">
             <div class="motivation-text-box">
-                <h4>Rozwijaj swoje umiejętności razem z nami</h4>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste quisquam nisi dolores similique soluta expedita ipsam molestias impedit, debitis eos exercitationem, ducimus reiciendis tenetur omnis dignissimos nam magnam a vel!</p>
+                <h4>Wielobarwny Świat Wiedzy: Znajdź Swój Kawałek Inspiracji</h4>
+                <p>Przekonaj się, jakie tajemnice kryje wszechświat, zgłębiając nasze fascynujące kursy naukowe. A może szukasz praktycznych umiejętności, które pomogą Ci odnieść sukces w życiu osobistym i zawodowym? W takim razie zapraszamy do korzystania z naszych kursów z zakresu biznesu, zdrowego stylu życia, programowania i wielu innych.</p>
             </div>
         </div>
         <div class="motivation-box motivation-box-5">
             <div class="motivation-text-box">
                 <h4>Każdy znajdzie coś dla siebie!</h4>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A vero voluptates at sapiente, quidem praesentium et culpa! Labore quia ad modi sequi culpa, mollitia vel nobis obcaecati earum repellat doloremque?</p>
+                <p>Czy jesteś miłośnikiem nauki ścisłej, entuzjastą sztuki, czy osobą poszukującą praktycznych umiejętności do zastosowania w codziennym życiu - mamy dla Ciebie coś specjalnego. Dla tych, którzy kochają odkrywanie tajemnic wszechświata, proponujemy nasze fascynujące kursy z dziedziny nauk przyrodniczych i technologii.</p>
             </div>
         </div>
         <div class="motivation-box motivation-box-6">
@@ -79,7 +84,7 @@
             for($i = 1; $i < 4; $i++) {
                 echo "<div class='topic-row'>";
                 $n = ($i == 2) ? 3 : 2;
-                for($j = 1; $j <= $n; $x = 10) {
+                for($j = 1; $j <= $n;) {
                     $queryResult = $connection->query($sqlQuery);
                     $row = $queryResult->fetch(PDO::FETCH_ASSOC);
                     if (!in_array($row['category_id'], $tabTopicIncludeID)) {
@@ -104,14 +109,20 @@
                 $sqlQuery = "SELECT * FROM category";
                 $queryResult = $connection->query($sqlQuery);
                 foreach($queryResult as $row) {
-                    echo "<a href='./f' class='category-box' style='background-image: url(./image/category/" . $row['image'] . ");'>";
+                    echo "<a href='./' class='category-box' style='background-image: url(./image/category/" . $row['image'] . ")'>";
                     echo "<p>".$row['title']."</p>";
                     echo "<a>";
                 }
-
             ?>
         </div>
-
+    </section>
+    <section class="about">
+        <div>
+            <hr>
+            <h3>O nas</h3>
+            <p>Jesteśmy wiodącą firmą w dziedzinie edukacji online, oferującą nieograniczone możliwości odkrywania, nauki i inspiracji. Nasza różnorodna oferta została stworzona z myślą o każdym, kto pragnie rozwijać się i poszerzać horyzonty.</p>
+            <p>Nasza firma to nie tylko platforma edukacyjna, to prawdziwe źródło inspiracji i wiedzy dla wszystkich, którzy pragną rozwijać się i poszerzać horyzonty. Dzięki zaawansowanym technologiom oraz starannie opracowanym kursom, artykułom i materiałom edukacyjnym, zapewniamy naszym użytkownikom dostęp do najnowszych trendów, eksperckiej wiedzy i praktycznych umiejętności.</p>
+        </div>
     </section>
     <script src="main.js"></script>
 </body>
