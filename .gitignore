@@ -1,7 +1,4 @@
 
-.idea/quizhub.iml
-.idea/modules.xml
-.idea/vcs.xml
 .idea/workspace.xml
 another/inserts.txt
 .idea/inspectionProfiles/Project_Default.xml
@@ -16,3 +13,8 @@ Dockerfile
 database/export01.sql
 x.php
 database/date quizmaster.sql
+test.html
+s.css
+.gitignore
+test/index.html
+test/style.css

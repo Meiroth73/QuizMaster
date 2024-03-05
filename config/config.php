@@ -1,5 +1,6 @@
 <?php   
 
+//Configurtion connection with database
 $database_host = "127.0.0.1";
 $database_name = "quizmaster";
 $database_user = "root";

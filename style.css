@@ -15,6 +15,30 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    scale: 1;
+}
+
+.document {
+    width: 200vh;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* background-color: red; */
+}
+
+.document-body {
+    z-index: 1;
+    width: 80%;
+    height: auto;
+    min-width: 30%;
+    max-width: 1440px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: blue; */
 }
 
 /* global classes styles */
@@ -29,14 +53,18 @@ header {
     width: 100%;
     height: auto;
     z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
+
 
 nav {
     width: 99%;
     height: 90px;
     display: flex;
-    background-color: rgba(17, 55, 64, 0.9);
     position: fixed;
+    background-color: rgba(17, 55, 64, 0.9);
     margin: 10px;
     border-radius: 10px;
 }
@@ -111,11 +139,10 @@ nav {
 .section-motivation {
     width: 100%;
     height: auto;
-    padding: 100px;
+    padding-top: 90px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    margin-bottom: 15px;
 }
 
 .motivation-box {
@@ -135,8 +162,9 @@ nav {
 }
 
 .motivation-box img {
-    height: 100%;
+    height: auto;
     width: auto;
+    max-width: 85%;
     margin: 20px;
     border-radius: 15px;
 }
@@ -159,13 +187,13 @@ nav {
 
 .section-topic {
     width: 100%;
-    height: 900px;
+    height: auto;
 }
 
 .section-topic h2 {
     text-align: center;
     font-size: 40px;
-    margin: 40px;
+    margin: 45px;
     color: #345;
 }
 
@@ -188,7 +216,7 @@ nav {
 }
 
 .topic-box p {
-    font-size: 30px;
+    font-size: 27px;
     font-family: "Open Sans", sans-serif;
 }
 
@@ -201,9 +229,14 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 25%;
-    height: 21vh;
+    min-width: 20%;
+    width: 30%;
+    max-width: 32%;
+    min-height: 140px;
+    height: 22vh;
+    max-height: 450px;
     border: 1px solid black;
+    border-radius: 20px;
     margin: 20px 15px;
     text-decoration: none;
     color: #345;
@@ -213,14 +246,13 @@ nav {
 /* category section */
 
 .section-category {
-    width: 80%;
-    height: 1170px;
-    margin-top: 50px;
+    width: 100%;
+    height: auto
 }
 
-.section-category div {
+.section-category > div {
     width: 100%;
-    height: 50px;
+    height: auto;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -229,7 +261,7 @@ nav {
 .section-category h4 {
     text-align: center;
     font-size: 35px;
-    margin: 50px;
+    margin: 75px 0 50px 0;
 }
 
 .category-box {
@@ -237,12 +269,13 @@ nav {
     height: 150px;
     margin: 24px;
     display: flex;
+    /* position: fixed; */
     justify-content: center;
     align-items: center;
     border: 2px solid rgba(0, 0, 0, .5);
     border-radius: 27px;
     text-decoration: none;
-    filter: brightness(.7);
+    filter: brightness(.68);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -258,25 +291,27 @@ nav {
 }
 
 .category-box:hover {
-    filter: brightness(.99);
-    border: 2px solid rgba(255, 255, 255, .1);
+    filter: brightness(.97);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
 }
 
-.category-box:is(:nth-child(3), :nth-child(7), :nth-child(11), :nth-child(23), :nth-child(29)) p {
+.category-box:is(:nth-child(2), :nth-child(4), :nth-child(6), :nth-child(12), :nth-child(15)) p {
     color: black;
 }
 
 /* about section */
 
 .about {
-    height: 630px;
-    width: 80%;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    height: auto;
+    display: flex;
+    width: 100%;
+    padding-top: 50px;
 }
 
 .about div {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -286,7 +321,7 @@ nav {
 .about hr {
     width: 100%;
     margin-top: 70px;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
     border-radius: 50%;
     height: 5px;
     background-color: #333;
@@ -294,7 +329,16 @@ nav {
 
 .about h3 {
     font-size: 39px;
+}
+
+.about h4 {
+    margin-top: 20px;
+    font-size: 38px;
+}
+
+.about :is(h3, h4) {
     word-spacing: 5px;
+    text-align: center;
     color: #333;
     font-family: "Kanit", sans-serif;
     font-weight: 500;
@@ -309,4 +353,84 @@ nav {
     text-align: center;
     font-style: italic;
     font-family: 'Catamaran', sans-serif;
+}
+
+/* comments section */
+
+.section-comments {
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.section-comments h3 {
+    font-size: 39px;
+    letter-spacing: 1px;
+    word-spacing: 5px;
+    font-family: "Kanit", sans-serif;
+    font-weight: 500;
+    line-height: 50px;
+    color: #333;
+    margin: 30px;
+}
+
+.section-comments section {
+    height: 200px;
+    width: 100%;
+    margin: 20px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+}
+
+.section-comments h4 {
+    word-spacing: 3px;
+}
+
+.section-comments p {
+    letter-spacing: .7px;
+    font-size: 18px;
+    margin: 30px;
+}
+
+.section-comments div {
+    height: 100px;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    transition-duration: 1s;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+}
+
+#comments-write-own-opinion-btn {
+    background-color: #41913a;
+    border: none;
+    height: 70px;
+    width: 270px;
+    font-size: 25px;
+    border-radius: 4px;
+    display: block;
+    position: absolute;
+    transition-duration: .45s;
+    top: 10px;
+    color: #f5f0ca;
+}
+
+#comments-write-own-opinion-btn:hover {
+    border-radius: 18px;
+    background-color: #3f753a;
+    color: #fff;
+}
+
+#comments-form {
+    position: relative;
+    height: 400px;
+    width: 500px;
+    display: none;
 }
