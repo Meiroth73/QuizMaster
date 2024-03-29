@@ -132,15 +132,6 @@ CREATE TABLE IF NOT EXISTS `quizmaster`.`announcements` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`posted_by`) REFERENCES user(`id`));
 
-CREATE TABLE IF NOT EXISTS `quizmaster`.`opinion` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NOT NULL,
-  `date` DATETIME NOT NULL,
-  `rate` SMALLINT NOT NULL,
-  `description` TEXT NOT NULL,
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES user(`id`));
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
@@ -232,3 +223,15 @@ INSERT INTO `quizmaster`.`user` (`name`, `lastname`, `username`, `email`, `passw
 INSERT INTO `quizmaster`.`admin` (`user_id`, `login`, `password`, `lastlogin`) VALUES
     (1, 'root', 'zaq1@WSX', '2024-01-30 12:30:00'),
     (3, 'admin_alice', 'adminer_pass42234', '2024-01-30 12:45:00'); 
+
+INSERT INTO `quizmaster`.`reviews` (`user_id`, `date`, `rate`, `description`) VALUES
+    (1, '2024-03-27 12:00:00', 5, 'Strona jest niesamowita! Quizy są świetnie zrobione i bardzo wciągające.'),
+    (1, '2024-03-27 12:00:00', 4, 'Uwielbiam, jak różnorodne są quizy na tej stronie. Zawsze coś ciekawego do odkrycia!'),
+    (1, '2024-03-27 12:00:00', 4, 'Bardzo podoba mi się interaktywność quizów. To świetny sposób na spędzenie czasu online.'),
+    (1, '2024-03-27 12:00:00', 4, 'Strona jest bardzo intuicyjna i łatwa w nawigacji. Z łatwością mogę znaleźć interesujące mnie quizy.'),
+    (1, '2024-03-27 12:00:00', 4, 'Quizy na tej stronie są doskonałym sposobem na rozwijanie swojej wiedzy w przyjemny sposób.'),
+    (1, '2024-03-27 12:00:00', 5, 'Często wracam na tę stronę, bo zawsze znajduję tu coś nowego i interesującego do przetestowania swoich umiejętności.'),
+    (1, '2024-03-27 12:00:00', 4, 'Nie sądziłem, że quizy mogą być tak wciągające! Dzięki tej stronie przekonałem się, że nauka może być zabawna.'),
+    (1, '2024-03-27 12:00:00', 4, 'To świetne miejsce nie tylko do zabawy, ale również do nauki. Polecam wszystkim, którzy lubią wyzwania umysłowe!'),
+    (1, '2024-03-27 12:00:00', 5, 'Jestem pod wielkim wrażeniem różnorodności tematycznej quizów na tej stronie. Zawsze znajdę coś dla siebie.'),
+    (1, '2024-03-27 12:00:00', 4, 'Strona z quizami to mój ulubiony sposób na relaks po ciężkim dniu. Dzięki prostym, ale ciekawym pytaniami, mogę oderwać się od codzienności i trochę się pobawić.');

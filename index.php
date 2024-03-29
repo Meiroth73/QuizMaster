@@ -4,11 +4,16 @@
     try {
         $connection = new PDO("mysql:host=$database_host;dbname=$database_name", $database_user, $database_password);
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        if(isset($_POST['comment-textbox']) && isset($_POST['comments-star'])) {
+            $sqlQuery = "INSERT INTO reviews (`user_id`, `date`, `rate`, `description`) VALUES (1, NOW(), ".$_POST['comments-star'].", '".$_POST['comment-textbox']."');";
+            $connection->query($sqlQuery);
+        }
+
     } catch (PDOException $e) {
         die("Error: ".$e->getMessage());
     }
 ?>
-
 <!DOCTYPE html>
 <html lang="pl">
     <head>
@@ -53,7 +58,7 @@
                     <div class="motivation-box motivation-box-1">
                         <div class="motivation-text-box">
                             <h4>Odkrywaj Świat Wiedzy z QuizMaster</h4>
-                            <p>Witaj w przestrzeni, gdzie nauka staje się pasją, a edukacja staje się podróżą pełną odkryć i inspiracji. Nasza strona to oaza dla poszukiwaczy wiedzy, entuzjastów nauki i wszystkich, którzy pragną rozwinąć swoje umiejętności i pogłębić swoją wiedzę</p>
+                            <p>Witaj w przestrzeni, gdzie nauka staje się pasją, a edukacja staje się podróżą pełną odkryć i inspiracji. Nasza strona to oaza dla poszukiwaczy wiedzy, entuzjastów nauki i wszystkich, którzy pragną rozwinąć swoje umiejętności i pogłębić swoją wiedzę.</p>
                         </div>
                     </div>
                     <div class="motivation-box motivation-box-2">
@@ -130,18 +135,71 @@
                 </section>
                 <section class="section-comments">
                     <h3>Opinie naszych użytkowników</h3>
-                    <section>
-                        <?php 
-
-                        ?>
+                    <section class="section-comments-section">
+                        <button class="button-chevron-left comments-inactive-button" id="reviews-button-get-move-to-left">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <div id="comments-div">
+                            <?php 
+                                $n = 1;
+                                $sqlQuery = "SELECT reviews.id, reviews.date, reviews.user_id, reviews.rate, reviews.description, user.id, user.username FROM reviews JOIN user ON reviews.user_id = user.id";
+                                $queryResult = $connection->query($sqlQuery);
+                                foreach($queryResult as $row) {
+                                    $date = date("d.m.Y", strtotime($row['date']));
+                                    echo <<< REVIEWS
+                                        <div class="reviews" id="review-id-{$n}">
+                                            <div class="reviews-profile-wrapper">
+                                                <div class="reviews-div-profile">
+                                                    <img src="./image/istockphoto-1340309186-612x612.jpg" alt="user profile image" class="reviews-user-profile-image">
+                                                    <p class="reviews-user-name">{$row['username']}</p>
+                                                </div>
+                                                <div class="reviews-div-profile-info">
+                                                    <p class="reviews-date">{$date}</p>
+                                                    <span rate="{$row['rate']}">
+                                                        <p class="reviews-stars comments-star-inactive">&#9733;</p>
+                                                        <p class="reviews-stars comments-star-inactive">&#9733;</p>
+                                                        <p class="reviews-stars comments-star-inactive">&#9733;</p>
+                                                        <p class="reviews-stars comments-star-inactive">&#9733;</p>
+                                                        <p class="reviews-stars comments-star-inactive">&#9733;</p>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <blockquote>{$row['description']}</blockquote>
+                                        </div>
+                                    REVIEWS;
+                                    $n++;
+                                }
+                                $n = null;
+                            ?>
+                        </div>
+                        <button class="button-chevron-right comments-active-button" id="reviews-button-get-move-to-right">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
                     </section>
                     <h4>Masz swoje zdanie?</h4>
                     <p>My to szanujemy! Podziel sie nim ponizej!</p>
-                    <div>
+                    <div id="comments-div-btn">
                         <button id="comments-write-own-opinion-btn">Napisz swoją opinie</button>
                     </div>
                     <div id="comments-form">
-                        <form action="" method="post"></form>
+                        <form action="" method="post">
+                            <div>
+                                <textarea name="comment-textbox" id="comment-textbox" cols="43" rows="7"></textarea>
+                                <span>
+                                    <label for="comments-star-1" class="comments-label" id="comment-label-1">&#9733;</label>
+                                    <input type="radio" name="comments-star" id="comments-star-1" value="1">
+                                    <label for="comments-star-2" class="comments-label" id="comment-label-2">&#9733;</label>
+                                    <input type="radio" name="comments-star" id="comments-star-2" value="2">
+                                    <label for="comments-star-3" class="comments-label" id="comment-label-3">&#9733;</label>
+                                    <input type="radio" name="comments-star" id="comments-star-3" value="3">
+                                    <label for="comments-star-4" class="comments-label" id="comment-label-4">&#9733;</label>
+                                    <input type="radio" name="comments-star" id="comments-star-4" value="4">
+                                    <label for="comments-star-5" class="comments-label" id="comment-label-5">&#9733;</label>
+                                    <input type="radio" name="comments-star" id="comments-star-5" value="5">
+                                </span>
+                                <button type="submit" class="publish-review-button">Opublikuj</button>
+                            </div>
+                        </form>
                     </div>
                 </section>
             </section>
@@ -149,3 +207,6 @@
         <script src="main.js"></script>
     </body>
 </html>
+<?php
+    $connection = null;
+?>

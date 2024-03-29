@@ -15,7 +15,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    scale: 1;
+    overflow-x: hidden;
 }
 
 .document {
@@ -24,7 +24,6 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    /* background-color: red; */
 }
 
 .document-body {
@@ -38,7 +37,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background-color: blue; */
 }
 
 /* global classes styles */
@@ -57,7 +55,6 @@ header {
     top: 0;
     left: 0;
 }
-
 
 nav {
     width: 99%;
@@ -363,7 +360,8 @@ nav {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: auto;
+    height: 630px;
+    transition-duration: .2s;
 }
 
 .section-comments h3 {
@@ -377,13 +375,148 @@ nav {
     margin: 30px;
 }
 
+.section-comments h4 {
+    margin: 10px;
+    font-size: 36px;
+}
+
 .section-comments section {
     height: 200px;
-    width: 100%;
-    margin: 20px;
-    border: 1px solid black;
+    min-width: 1200px;
+    width: 1350px;
+    max-width: 1500px;
+    /* width: 100%; */
+    /* width: auto; */
+    margin: 25px;
+    /* border: 1px solid black; */
     display: flex;
     flex-direction: row;
+    /* overflow: hidden; */
+    position: relative;
+}
+
+.section-comments-section {
+    width: 100%;
+}
+
+.section-comments-section > button {
+    font-size: 55px;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    border: none;
+    background-color: #fff;
+    padding: 15px;
+    transition-duration: .55s;
+    
+}
+
+.comments-inactive-button {
+    color: #c2bebe;
+}
+
+.comments-inactive-button:hover {
+    color: #a09797;
+}
+
+.comments-active-button {
+    color: #333;
+}
+
+.comments-active-button:hover {
+    color: #646464;
+}
+
+.section-comments-section > .button-chevron-left {
+    left: -5%;
+}
+
+.section-comments-section > .button-chevron-right {
+    left: 105%;
+}
+
+#comments-div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: absolute;
+    top: 0;
+    margin-left: 10px;
+    overflow: hidden;
+}
+
+.reviews {
+    text-wrap:wrap;
+    height: 100%;
+    width: 450px;
+    max-width: 500px;
+    min-width: 450px;
+    transition-duration: .5s;
+}
+
+.reviews:hover blockquote {
+    font-size: 16.5px;
+}
+
+.reviews-div-profile, .reviews-div-profile-info {
+    width: 500%;
+    min-width: 50%;
+    height: 100%;
+    display: flex;
+    margin-top: 30px;
+}
+
+.reviews-div-profile-info {
+    flex-direction: column;
+    align-content: flex-end;
+}
+
+.reviews blockquote {
+    display: block;
+    max-width: 75%;
+    text-align: center;
+    margin: 0 auto;
+    text-transform: capitalize;
+    font-style: italic;
+    color: #443;
+    margin-top: 20px;
+    transition-duration: .5s;
+}
+
+.reviews-profile-wrapper {
+    display: flex;
+    height: 50%;
+    width: 100%;
+}
+
+.reviews-stars {
+    margin: 0px;
+    padding: 0;
+}
+
+.reviews-user-profile-image {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin: 9px 20px 0 70px;
+}
+
+.reviews-user-name {
+    font-size: 17px;
+    margin-top: 15px;
+}
+
+.reviews-date {
+    margin: 10px 50px 5px 20px;
+    font-size: 15px;
+    text-align: end;
+}
+
+.reviews-div-profile-info span {
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    margin-right: 52px;
 }
 
 .section-comments h4 {
@@ -392,11 +525,9 @@ nav {
 
 .section-comments p {
     letter-spacing: .7px;
-    font-size: 18px;
-    margin: 30px;
 }
 
-.section-comments div {
+.section-comments > div {
     height: 100px;
     width: 400px;
     display: flex;
@@ -414,23 +545,102 @@ nav {
     height: 70px;
     width: 270px;
     font-size: 25px;
-    border-radius: 4px;
+    border-radius: 17px;
     display: block;
     position: absolute;
+    top: 0;
     transition-duration: .45s;
-    top: 10px;
+    margin-top: 25px;
     color: #f5f0ca;
 }
 
 #comments-write-own-opinion-btn:hover {
-    border-radius: 18px;
-    background-color: #3f753a;
+    border-radius: 5px;
+    background-color: #478841;
     color: #fff;
 }
 
 #comments-form {
     position: relative;
-    height: 400px;
-    width: 500px;
+    width: 100%;
+    height: 350px;
     display: none;
+}
+
+#comments-form form {
+    width: 100%;
+    height: 100%;
+}
+
+#comments-form div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#comments-form textarea  {
+    border: 1px solid black;
+    border-radius: 13px;
+    position: absolute;
+    top: 30%;
+    left: -100%;
+    transform: translate(-50%, -50%);
+    transition-duration: .55s;
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+    resize: none; 
+}
+
+#comments-form span {
+    position: absolute;
+    top: 67%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#comments-form input {
+    appearance: none;
+}
+
+.comments-label {
+    z-index: 100;
+    font-size: 0;
+    transition-duration: .55s;
+    padding: 5px;
+    color: #35322c;
+}
+
+.comments-star-inactive {
+    color: #333;
+}
+
+.comments-star-active, .comments-star-active-click {
+    color: gold;
+}
+
+#comments-form button {
+    margin: 10px;
+    padding: 20px 30px;
+    position: absolute;
+    top: 85%;
+    left: 150%;
+    transform: translate(-50%, -50%);
+    transition-duration: .55s;
+}
+
+.publish-review-button {
+    padding: 10px 30px;
+    border: none;
+    background-color: #41913a;
+    transition-duration: .5s;
+    color: white;
+    font-size: 20px;
+    border-radius: 15px;
+}
+
+.publish-review-button:hover {
+    background-color: #478841;
+    border-radius: 5px;
 }
