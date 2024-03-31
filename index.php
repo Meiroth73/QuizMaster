@@ -31,28 +31,9 @@
     </head>
     <body>
         <section class="document">
-            <header>
-                <nav>
-                    <div class="nav-logo">
-                        <a href="./" class="logo no-select">
-                            <p class="logo-part-1">Quiz</p>
-                            <p class="logo-part-2">Master</p>
-                        </a>
-                    </div>
-                    <div class="nav-links">
-                        <a href="./" class="nav-btn no-select">Start</a>
-                        <a href="./" class="nav-btn no-select">Quizy</a>
-                        <a href="./" class="nav-btn no-select">Losuj 1 pytanie</a>
-                        <a href="./" class="nav-btn no-select">Ogłoszenia</a>
-                        <a href="./" class="nav-btn no-select">FAQ</a>
-                    </div>
-                    <div class="nav-div-login">
-                        <a href="./" class="nav-login">Zaloguj się</a>
-                        <p class="backslash">|</p>
-                        <a href="./" class="nav-register">Zarejestruj się</a>
-                    </div>
-                </nav>
-            </header>
+            <?php 
+                require_once("elements/header.html");
+            ?>
             <section class="document-body">
                 <section class="section-motivation">
                     <div class="motivation-box motivation-box-1">
@@ -204,6 +185,9 @@
                 </section>
             </section>
         </section>
+        <?php
+            require_once('./elements/footer.html');
+        ?>
         <script src="main.js"></script>
     </body>
 </html>

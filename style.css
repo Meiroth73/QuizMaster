@@ -644,3 +644,59 @@ nav {
     background-color: #478841;
     border-radius: 5px;
 }
+
+/* footer section */
+
+footer {
+    width: 99%;
+    min-height: 230px;
+    z-index: 100;
+    background-color: #5352ed;
+    margin: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 10px;
+}
+
+footer div {
+    width: 26%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+footer :is(p, a, h6) {
+    color: #fff;
+    padding: 6px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+footer h6 {
+    font-size: 21px;
+    /* padding: 20px; */
+    font-weight: bold;
+    padding: 10px;
+}
+
+footer a {
+    cursor: pointer;
+}
+
+footer a:hover {
+    color: #eee;
+}
+
+footer i {
+    font-size: 30px;
+    padding: 7px;
+}
+
+.footer-p-copyrights {
+    padding: 17px;
+}
