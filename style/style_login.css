@@ -1,0 +1,173 @@
+
+main{
+    background-color: #ffffff;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    min-height: 550px;
+    min-width: 800px;
+    width: 830px;
+    max-width: 90%;
+    margin-top: 200px;
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 100;
+}
+
+main > div {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    transition: 0.6s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-h1, p {
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+.login-h1 {
+    font-size: 38px;
+    padding: 20px;
+    margin: 10px;
+}
+
+h2 {
+    margin: 15px;
+}
+
+p {
+    /* font-size: 18px; */
+    /* margin: 4px; */
+}
+
+p a {
+    text-decoration: none;
+    color: #111;
+    font-size: 16px;
+}
+
+.reset-password-link {
+    margin: 12px 0 -10px 0;
+}
+
+#div-register {
+    position: absolute;
+    left: -50%;
+    z-index: 4;
+    background-color: #fff;
+}
+
+#div-register-continue {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    z-index: 2;
+    background-color: #fff;
+}
+
+#div-text-login {
+    position: absolute;
+    left: 0;
+    z-index: 4;
+    background-color: blue;
+    background: linear-gradient(to right, #1f5c8f, #2da4c9);
+    border-radius: 32px 50px 50px 32px / 32px 50% 50% 32px;
+}
+
+#div-login {
+    position: absolute;
+    left: 50%;
+    z-index: 3;
+    background-color: #fff;
+}
+
+#div-text-register {
+    position: absolute;
+    left: 100%;
+    z-index: 4;
+    background: linear-gradient(to left, #1d6110, #6daa3a);
+    border-radius: 50px 32px 32px 50px / 50% 32px 32px 50%;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+input {
+    background-color: #eee;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 14px;
+    outline: none;
+    margin: 10px;
+    min-width: 300px;
+}
+
+div > button, form > button {
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #fff;
+    border-radius: 23px;
+    padding: 13px 37px;
+    margin: 30px;
+    cursor: pointer;
+}
+
+:is(#div-register, #div-register-continue) button {
+    background: linear-gradient(to right, #2a8818, #6daa3a);
+}
+
+#div-login button {
+    background: linear-gradient(to left, #2b71aa, #2da4c9);
+}
+
+form button {
+    color: #fff;
+    font-size: 18px;
+}
+
+#btn-undo {
+    margin: -10px;
+}
+
+form span {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    display: inline;
+}
+span > input {
+    /* margin-left: -5px; */
+}
+
+span > button {
+    /* margin-left: -53px;
+    margin-right: 15px; */
+    /* margin-left: 240px; */
+    /* margin-right: 12px; */
+    /* margin-top: 1px; */
+    background-color: #eee;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: fixed; */
+    margin: -37px 0 21px 276px;
+}
+
+button i {
+    background-color: #eee;
+    color: #5c5a5a;
+    /* max-width: 23px; */
+    /* position: fixed; */
+}

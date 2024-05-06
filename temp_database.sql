@@ -16,9 +16,9 @@ DROP TABLE IF EXISTS `quizmaster`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `quizmaster`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(64) NOT NULL,
-  `lastname` VARCHAR(64) NOT NULL,
-  `username` VARCHAR(64) NOT NULL,
+  `name` VARCHAR(32) NOT NULL,
+  `lastname` VARCHAR(32) NOT NULL,
+  `username` VARCHAR(32) NOT NULL,
   `email` VARCHAR(64) NOT NULL,
   `password` VARCHAR(128) NOT NULL,
   `description` TEXT NULL,
@@ -26,7 +26,8 @@ CREATE TABLE IF NOT EXISTS `quizmaster`.`user` (
   `createdate` DATETIME NOT NULL,
   `profileimage` INT NULL,
   `lastlogin` DATETIME NOT NULL,
-  PRIMARY KEY (`id`));
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`));
 
 DROP TABLE IF EXISTS `quizmaster`.`reviews` ;
 
@@ -212,17 +213,10 @@ INSERT INTO `quizmaster`.`topic` (`category_id`, `title`) VALUES
    (14, 'Historia Wynalazków i Odkryć');
 
 INSERT INTO `quizmaster`.`user` (`name`, `lastname`, `username`, `email`, `password`, `description`, `phonenumber`, `createdate`, `profileimage`, `lastlogin`) VALUES
-    ('Emily', 'Davis', 'root', 'root@example.com', 'hashed_password_4', 'Graphic designer', '+1122334455', '2024-01-30 12:45:00', 1, '2024-01-30 13:15:00'),
-    ('Daniel', 'Moore', 'daniel_moore', 'daniel.moore@example.com', 'hashed_password_5', 'Marketing specialist', '+9988776655', '2024-01-30 13:00:00', 2, '2024-01-30 13:30:00'),
-    ('Alice', 'Brown', 'alice_brown', 'alia.brown@example.com', 'hashed_password_6', 'UX/UI designer', NULL, '2024-01-30 13:15:00', 3, '2024-01-30 14:00:00'),
-    ('Michael', 'Johnson', 'michael_johnson', 'michael.johnson@example.com', 'hashed_password_7', 'IT consultant', '+1122337788', '2024-01-30 13:30:00', 4, '2024-01-30 14:15:00'),
-    ('Olivia', 'Anderson', 'olivia_anderson', 'olivia.anderson@example.com', 'hashed_password_8', 'Content writer', NULL, '2024-01-30 13:45:00', 5, '2024-01-30 14:30:00'),
-    ('Ethan', 'Taylor', 'ethan_taylor', 'ethan.taylor@example.com', 'hashed_password_9', 'Software developer', '+1122339900', '2024-01-30 14:00:00', 6, '2024-01-30 15:00:00'),
-    ('Ava', 'White', 'ava_white', 'ava.white@example.com', 'hashed_password_10', 'Product manager', '+1122344555', '2024-01-30 14:15:00', 7, '2024-01-30 15:15:00');
+    ('Admin', 'Admin', 'root', 'root', '$2y$10$OacZ4bj.H7sz6i04./z1b.zen0CWUXDJvuX/fCARUN.4LWFTadifW', 'Major Admin', '+1122344555', '2024-01-30 14:15:00', 7, '2024-01-30 15:15:00');
 
 INSERT INTO `quizmaster`.`admin` (`user_id`, `login`, `password`, `lastlogin`) VALUES
-    (1, 'root', 'zaq1@WSX', '2024-01-30 12:30:00'),
-    (3, 'admin_alice', 'adminer_pass42234', '2024-01-30 12:45:00'); 
+    (1, 'root', 'zaq1@WSX', '2024-01-30 12:30:00'); 
 
 INSERT INTO `quizmaster`.`reviews` (`user_id`, `date`, `rate`, `description`) VALUES
     (1, '2024-03-27 12:00:00', 5, 'Strona jest niesamowita! Quizy są świetnie zrobione i bardzo wciągające.'),
