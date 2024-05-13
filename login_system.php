@@ -46,4 +46,5 @@
         $stmt->bindParam(':phone', $phone);
         $stmt->execute();
     }
+    $connection = null;
 ?>
