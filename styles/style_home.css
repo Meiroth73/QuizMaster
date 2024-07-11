@@ -1,0 +1,98 @@
+
+.document {
+    flex-direction: row;
+}
+
+.document-body {
+    max-width: 1500px;
+    min-width: 30%;
+    margin-left: 100px;
+    width: 77%;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-top: 150px;
+    transform: translateX(-50%);
+    min-height: 82vh;
+    justify-content: start;
+}
+
+.menu {
+    margin: 30px;
+    height: 700px;
+    width: 170px;
+    border-radius: 20px;
+    background-color: #3d6853;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position:fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    margin-top: 150px;
+}
+
+.menu > button {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 90%;
+    cursor: pointer;
+    font-size: 19px;
+    color: #fff;
+    border-radius: 20px;
+    position: relative;
+    margin: 3px;
+    overflow: hidden;
+    transition-duration: .5s;
+}
+
+#menu-main {
+    margin-top: 20px;
+}
+
+.menu > .selected {
+    background-color: #1d4934;
+}
+
+
+
+main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+main > div {
+    width: 250px;
+    height: 210px;
+    margin: 30px;
+    border-radius: 15px;
+}
+
+.color-1 {
+    background-color: #1abc9c; 
+}
+
+.color-2 {
+	background-color: #f1c40f;
+}
+
+.color-3 {
+	background-color: #9b59b6;
+}
+
+.color-4 {
+	background-color: #34495e;
+}
+
+.color-5 {
+	background-color: #c0392b;
+}
+
+.color-6 {
+	background-color: #2980b9;
+}

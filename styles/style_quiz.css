@@ -1,0 +1,153 @@
+
+.document-body {
+    margin-top: 170px;
+}
+
+/* shadows from:https://getcssscan.com/css-box-shadow-examples */
+
+/* topic section in category.php */
+
+main {
+    margin-top: 160px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.xxx {
+    margin-top: 150px;
+    margin-bottom: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.topic-box {
+    width: 300px;
+    height: 150px;
+    padding: 15px;
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.topic-box p {
+    font-size: 25px;
+    color: #111;
+    font-family: "Suez One", serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 1px;
+    line-height: 24px;
+}
+
+/* css for quiz.php */
+
+h1 {
+    font-size: 40px;
+}
+
+.section-quiz {
+    min-width: 65%;
+    width: 70%;
+    max-width: 75%;
+}
+
+.question-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.span-question-title {
+    width: 90%;
+    height: 70px;
+    max-height: 150px;
+    margin: 50px 0 20px 0;
+    background-color: #f9a101;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.span-question-title h3 {
+    margin: 22px;
+    font-optical-sizing: auto;
+}
+
+.span-question-answer {
+    min-height: 50px;
+    width: 88%;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.span-question-answer label {
+    min-height: 60px;
+    height: auto;
+    max-height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #ffec5c;
+    transition-duration: .45s;
+    border-radius: 13px;
+    border: 1px solid rgba(0, 0, 0, 0);
+    line-height: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    line-height: 25px;
+    padding: 6px;
+}
+
+.span-question-answer label p {
+    margin-left: 1px;
+    font-size: 17px;
+    padding: 7px;
+}
+
+.span-question-answer label:hover {
+    border: 1px solid rgb(189, 155, 3);
+}
+
+.span-question-answer input:checked + label {
+    background-color: #f6c200;
+}
+
+.letter {
+    margin: 4px;
+    font-weight: 600;
+}
+
+form section {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form button {
+    font-size: 22px;
+    padding: 25px 60px;
+    border: none;
+    background-color: #44803f;
+    border-radius: 15px;
+    color: #fff;
+    margin: 20px;
+    user-select: none;
+    transition-duration: .45s;
+}
+
+form button:hover {
+    background-color: #2fa824;
+}
+

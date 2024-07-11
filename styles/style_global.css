@@ -7,8 +7,23 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
-
 }
+
+/* global classes styles */
+
+.no-select {
+    user-select: none;
+}
+
+.display-none {
+    display: none;
+}
+
+:is(label)::selection {
+    background-color: #fff;
+}
+
+/* other styles  */
 
 body {
     width: 100%;
@@ -41,16 +56,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-/* global classes styles */
-
-.no-select {
-    user-select: none;
-}
-
-.display-none {
-    display: none;
 }
 
 /* header styles */
@@ -90,7 +95,7 @@ nav {
 
 .logo {
     cursor: pointer;
-    font-size: 37px;
+    font-size: 39px;
     display: flex;
     text-decoration: none;
 }
@@ -138,6 +143,7 @@ nav {
 .nav-div-login  {
     justify-content: center;
     align-items: center;
+    margin-right: 10px;
 }
 
 /* footer section */
@@ -148,7 +154,7 @@ footer {
     min-height: 230px;
     z-index: 100;
     background-color: #5352ed;
-    margin: 90px 10px 10px 10px;
+    margin: 90px 15px 10px 15px;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -175,7 +181,6 @@ footer :is(p, a, h6) {
 
 footer h6 {
     font-size: 21px;
-    /* padding: 20px; */
     font-weight: bold;
     padding: 10px;
 }

@@ -6,5 +6,4 @@ $database_name = "quizmaster";
 $database_user = "root";
 $database_password = "zaq1@WSX";
 
-//Website adress
-$host_name = "http://127.1.1.1";
+?>

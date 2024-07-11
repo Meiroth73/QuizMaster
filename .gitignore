@@ -1,12 +1,5 @@
 
-.idea/workspace.xml
-another/inserts.txt
-.idea/inspectionProfiles/Project_Default.xml
-.idea/php.xml
-.idea/magento2plugin.xml
-another/docker - database import.png
-db/clear quizhub.sql
-info.txt
+.idea/
 project/
 .\#index.html
 Dockerfile
@@ -16,8 +9,7 @@ database/date quizmaster.sql
 test.html
 s.css
 .gitignore
-test/index.html
-test/style.css
+test/
 index.html
 iiindex.html
 uploads.php
@@ -29,4 +21,9 @@ cosss.php
 xxxx.php
 dupa.html
 log.html
-x.x
+
+tests/x2/xx.php
+tests/inne/ddaszfwe.html
+tests/x1/style.css
+weauseuria.html
+xxxxx.html

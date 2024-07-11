@@ -8,8 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>QuizMaster - Logowanie</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-        <link rel="stylesheet" href="./style/style_login.css">
-        <link rel="stylesheet" href="./style/styles_global.css">
+        <link rel="stylesheet" href="./styles/style_login.css">
+        <link rel="stylesheet" href="./styles/style_global.css">
     </head>
     <body>
         <section class="document">

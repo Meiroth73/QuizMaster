@@ -28,7 +28,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="./style/styles_global.css">
+        <link rel="stylesheet" href="./styles/style_global.css">
+        <link rel="stylesheet" href="./styles/style_topic.css">
     </head>
     <body>
         <section class="document">
@@ -79,32 +80,23 @@
                                 if (!in_array($row['category_id'], $tabTopicIncludeID)) {
                                     array_push($tabTopicIncludeID, $row['category_id']);
                                     $j++;
-                                    echo "<a href='./'>";
-                                    echo "<div class='topic-box'>";
-                                    echo "<i class='fa-solid ".$row['iconclass']."'></i>";
-                                    echo "<p>".$row['title']."</p>";
-                                    echo "</div>";
-                                    echo "</a>";
+                                    echo <<<TOPIC
+                                        <a href="quiz.php?t={$row['id']}">
+                                            <div class="topic-box">
+                                                <i class="fa-solid {$row['iconclass']}"></i>
+                                                <p>{$row['title']}</p>
+                                            </div>
+                                        </a>
+                                    TOPIC;
                                 }
                             }
                             echo "</div>";
                         }
                     ?>
                 </section>
-                <section class="section-category">
-                    <h4>Dostępne kategorie</h4>
-                    <div>
-                        <?php
-                            $sqlQuery = "SELECT title, image FROM category";
-                            $queryResult = $connection->query($sqlQuery);
-                            foreach($queryResult as $row) {
-                                echo "<a href='./' class='category-box' style='background-image: url(./image/category/" . $row['image'] . ")'>";
-                                echo "<p>".$row['title']."</p>";
-                                echo "</a>";
-                            }
-                        ?>
-                    </div>
-                </section>
+                <?php
+                    require_once('./elements/category.php');
+                ?>
                 <section class="about">
                     <div>
                         <hr>
@@ -189,7 +181,7 @@
         <?php
             require_once('./elements/footer.html');
         ?>
-        <script src="main.js"></script>
+        <script src="./scripts/main.js"></script>
     </body>
     <?php
         $connection = null;

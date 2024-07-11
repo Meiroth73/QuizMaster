@@ -24,10 +24,8 @@ document.querySelector('#comments-write-own-opinion-btn').addEventListener('clic
 
 
 document.querySelectorAll('.reviews-div-profile-info > span').forEach((span) => {
-    // console.log(span.getAttribute('rate'));
     let starCount = span.getAttribute('rate');
     let counter = 0;
-    // let starTab;
     span.querySelectorAll('p').forEach((p) => {
         if(counter < starCount) {
             p.classList.add('comments-star-active');

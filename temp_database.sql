@@ -9,7 +9,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 
 DROP DATABASE IF EXISTS `quizmaster`;
 
-CREATE DATABASE IF NOT EXISTS `quizmaster` DEFAULT CHARACTER SET utf8;
+CREATE DATABASE IF NOT EXISTS `quizmaster` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_polish_ci;
 USE `quizmaster`;
 
 DROP TABLE IF EXISTS `quizmaster`.`user` ;
@@ -47,10 +47,10 @@ CREATE TABLE IF NOT EXISTS `quizmaster`.`question` (
   `category_id` INT NOT NULL,
   `topic_id` INT NOT NULL,
   `title` TEXT NOT NULL,
-  `option1` TEXT NOT NULL,
-  `option2` TEXT NOT NULL,
-  `option3` TEXT NOT NULL,
-  `option4` TEXT NOT NULL,
+  `option-a` TEXT NOT NULL,
+  `option-b` TEXT NOT NULL,
+  `option-c` TEXT NOT NULL,
+  `option-d` TEXT NOT NULL,
   `correct` VARCHAR(1) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`category_id`) REFERENCES category(`id`),
@@ -229,7 +229,7 @@ INSERT INTO `quizmaster`.`reviews` (`user_id`, `date`, `rate`, `description`) VA
     (1, '2024-03-27 12:00:00', 5, 'Jestem pod wielkim wrażeniem różnorodności tematycznej quizów na tej stronie. Zawsze znajdę coś dla siebie.'),
     (1, '2024-03-27 12:00:00', 4, 'Strona z quizami to mój ulubiony sposób na relaks po ciężkim dniu. Dzięki prostym, ale ciekawym pytaniami, mogę oderwać się od codzienności i trochę się pobawić.');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (1, 1, 'Co to jest uczenie maszynowe?', 'Technika programowania', 'Rodzaj sztucznej inteligencji', 'Gra komputerowa', 'Nowy język programowania', 'B'),
 (1, 1, 'Która metoda nie jest typem uczenia maszynowego?', 'Uczenie nadzorowane', 'Uczenie nienadzorowane', 'Uczenie półnadzorowane', 'Uczenie przez wzmacnianie', 'D'),
 (1, 1, 'Kto jest uważany za ojca sztucznej inteligencji?', 'Alan Turing', 'John McCarthy', 'Elon Musk', 'Stephen Hawking', 'B'),
@@ -256,7 +256,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (1, 1, 'Co to jest maszyna Turinga?', 'Model komputera zaproponowany przez Alana Turinga', 'Typ procesora', 'Oprogramowanie antywirusowe', 'System komputerowy', 'A'),
 (1, 1, 'Co to jest algorytm?', 'Typ procesora', 'Oprogramowanie antywirusowe', 'System komputerowy', 'Zbiór instrukcji rozwiązujących problem', 'D');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (1, 2, 'Co to jest pętla w programowaniu?', 'Błąd w kodzie', 'Sposób na zwiększenie wydajności programu', 'Struktura pozwalająca na wielokrotne wykonanie instrukcji', 'Typ zmiennej', 'C'),
 (1, 2, 'Który język programowania jest obiektowy?', 'C', 'Java', 'Bash', 'HTML', 'B'),
 (1, 2, 'Co to jest zmienna w programowaniu?', 'Stała wartość', 'Błąd w kodzie', 'Miejsce w pamięci na przechowywanie danych', 'Nazwa funkcji', 'C'),
@@ -283,7 +283,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (1, 2, 'Co to jest SQL?', 'Błąd w kodzie', 'Typ zmiennej', 'Język zapytań do baz danych', 'Nazwa funkcji', 'C'),
 (1, 2, 'Co to jest NoSQL?', 'Błąd w kodzie', 'Typ zmiennej', 'Rodzaj bazy danych nie używającej języka SQL', 'Nazwa funkcji', 'C');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (1, 3, 'Co to jest protokół TCP/IP?', 'Typ kabla sieciowego', 'Język programowania', 'Protokół komunikacyjny', 'Urządzenie sieciowe', 'C'),
 (1, 3, 'Co to jest adres IP?', 'Identyfikator urządzenia w sieci lokalnej', 'Identyfikator urządzenia w Internecie', 'Typ szyfrowania', 'Model OSI', 'B'),
 (1, 3, 'Co to jest DNS?', 'Protokół routingu', 'System nazw domen', 'Typ szyfrowania', 'Model OSI', 'B'),
@@ -310,7 +310,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (1, 3, 'Co to jest Ethernet?', 'Protokół routingu', 'Typ szyfrowania', 'Standard sieciowy', 'Model OSI', 'C'),
 (1, 3, 'Co to jest warstwa fizyczna w modelu OSI?', 'Warstwa odpowiedzialna za szyfrowanie', 'Warstwa odpowiedzialna za logikę sieciową', 'Warstwa odpowiedzialna za przesył danych', 'Warstwa odpowiedzialna za aplikacje', 'C');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (1, 4, 'Jaki jest najczęstszy cel cyberataków?', 'Kradzież tożsamości', 'Przerwanie usług', 'Wydobycie kryptowalut', 'Sabotaż', 'A'),
 (1, 4, 'Co to jest atak "Man in the Middle"?', 'Podsłuchiwanie danych', 'Uszkodzenie danych', 'Usunięcie danych', 'Przerwanie połączenia', 'A'),
 (1, 4, 'Jaką rolę pełni szyfrowanie w cyberbezpieczeństwie?', 'Zwiększa prędkość transmisji danych', 'Umożliwia anonimowe przeglądanie', 'Chroni dane przed nieautoryzowanym dostępem', 'Ułatwia zarządzanie siecią', 'C'),
@@ -337,7 +337,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (1, 4, 'Co to jest "adware"?', 'Reklama internetowa', 'Złośliwe oprogramowanie wyświetlające reklamy', 'Typ wirusa komputerowego', 'Oprogramowanie antywirusowe', 'B'),
 (1, 4, 'Co to jest "cybersecurity awareness"?', 'Świadomość zagrożeń sieciowych', 'Typ wirusa komputerowego', 'Metoda autentykacji', 'Oprogramowanie antywirusowe', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (1, 5, 'Co to jest baza danych?', 'Kolekcja danych', 'Program komputerowy', 'System operacyjny', 'Urządzenie peryferyjne', 'A'),
 (1, 5, 'Co to jest SQL?', 'Język programowania', 'Język zapytań strukturalnych', 'Protokół internetowy', 'Typ szyfrowania', 'B'),
 (1, 5, 'Co to jest klucz główny w bazie danych?', 'Pierwszy rekord', 'Najważniejsza tabela', 'Unikatowy identyfikator rekordu', 'Największa wartość', 'C'),
@@ -364,7 +364,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (1, 5, 'Co to jest partycjonowanie w bazie danych?', 'Podział danych na części', 'Typ danych', 'Protokół komunikacyjny', 'Rodzaj indeksu', 'A'),
 (1, 5, 'Co to jest data warehouse?', 'Magazyn danych', 'Typ danych', 'Protokół komunikacyjny', 'Rodzaj indeksu', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (1, 6, 'Co to jest algorytm?', 'Proces matematyczny', 'Instrukcja gotowania', 'Zestaw instrukcji do rozwiązania problemu', 'Narzędzie rysunkowe', 'C'),
 (1, 6, 'Co to jest złożoność czasowa algorytmu?', 'Czas trwania programu', 'Ilość pamięci używanej przez program', 'Ilość czasu potrzebnego na wykonanie algorytmu', 'Szybkość procesora', 'C'),
 (1, 6, 'Co to jest algorytm zachłanny?', 'Algorytm, który zawsze daje najlepsze rozwiązanie', 'Algorytm, który podejmuje lokalnie optymalne decyzje', 'Algorytm, który używa rekurencji', 'Algorytm, który jest łatwy do zaimplementowania', 'B'),
@@ -391,7 +391,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (1, 6, 'Co to jest algorytm wyszukiwania liniowego?', 'Algorytm wyszukiwania w nieposortowanej tablicy', 'Algorytm sortowania', 'Algorytm szyfrowania', 'Algorytm kompresji danych', 'A'),
 (1, 6, 'Co to jest algorytm wyszukiwania interpolacyjnego?', 'Algorytm wyszukiwania w posortowanej tablicy', 'Algorytm sortowania', 'Algorytm szyfrowania', 'Algorytm kompresji danych', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (1, 7, 'Co to jest Internet Rzeczy (IoT)?', 'Sieć komputerowa', 'Sieć urządzeń połączonych internetem', 'Nowy system operacyjny', 'Typ kabla sieciowego', 'B'),
 (1, 7, 'Który protokół jest często używany w IoT do komunikacji?', 'HTTP', 'FTP', 'MQTT', 'SMTP', 'C'),
 (1, 7, 'Co to jest "smart home"?', 'Inteligentny system zarządzania domem', 'Nowy rodzaj oprogramowania', 'Urządzenie sieciowe', 'Typ kabla sieciowego', 'A'),
@@ -418,7 +418,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (1, 7, 'Co to jest ThingSpeak w IoT?', 'Platforma IoT do analizy i wizualizacji danych', 'Typ szyfrowania', 'Model OSI', 'Protokół internetowy', 'A'),
 (1, 7, 'Co to jest MQTT w IoT?', 'Protokół komunikacyjny oparty na modelu publikuj/subskrybuj', 'Typ szyfrowania', 'Model OSI', 'Protokół internetowy', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (1, 8, 'Co to jest Linux?', 'System operacyjny', 'Aplikacja biurowa', 'Język programowania', 'Protokół sieciowy', 'A'),
 (1, 8, 'Kto stworzył Linuxa?', 'Bill Gates', 'Steve Jobs', 'Linus Torvalds', 'Mark Zuckerberg', 'C'),
 (1, 8, 'Co to jest dystrybucja Linuxa?', 'Wersja jądra Linux', 'Pakiet oprogramowania', 'Rozpowszechnianie wirusów', 'Typ licencji', 'B'),
@@ -445,7 +445,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (1, 8, 'Co to jest YUM?', 'Menadżer pakietów dla systemów RPM', 'Polecenie do zarządzania użytkownikami', 'System plików', 'Typ szyfrowania', 'A'),
 (1, 8, 'Co to jest DNF?', 'Menadżer pakietów dla systemów Fedora', 'Polecenie do zarządzania użytkownikami', 'System plików', 'Typ szyfrowania', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (1, 9, 'Kto jest uważany za ojca komputera?', 'Charles Babbage', 'Alan Turing', 'John von Neumann', 'Bill Gates', 'A'),
 (1, 9, 'Jaki był pierwszy programowalny komputer?', 'ENIAC', 'UNIVAC', 'IBM PC', 'Apple I', 'A'),
 (1, 9, 'W którym roku powstał pierwszy komputer Apple?', '1976', '1984', '1990', '2001', 'A'),
@@ -472,7 +472,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (1, 9, 'Co to jest "Blue Gene"?', 'Superkomputer firmy IBM', 'System operacyjny', 'Typ procesora', 'Model pamięci RAM', 'A'),
 (1, 9, 'Kiedy powstał pierwszy tablet?', '2010', '2000', '1990', '1980', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (1, 10, 'Kiedy powstał ARPANET, prekursor Internetu?', '1969', '1972', '1980', '1991', 'A'),
 (1, 10, 'Kto jest uważany za jednego z ojców Internetu?', 'Tim Berners-Lee', 'Vint Cerf', 'Bill Gates', 'Steve Jobs', 'B'),
 (1, 10, 'Co to jest protokół TCP/IP?', 'Protokół komunikacyjny', 'Język programowania', 'Typ kabla sieciowego', 'Urządzenie sieciowe', 'A'),
@@ -499,7 +499,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (1, 10, 'Kiedy powstał pierwszy wirus komputerowy rozprzestrzeniający się przez Internet?', '1988', '1992', '1996', '2000', 'A'),
 (1, 10, 'Co to jest e-commerce?', 'Handel prowadzony za pomocą Internetu', 'Protokół internetowy', 'Urządzenie sieciowe', 'Typ kabla sieciowego', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (2, 11, 'Co to jest monom?', 'Wyrażenie z jedną zmienną', 'Wyrażenie z wieloma zmiennymi', 'Wyrażenie bez zmiennych', 'Wyrażenie z jedną zmienną i stałą', 'D'),
 (2, 11, 'Jakie jest rozwiązanie równania \( x + 5 = 12 \)?', 'x = 7', 'x = 17', 'x = -7', 'x = 60', 'A'),
 (2, 11, 'Co to jest współczynnik w wyrażeniu algebraicznym?', 'Stała dodawana do zmiennej', 'Liczba stojąca przy zmiennej', 'Wynik mnożenia zmiennych', 'Potęga zmiennej', 'B'),
@@ -526,7 +526,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (2, 11, 'Co to jest równanie logarytmiczne?', 'Równanie z funkcjami liniowymi', 'Równanie z funkcjami kwadratowymi', 'Równanie z funkcjami logarytmicznymi', 'Równanie z funkcjami trygonometrycznymi', 'C'),
 (2, 11, 'Co to jest równanie wykładnicze?', 'Równanie z funkcjami liniowymi', 'Równanie z funkcjami kwadratowymi', 'Równanie z funkcjami logarytmicznymi', 'Równanie z funkcjami wykładniczymi', 'D');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (2, 12, 'Co to jest punkt w geometrii?', 'Miejsce przecięcia dwóch linii', 'Najmniejszy element przestrzeni', 'Figura jednowymiarowa', 'Figura dwuwymiarowa', 'B'),
 (2, 12, 'Co to jest linia prosta?', 'Najkrótsza droga między dwoma punktami', 'Krzywa zamknięta', 'Figura trójwymiarowa', 'Odcinek linii', 'A'),
 (2, 12, 'Co to jest płaszczyzna?', 'Powierzchnia dwuwymiarowa', 'Figura jednowymiarowa', 'Figura trójwymiarowa', 'Punkt w przestrzeni', 'A'),
@@ -553,7 +553,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (2, 12, 'Co to jest pryzma?', 'Graniastosłup o podstawie wielokąta', 'Graniastosłup o podstawie koła', 'Graniastosłup o podstawie kwadratu', 'Graniastosłup o podstawie prostokąta', 'A'),
 (2, 12, 'Co to jest figura przestrzenna?', 'Figura o trzech wymiarach', 'Figura o dwóch wymiarach', 'Figura o jednym wymiarze', 'Figura bez wymiarów', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (2, 13, 'Jaki jest wzór na średnią arytmetyczną?', 'Suma obserwacji podzielona przez ich liczbę', 'Suma kwadratów obserwacji', 'Suma pierwiastków obserwacji', 'Suma odwrotności obserwacji', 'A'),
 (2, 13, 'Co to jest mediana?', 'Średnia arytmetyczna', 'Wartość środkowa uporządkowanego zbioru danych', 'Najczęściej występująca wartość', 'Różnica między największą a najmniejszą wartością', 'B'),
 (2, 13, 'Co to jest moda?', 'Średnia arytmetyczna', 'Wartość środkowa uporządkowanego zbioru danych', 'Najczęściej występująca wartość', 'Różnica między największą a najmniejszą wartością', 'C'),
@@ -580,7 +580,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (2, 13, 'Co to jest moc testu statystycznego?', 'Prawdopodobieństwo odrzucenia fałszywej hipotezy zerowej', 'Prawdopodobieństwo akceptacji prawdziwej hipotezy zerowej', 'Prawdopodobieństwo odrzucenia prawdziwej hipotezy alternatywnej', 'Prawdopodobieństwo akceptacji fałszywej hipotezy alternatywnej', 'A'),
 (2, 13, 'Co to jest p-wartość?', 'Prawdopodobieństwo uzyskania wyniku równie ekstremalnego lub bardziej, zakładając prawdziwość hipotezy zerowej', 'Średnia arytmetyczna', 'Mediana', 'Moda', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (2, 14, 'Co to jest liczba pierwsza?', 'Liczba naturalna większa od 1, która ma dokładnie dwa dzielniki: 1 i samą siebie', 'Liczba naturalna, która ma dokładnie trzy dzielniki', 'Liczba naturalna podzielna przez 2', 'Liczba naturalna podzielna przez 3', 'A'),
 (2, 14, 'Jakie jest twierdzenie Fermata?', 'Brak jest dowodu na jego słuszność', 'Suma kwadratów przyprostokątnych jest równa kwadratowi przeciwprostokątnej', 'Żadna liczba pierwsza większa od 2 nie może być wyrażona jako suma dwóch kwadratów liczb całkowitych', 'Każda liczba naturalna jest sumą liczb pierwszych', 'C'),
 (2, 14, 'Co to jest liczba doskonała?', 'Liczba naturalna, która jest sumą wszystkich swoich dzielników właściwych', 'Liczba naturalna, która ma dokładnie dwa dzielniki', 'Liczba naturalna, która ma dokładnie trzy dzielniki', 'Liczba naturalna podzielna przez 2', 'A'),
@@ -604,7 +604,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (2, 14, 'Co to jest hipoteza Riemanna?', 'Formułuje ona przypuszczenie dotyczące lokalizacji zer funkcji dzeta Riemanna', 'Suma kwadratów przyprostokątnych jest równa kwadratowi przeciwprostokątnej', 'Żadna liczba pierwsza większa od 2 nie może być wyrażona jako suma dwóch kwadratów liczb całkowitych', 'Każda liczba naturalna jest sumą liczb pierwszych', 'A'),
 (2, 14, 'Jakie jest twierdzenie Goldbacha?', 'Mówi ono, że każda parzysta liczba naturalna większa od 2 może być zapisana jako suma dwóch liczb pierwszych', 'Suma kwadratów przyprostokątnych jest równa kwadratowi przeciwprostokątnej', 'Żadna liczba pierwsza większa od 2 nie może być wyrażona jako suma dwóch kwadratów liczb całkowitych', 'Każda liczba naturalna jest sumą liczb pierwszych', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (2, 15, 'Jakie są współrzędne punktu środkowego odcinka AB o współrzędnych A(x1,y1) i B(x2,y2)?', '((x1+x2)/2, (y1+y2)/2)', '((x1+x2), (y1+y2))', '((x1-x2)/2, (y1-y2)/2)', '((x1-x2), (y1-y2))', 'A'),
 (2, 15, 'Jaki jest wzór na odległość między dwoma punktami A(x1,y1) i B(x2,y2) w przestrzeni dwuwymiarowej?', 'sqrt((x2-x1)^2 + (y2-y1)^2)', '(x2-x1)*(y2-y1)', '(x2+x1)*(y2+y1)', '(x2-x1)+(y2-y1)', 'A'),
 (2, 15, 'Co to jest równanie prostej w postaci ogólnej Ax + By + C = 0?', 'Równanie prostej wyrażone w ogólnych współczynnikach A, B i C', 'Równanie prostej w postaci funkcji liniowej', 'Równanie prostej przecinającej osie układu współrzędnych', 'Równanie prostej w postaci y = mx + c', 'A'),
@@ -630,7 +630,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (2, 15, 'Co to jest równanie powierzchni stożka o podstawie w kształcie koła i osi w kierunku z?', '((x-h)^2 / a^2) + ((y-k)^2 / a^2) - ((z-l)^2 / c^2) = 1', '((x+h)^2 / a^2) + ((y+k)^2 / a^2) - ((z+l)^2 / c^2) = 1', '((x-h)^2 / c^2) + ((y-k)^2 / c^2) - ((z-l)^2 / a^2) = 1', '((x+h)^2 / c^2) + ((y+k)^2 / c^2) - ((z+l)^2 / a^2) = 1', 'A'),
 (2, 15, 'Jaka jest odległość punktu (x0, y0, z0) od powierzchni stożka o równaniu ((x-h)^2 / a^2) + ((y-k)^2 / a^2) - ((z-l)^2 / c^2) = 1?', '|sqrt((x0-h)^2/a^2 + (y0-k)^2/a^2) - (z0-l)|', '|sqrt((x0-h)^2/a^2 + (y0-k)^2/a^2) + (z0-l)|', '|sqrt((x0-h)^2/c^2 + (y0-k)^2/c^2) - (z0-l)|', '|sqrt((x0-h)^2/c^2 + (y0-k)^2/c^2) + (z0-l)|', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (2, 16, 'Co to są równania różniczkowe?', 'Równania zawierające pochodne', 'Równania z samymi stałymi', 'Równania bez zmiennych', 'Równania algebraiczne', 'A'),
 (2, 16, 'Jakie są podstawowe typy równań różniczkowych?', 'Równania różniczkowe zwyczajne i cząstkowe', 'Równania liniowe i nieliniowe', 'Równania różniczkowe pierwszego i drugiego stopnia', 'Równania różniczkowe zwykłe i całkowe', 'A'),
 (2, 16, 'Co to jest równanie różniczkowe zwyczajne?', 'Równanie, w którym pochodne występują tylko względem jednej zmiennej niezależnej', 'Równanie złożone wyłącznie z pochodnych', 'Równanie zawierające jedynie stałe', 'Równanie nieliniowe', 'A'),
@@ -656,7 +656,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (2, 16, 'Co to jest równanie różniczkowe liniowe?', 'Równanie, w którym wszystkie pochodne są liniowe', 'Równanie, w którym wszystkie pochodne są nieliniowe', 'Równanie, w którym wszystkie pochodne są wielomianami', 'Równanie, w którym wszystkie pochodne są stałymi', 'A'),
 (2, 16, 'Co to jest równanie różniczkowe nieliniowe?', 'Równanie, w którym przynajmniej jedna pochodna jest nieliniowa', 'Równanie, w którym wszystkie pochodne są liniowe', 'Równanie, w którym wszystkie pochodne są wielomianami', 'Równanie, w którym wszystkie pochodne są stałymi', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (2, 17, 'Co to jest teoria mnogości?', 'Dział matematyki zajmujący się badaniem zbiorów', 'Dział matematyki zajmujący się badaniem funkcji', 'Dział matematyki zajmujący się badaniem liczb', 'Dział matematyki zajmujący się badaniem równań', 'A'),
 (2, 17, 'Jakie są podstawowe operacje na zbiorach?', 'Suma, iloczyn, różnica, różnica symetryczna', 'Dodawanie, odejmowanie, mnożenie, dzielenie', 'Potęgowanie, pierwiastkowanie, logarytmowanie', 'Wzajemne wykluczanie, alternatywa, negacja, implikacja', 'A'),
 (2, 17, 'Co to jest zbiór pusty?', 'Zbiór nieposiadający żadnych elementów', 'Zbiór zawierający wszystkie elementy', 'Zbiór zawierający jeden element', 'Zbiór zawierający nieskończoną liczbę elementów', 'A'),
@@ -681,7 +681,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (2, 17, 'Co to jest szereg geometryczny?', 'Szereg liczbowy, w którym iloraz między każdymi dwoma kolejnymi wyrazami jest stały', 'Szereg liczbowy, w którym każdy kolejny wyraz różni się od poprzedniego o stałą wartość', 'Szereg liczbowy, w którym suma każdych dwóch kolejnych wyrazów jest stała', 'Szereg liczbowy, w którym stosunek między każdymi dwoma kolejnymi wyrazami jest stały', 'A'),
 (2, 17, 'Co to jest szereg harmoniczny?', 'Szereg liczbowy, w którym wyrazy są odwrotnościami kolejnych liczb naturalnych', 'Szereg liczbowy, w którym wyrazy są kolejnymi potęgami liczby 2', 'Szereg liczbowy, w którym wyrazy są kolejnymi potęgami liczby e', 'Szereg liczbowy, w którym wyrazy są kolejnymi różnicami liczb parzystych', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (2, 18, 'Jaki jest wzór na średnią arytmetyczną?', 'Suma obserwacji podzielona przez ich liczbę', 'Suma kwadratów obserwacji', 'Suma pierwiastków obserwacji', 'Suma odwrotności obserwacji', 'A'),
 (2, 18, 'Co to jest mediana?', 'Średnia arytmetyczna', 'Wartość środkowa uporządkowanego zbioru danych', 'Najczęściej występująca wartość', 'Różnica między największą a najmniejszą wartością', 'B'),
 (2, 18, 'Co to jest moda?', 'Średnia arytmetyczna', 'Wartość środkowa uporządkowanego zbioru danych', 'Najczęściej występująca wartość', 'Różnica między największą a najmniejszą wartością', 'C'),
@@ -708,7 +708,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (2, 18, 'Co to jest moc testu statystycznego?', 'Prawdopodobieństwo odrzucenia fałszywej hipotezy zerowej', 'Prawdopodobieństwo akceptacji prawdziwej hipotezy zerowej', 'Prawdopodobieństwo odrzucenia prawdziwej hipotezy alternatywnej', 'Prawdopodobieństwo akceptacji fałszywej hipotezy alternatywnej', 'A'),
 (2, 18, 'Co to jest p-wartość?', 'Prawdopodobieństwo uzyskania wyniku równie ekstremalnego lub bardziej, zakładając prawdziwość hipotezy zerowej', 'Średnia arytmetyczna', 'Mediana', 'Moda', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (2, 19, 'Jaki jest wzór na średnią arytmetyczną?', 'Suma obserwacji podzielona przez ich liczbę', 'Suma kwadratów obserwacji', 'Suma pierwiastków obserwacji', 'Suma odwrotności obserwacji', 'A'),
 (2, 19, 'Co to jest mediana?', 'Średnia arytmetyczna', 'Wartość środkowa uporządkowanego zbioru danych', 'Najczęściej występująca wartość', 'Różnica między największą a najmniejszą wartością', 'B'),
 (2, 19, 'Co to jest moda?', 'Średnia arytmetyczna', 'Wartość środkowa uporządkowanego zbioru danych', 'Najczęściej występująca wartość', 'Różnica między największą a najmniejszą wartością', 'C'),
@@ -735,7 +735,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (2, 19, 'Co to jest moc testu statystycznego?', 'Prawdopodobieństwo odrzucenia fałszywej hipotezy zerowej', 'Prawdopodobieństwo akceptacji prawdziwej hipotezy zerowej', 'Prawdopodobieństwo odrzucenia prawdziwej hipotezy alternatywnej', 'Prawdopodobieństwo akceptacji fałszywej hipotezy alternatywnej', 'A'),
 (2, 19, 'Co to jest p-wartość?', 'Prawdopodobieństwo uzyskania wyniku równie ekstremalnego lub bardziej, zakładając prawdziwość hipotezy zerowej', 'Średnia arytmetyczna', 'Mediana', 'Moda', '2');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (2, 20, 'Kto jest autorem twierdzenia Pitagorasa?', 'Pitagoras', 'Archimedes', 'Euklides', 'Newton', 'A'),
 (2, 20, 'Który matematyk stworzył pierwszy formalny system logiki?', 'Arytmetyka Boole\`a', 'George Cantor', 'Euzebiusz z Cezarei', 'Augustus De Morgan', 'A'),
 (2, 20, 'Który matematyk jest znany z twierdzenia o granicy funkcji w nieskończoności?', 'Bernhard Riemann', 'Karl Weierstrass', 'Leonhard Euler', 'Srinivasa Ramanujan', 'C'),
@@ -762,7 +762,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (2, 20, 'Kto jest uznawany za ojca matematyki dyskretnej?', 'Leonhard Euler', 'Euzebiusz z Cezarei', 'Paul Erdős', 'Richard Dedekind', 'A'),
 (2, 20, 'Który matematyk jest znany z rozwiązania problemu ośmiu hetmanów?', 'Carl Friedrich Gauss', 'Leonhard Euler', 'Paul Erdős', 'Max Euwe', 'B');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (3, 21, 'Które miasto uznawane jest za kolebkę renesansu?', 'Florencja', 'Rzym', 'Wenecja', 'Mediolan', 'A'),
 (3, 21, 'Kto był jednym z najważniejszych mecenasów renesansu?', 'Rodzina Medyceuszy', 'Rodzina Borgia', 'Rodzina Sforzów', 'Rodzina Viscontich', 'A'),
 (3, 21, 'Który z poniższych artystów nie był renesansowym malarzem?', 'Vincent van Gogh', 'Leonardo da Vinci', 'Michał Anioł', 'Rafael Santi', 'A'),
@@ -789,7 +789,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (3, 21, 'Która z poniższych instytucji zyskała na znaczeniu w okresie renesansu?', 'Uniwersytety', 'Kościoły lokalne', 'Gildie rzemieślnicze', 'Organizacje wojskowe', 'A'),
 (3, 21, 'Które z poniższych dzieł nie jest autorstwa Michała Anioła?', 'Światłość i mrok', 'Pieta', 'Stworzenie Adama', 'Dawid', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (3, 22, 'Kto był austro-węgierskim następcą tronu, który został zabity w Sarajewie w 1914 roku, co zapoczątkowało pierwszą wojnę światową?', 'Franciszek Ferdynand', 'Karol I', 'Franciszek Józef I', 'Mikołaj II', 'A'),
 (3, 22, 'Który kraj był pierwszym, który wypowiedział wojnę po zabójstwie Franciszka Ferdynanda?', 'Austria-Węgry', 'Niemcy', 'Rosja', 'Serbia', 'A'),
 (3, 22, 'Który kraj był sojusznikiem Niemiec w czasie pierwszej wojny światowej?', 'Austro-Węgry', 'Francja', 'Rosja', 'Wielka Brytania', 'A'),
@@ -815,7 +815,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (3, 22, 'Który był jednym z efektów Rewolucji Październikowej w Rosji?', 'Wycofanie Rosji z wojny', 'Przejęcie władzy przez carat', 'Zawarcie pokoju z Niemcami', 'Powrót do monarchii absolutnej', 'A'),
 (3, 22, 'Który kraj był największym beneficjentem terytorialnym w wyniku I wojny światowej?', 'Polska', 'Włochy', 'Francja', 'Niemcy', 'C');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (3, 23, 'Który kraj był pierwszym celem inwazji niemieckiej w czasie II wojny światowej?', 'Polska', 'Francja', 'Związek Radziecki', 'Wielka Brytania', 'A'),
 (3, 23, 'Które wydarzenie zainicjowało formalnie II wojnę światową?', 'Atak na Polskę', 'Atak na Francję', 'Atak na Związek Radziecki', 'Atak na Wielką Brytanię', 'A'),
 (3, 23, 'W którym roku rozpoczęła się II wojna światowa?', '1939', '1940', '1941', '1942', 'A'),
@@ -842,7 +842,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (3, 23, 'Która bitwa była decydująca dla Afryki Północnej w czasie II wojny światowej?', 'Bitwa pod El-Alamein', 'Bitwa o Tobruk', 'Bitwa o Kretę', 'Bitwa o Gibraltat', 'A'),
 (3, 23, 'Który związek ogłosił wojnę Niemcom w reakcji na inwazję na Polskę?', 'Wielka Brytania', 'Francja', 'Stany Zjednoczone', 'Związek Radziecki', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (3, 24, 'Kto był prezydentem Stanów Zjednoczonych podczas wojny secesyjnej?', 'Abraham Lincoln', 'George Washington', 'Thomas Jefferson', 'Andrew Jackson', 'A'),
 (3, 24, 'Który stan był pierwszym, który opuścił Unię, co rozpoczęło wojnę secesyjną?', 'Carolina Południowa', 'Wirginia', 'Teksas', 'Georgia', 'A'),
 (3, 24, 'Które z poniższych wydarzeń było bezpośrednią przyczyną wybuchu wojny secesyjnej?', 'Atak na Fort Sumter', 'Bitwa pod Gettysburgiem', 'Bitwa pod Bull Run', 'Bitwa o Vicksburg', 'A'),
@@ -868,7 +868,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (3, 24, 'Który z poniższych generałów Unii był odpowiedzialny za zwycięstwo w bitwie pod Vicksburgiem, co otworzyło rzekę Missisipi dla Unii?', 'Ulysses S. Grant', 'William Tecumseh Sherman', 'George B. McClellan', 'Philip Sheridan', 'A'),
 (3, 24, 'Który z poniższych aktów prawnych formalnie zakończył rekonstrukcję po wojnie secesyjnej?', 'Akt o prawach obywatelskich', 'Akt o rekonstrukcji', 'Proklamacja Emancypacji', 'Akt o zniesieniu niewolnictwa', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (3, 25, 'Kto był pierwszym historycznym królem Polski?', 'Bolesław I Chrobry', 'Mieszko I', 'Kazimierz I Odnowiciel', 'Władysław I Łokietek', 'B'),
 (3, 25, 'Który z królów Polski był synem Kazimierza III Wielkiego?', 'Władysław II Jagiełło', 'Władysław IV Waza', 'Zygmunt I Stary', 'Stefan Batory', 'A'),
 (3, 25, 'Kto był ostatnim królem Polski przed rozbiorami?', 'Stanisław August Poniatowski', 'August II Mocny', 'Jan III Sobieski', 'Zygmunt III Waza', 'A'),
@@ -895,7 +895,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (3, 25, 'Kto z królów Polski walczył z krzyżakami w bitwie pod Grunwaldem?', 'Władysław II Jagiełło', 'Zygmunt I Stary', 'August II Mocny', 'Zygmunt III Waza', 'A'),
 (3, 25, 'Kto był pierwszym królem Polski po przyjęciu chrztu?', 'Mieszko I', 'Bolesław I Chrobry', 'Kazimierz I Odnowiciel', 'Władysław I Łokietek', 'B');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (3, 26, 'Jakie było oficjalne hasło PRL?', 'Zjednoczeni w pracy, zwyciężymy', 'Za naszą i waszą wolność', 'Za socjalizm', 'Pracuj, walcz, osiągaj', 'A'),
 (3, 26, 'Kto był pierwszym sekretarzem PZPR?', 'Bolesław Bierut', 'Władysław Gomułka', 'Edward Gierek', 'Stanisław Kania', 'A'),
 (3, 26, 'Kiedy miała miejsce powstanie w Poznaniu?', '1956', '1968', '1970', '1980', 'A'),
@@ -922,7 +922,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (3, 26, 'Który z przywódców PRL był ministrem obrony narodowej?', 'Władysław Gomułka', 'Edward Gierek', 'Wojciech Jaruzelski', 'Bolesław Bierut', 'C'),
 (3, 26, 'Kto był autorem hasła "Nocna zmiana"?', 'Lech Wałęsa', 'Andrzej Gwiazda', 'Jan Olszewski', 'Tadeusz Mazowiecki', 'D');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (3, 27, 'Który wiek jest określany jako "mroczne wieki"?', 'VII wiek', 'XVI wiek', 'X wiek', 'XI wiek', 'C'),
 (3, 27, 'W którym wieku rozpoczęła się ekspansja wikingów?', 'VIII', 'IX', 'X', 'XI', 'B'),
 (3, 27, 'Kto był pierwszym władcą zjednoczonej Anglii?', 'Alfred Wielki', 'Wilhelm Zdobywca', 'Edward Wyznawca', 'Henryk II Plantagenet', 'A'),
@@ -948,7 +948,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (3, 27, 'Który z papieży był odpowiedzialny za wprowadzenie celibatu dla duchowieństwa katolickiego?', 'Grzegorz VII', 'Urban II', 'Bonifacy VIII', 'Innocenty III', 'A'),
 (3, 27, 'Kto był pierwszym władcą Anglii z dynastii Tudorów?', 'Henryk VII', 'Henryk VIII', 'Elżbieta I', 'Maria I', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (3, 28, 'Która cywilizacja zbudowała piramidy w Gizie?', 'Starożytni Grecy', 'Starożytni Rzymianie', 'Starożytni Egipcjanie', 'Sumerowie', 'C'),
 (3, 28, 'W którym kraju znajdowała się starożytna Troja?', 'Grecja', 'Rzym', 'Egipt', 'Turcja', 'D'),
 (3, 28, 'Kto był legendarnym założycielem Rzymu?', 'Juliusz Cezar', 'Hadrian', 'Romulus', 'Klaudiusz', 'C'),
@@ -975,7 +975,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (3, 28, 'Kto był twórcą filozofii cynickiej?', 'Diogenes z Synopy', 'Zenon z Kition', 'Epiktet', 'Heraklit', 'A'),
 (3, 28, 'Która z poniższych cywilizacji stworzyła system pisma hieroglificznego?', 'Sumerowie', 'Persowie', 'Egipcjanie', 'Grecy', 'C');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (3, 29, 'Kto był pierwszym historycznym władcą Polski?', 'Mieszko I', 'Bolesław Chrobry', 'Kazimierz Wielki', 'Piast', 'A'),
 (3, 29, 'Kiedy miało miejsce chrzest Polski?', 'W X wieku', 'W XI wieku', 'W IX wieku', 'W XII wieku', 'A'),
 (3, 29, 'Kto był pierwszym koronowanym królem Polski?', 'Bolesław I Chrobry', 'Mieszko I', 'Kazimierz Wielki', 'Bolesław II Śmiały', 'A'),
@@ -1002,7 +1002,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (3, 29, 'Kiedy miało miejsce wprowadzenie stanu wojennego w Polsce?', '13 grudnia 1981 roku', '12 grudnia 1980 roku', '13 grudnia 1980 roku', '12 grudnia 1981 roku', 'A'),
 (3, 29, 'Kto był pierwszym niekomunistycznym premierem Polski po 1989 roku?', 'Tadeusz Mazowiecki', 'Lech Wałęsa', 'Jan Krzysztof Bielecki', 'Hanna Suchocka', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (3, 30, 'Który dynasta panował w Chinach w czasie budowy Wielkiego Muru?', 'Ming', 'Qin', 'Han', 'Tang', 'A'),
 (3, 30, 'Który cesarz jest znany jako pierwszy cesarz zjednoczonych Chin?', 'Qin Shi Huang', 'Han Wudi', 'Tang Taizong', 'Kublai Khan', 'A'),
 (3, 30, 'Który z następujących przywódców założył dynastię Ming w Chinach?', 'Zhu Yuanzhang', 'Kublai Khan', 'Sun Yat-sen', 'Mao Zedong', 'A'),
@@ -1029,7 +1029,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (3, 30, 'Która dynastia zaznaczyła się jako okres intensywnego rozwoju sztuki i architektury, w tym budowy Zakazanego Miasta?', 'Ming', 'Qin', 'Han', 'Tang', 'A'),
 (3, 30, 'Który z następujących przywódców był założycielem dynastii Shang w Chinach (według tradycji)?', 'Tang of Shang', 'Qin Shi Huang', 'Sun Yat-sen', 'Zhu Yuanzhang', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (3, 31, 'Kto był pierwszym prezydentem Stanów Zjednoczonych?', 'George Washington', 'Thomas Jefferson', 'Abraham Lincoln', 'John Adams', 'A'),
 (3, 31, 'Która wojna miała największy wpływ na rozwój Stanów Zjednoczonych?', 'Wojna secesyjna', 'Wojna o niepodległość', 'I wojna światowa', 'Wojna w Wietnamie', 'A'),
 (3, 31, 'Który prezydent ogłosił Prohibicję w Stanach Zjednoczonych?', 'Woodrow Wilson', 'Theodore Roosevelt', 'Herbert Hoover', 'Franklin D. Roosevelt', 'C'),
@@ -1056,7 +1056,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (3, 31, 'Który akt prawny zakazał dyskryminacji ze względu na wiek, płeć, rasę lub wyznanie w zatrudnieniu?', 'Civil Rights Act of 1964', 'Equal Pay Act of 1963', 'Americans with Disabilities Act of 1990', 'Age Discrimination in Employment Act of 1967', 'A'),
 (3, 31, 'Który prezydent Stanów Zjednoczonych był pierwszym laureatem Pokojowej Nagrody Nobla?', 'Theodore Roosevelt', 'Woodrow Wilson', 'Jimmy Carter', 'Barack Obama', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (3, 32, 'Który hiszpański konkwistador podbił Imperium Inków?', 'A. Hernan Cortes', 'B. Francisco Pizarro', 'C. Diego de Almagro', 'D. Vasco Nunez de Balboa', 'B'),
 (3, 32, 'Który rok oznacza początek epoki kolonializmu w Ameryce Łacińskiej?', 'A. 1492', 'B. 1500', 'C. 1498', 'D. 1519', 'A'),
 (3, 32, 'Który kraj był pierwszym, który ogłosił niepodległość w Ameryce Południowej?', 'A. Argentyna', 'B. Wenezuela', 'C. Chile', 'D. Kolumbia', 'B'),
@@ -1083,7 +1083,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (3, 32, 'Kto był przywódcą rewolucji w Kolumbii?', 'A. Simón Bolívar', 'B. José de San Martín', 'C. Antonio Nariño', 'D. Rafael Núñez', 'C'),
 (3, 32, 'Który hiszpański odkrywca jako pierwszy dotarł do Ameryki Centralnej?', 'A. Christopher Columbus', 'B. Amerigo Vespucci', 'C. Juan Ponce de León', 'D. Vasco Núñez de Balboa', 'D');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (3, 33, 'Co to było wydarzenie XX wieku?', 'Odkrycie penicyliny', 'Lądowanie człowieka na Księżycu', 'Upadek muru berlińskiego', 'Wprowadzenie smartfonów na rynek', 'C'),
 (3, 33, 'Które z poniższych wydarzeń miało miejsce w XX wieku?', 'Rewolucja francuska', 'Wojna stuletnia', 'I wojna światowa', 'Wojna trzydziestoletnia', 'C'),
 (3, 33, 'Które wydarzenie miało ogromny wpływ na kształtowanie się Europy po II wojnie światowej?', 'Konferencja w Teheranie', 'Konferencja poczdamska', 'Konferencja jałtańska', 'Konferencja w Poczdamie', 'C'),
@@ -1110,7 +1110,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (3, 33, 'Co było następstwem kryzysu berlińskiego w 1948 roku?', 'Powstanie dwóch państw niemieckich', 'Powstanie dwóch państw koreańskich', 'Powstanie dwóch państw wietnamskich', 'Powstanie dwóch państw afrykańskich', 'A'),
 (3, 33, 'Które wydarzenie było bezpośrednią przyczyną konfliktu zbrojnego na Bałkanach w latach 90. XX wieku?', 'Rozpad Jugosławii', 'Zakończenie II wojny światowej', 'Powstanie NATO', 'Powstanie ZSRR', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (3, 34, 'Co to jest 9/11?', 'Atak terrorystyczny na World Trade Center w Nowym Jorku i Pentagon w Waszyngtonie', 'Nazwa popularnego filmu z lat 2000', 'Data wynalezienia internetu', 'Numer alarmowy w Stanach Zjednoczonych', 'A'),
 (3, 34, 'Co to jest Brexit?', 'Proces wyjścia Wielkiej Brytanii z Unii Europejskiej', 'Nazwa popularnej imprezy muzycznej', 'Nazwa nowej technologii w przemyśle lotniczym', 'Nazwa nowej strefy czasowej', 'A'),
 (3, 34, 'Co to jest Arab Spring?', 'Serię protestów społecznych i rewolucji w krajach arabskich', 'Nazwa kawiarni sieciowej', 'Nazwa sezonu sprzedażowego w krajach Bliskiego Wschodu', 'Nazwa konfliktu zbrojnego', 'A'),
@@ -1136,7 +1136,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (3, 34, 'Co to jest War in Yemen?', 'Konflikt zbrojny w Jemenie rozpoczęty w 2015 roku', 'Nazwa popularnej sieci restauracji', 'Nazwa eksperymentalnego zespołu muzycznego', 'Nazwa nowego programu komputerowego', 'A'),
 (3, 34, 'Co to jest War in Syria?', 'Wojna domowa w Syrii trwająca od 2011 roku', 'Nazwa nowej diety odchudzającej', 'Nazwa eksperymentalnego zespołu muzycznego', 'Nazwa popularnego napoju energetycznego', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (4, 35, 'Co to jest średnia arytmetyczna?', 'Suma obserwacji podzielona przez ich liczbę', 'Suma kwadratów obserwacji', 'Suma pierwiastków obserwacji', 'Suma odwrotności obserwacji', 'A'),
 (4, 35, 'Co to jest mediana?', 'Średnia arytmetyczna', 'Wartość środkowa uporządkowanego zbioru danych', 'Najczęściej występująca wartość', 'Różnica między największą a najmniejszą wartością', 'B'),
 (4, 35, 'Co to jest moda?', 'Średnia arytmetyczna', 'Wartość środkowa uporządkowanego zbioru danych', 'Najczęściej występująca wartość', 'Różnica między największą a najmniejszą wartością', 'C'),
@@ -1163,7 +1163,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (4, 35, 'Co to jest moc testu statystycznego?', 'Prawdopodobieństwo odrzucenia fałszywej hipotezy zerowej', 'Prawdopodobieństwo akceptacji prawdziwej hipotezy zerowej', 'Prawdopodobieństwo odrzucenia prawdziwej hipotezy alternatywnej', 'Prawdopodobieństwo akceptacji fałszywej hipotezy alternatywnej', 'A'),
 (4, 35, 'Co to jest p-wartość?', 'Prawdopodobieństwo uzyskania wyniku równie ekstremalnego lub bardziej, zakładając prawdziwość hipotezy zerowej', 'Średnia arytmetyczna', 'Mediana', 'Moda', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (4, 36, 'Co to jest produkt krajowy brutto (PKB)?', 'Wartość rynkowa wszystkich końcowych dóbr i usług wyprodukowanych w kraju w określonym czasie', 'Wartość wszystkich dóbr i usług wyprodukowanych w kraju w określonym czasie', 'Wartość rynkowa eksportu minus importu', 'Wartość wszystkich dóbr i usług finalnych w kraju w określonym czasie', 'A'),
 (4, 36, 'Co to jest produkt krajowy netto (PKN)?', 'PKB pomniejszone o amortyzację', 'PKB pomniejszone o dochody zagranicznych właścicieli zasobów krajowych i pomniejszone o dochody krajowych właścicieli zasobów zagranicznych', 'PKB pomniejszone o dochody krajowych właścicieli zasobów zagranicznych', 'PKB pomniejszone o dochody zagranicznych właścicieli zasobów krajowych', 'B'),
 (4, 36, 'Co to jest deflacja?', 'Spadek ogólnego poziomu cen dóbr i usług w gospodarce', 'Wzrost ogólnego poziomu cen dóbr i usług w gospodarce', 'Spadek wartości pieniądza', 'Wzrost wartości pieniądza', 'A'),
@@ -1187,7 +1187,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (4, 36, 'Co to jest kurs zmienny waluty?', 'Kurs, który ulega ciągłym zmianom na rynku walutowym', 'Kurs, który jest stały i nie ulega zmianom', 'Kurs, który jest regulowany przez bank centralny', 'Kurs, który jest niezależny od innych walut', 'A'),
 (4, 36, 'Co to jest kurs stały waluty?', 'Kurs, który jest ustalony i nie ulega zmianom na rynku walutowym', 'Kurs, który ulega ciągłym zmianom', 'Kurs, który jest regulowany przez bank centralny', 'Kurs, który jest niezależny od innych walut', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (4, 37, 'Czym jest deficyt budżetowy?', 'Różnica między wydatkami a dochodami państwa w danym okresie', 'Różnica między eksportem a importem towarów w danym okresie', 'Różnica między aktywami a pasywami w bilansie finansowym państwa', 'Różnica między dochodami a wydatkami państwa w danym okresie', 'A'),
 (4, 37, 'Czym jest dług publiczny?', 'Sumą zobowiązań finansowych państwa', 'Różnicą między dochodami a wydatkami państwa w danym okresie', 'Różnicą między eksportem a importem towarów w danym okresie', 'Sumą aktywów i pasywów państwa', 'A'),
 (4, 37, 'Kto emituje obligacje skarbowe?', 'Państwo', 'Międzynarodowe instytucje finansowe', 'Banki komercyjne', 'Organizacje pozarządowe', 'A'),
@@ -1213,7 +1213,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (4, 37, 'Czym jest dług publiczny netto?', 'Różnicą między długiem publicznym brutto a aktywami państwa', 'Różnicą między dochodami a wydatkami państwa w danym okresie', 'Różnicą między eksportem a importem towarów w danym okresie', 'Różnicą między długiem publicznym brutto a pasywami państwa', 'A'),
 (4, 37, 'Czym jest obligacja skarbowa?', 'Dłużnym papierem wartościowym emitowanym przez państwo', 'Akcją emitowaną przez państwo', 'Dłużnym papierem wartościowym emitowanym przez bank centralny', 'Akcją emitowaną przez bank centralny', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (4, 38, 'Co to jest rynek finansowy?', 'Miejsce, gdzie handluje się instrumentami finansowymi', 'Miejsce, gdzie kupuje się nieruchomości', 'Miejsce, gdzie sprzedaje się produkty rolnicze', 'Miejsce, gdzie prowadzi się wymianę walut', 'A'),
 (4, 38, 'Co to jest obligacja?', 'Dłużny papier wartościowy emitowany przez podmioty gospodarcze', 'Akcja reprezentująca udział w spółce', 'Waluta obca', 'Tytuł własnościowy na nieruchomość', 'A'),
 (4, 38, 'Co to jest akcja?', 'Tytuł własnościowy reprezentujący udział w spółce', 'Dłużny papier wartościowy emitowany przez państwo', 'Waluta obca', 'Tytuł własnościowy na nieruchomość', 'A'),
@@ -1240,7 +1240,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (4, 38, 'Co to jest rynek walutowy?', 'Miejsce, gdzie dokonuje się wymiany walut', 'Miejsce, gdzie handluje się nieruchomościami', 'Miejsce, gdzie handluje się używanymi samochodami', 'Miejsce, gdzie kupuje się akcje', 'A'),
 (4, 38, 'Co to jest bank centralny?', 'Instytucja odpowiedzialna za politykę pieniężną kraju', 'Bank dla sektora prywatnego', 'Bank specjalizujący się w kredytach hipotecznych', 'Bank specjalizujący się w kredytach samochodowych', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (4, 39, 'Co to jest strategia konkurencji?', 'Plan działania mający na celu osiągnięcie przewagi nad konkurentami', 'Strategia dywersyfikacji', 'Strategia segmentacji', 'Strategia penetracji rynku', 'A'),
 (4, 39, 'Co to jest analiza SWOT?', 'Narzędzie służące do identyfikacji mocnych i słabych stron oraz szans i zagrożeń', 'Narzędzie do prognozowania trendów rynkowych', 'Metoda oceny efektywności działań marketingowych', 'Metoda oceny efektywności działań operacyjnych', 'A'),
 (4, 39, 'Co to jest misja organizacji?', 'Podstawowy cel istnienia organizacji', 'Strategia marketingowa', 'Strategia finansowa', 'Strategia operacyjna', 'A'),
@@ -1267,7 +1267,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (4, 39, 'Co to jest strategia integracji?', 'Dążenie do kontroli nad różnymi etapami procesu produkcyjnego lub dystrybucji', 'Strategia segmentacji', 'Strategia koncentracji', 'Strategia dywersyfikacji', 'A'),
 (4, 39, 'Co to jest strategia penetracji rynku?', 'Zwiększanie udziału w rynku poprzez sprzedaż istniejących produktów w istniejących segmentach', 'Strategia segmentacji', 'Strategia integracji', 'Strategia dywersyfikacji', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (4, 40, 'Co to jest paradoks oszczędności?', 'Sytuacja, w której wzrost oszczędności prowadzi do spadku konsumpcji i produkcji', 'Sytuacja, w której wzrost konsumpcji prowadzi do spadku oszczędności', 'Sytuacja, w której wzrost inwestycji prowadzi do spadku produkcji', 'Sytuacja, w której spadek oszczędności prowadzi do wzrostu produkcji', 'A'),
 (4, 40, 'Co to jest krzywa Lorenza?', 'Graficzna reprezentacja nierównomiernego rozkładu dochodu w społeczeństwie', 'Graficzna reprezentacja równomiernego rozkładu dochodu w społeczeństwie', 'Graficzna reprezentacja wzrostu PKB w czasie', 'Graficzna reprezentacja spadku bezrobocia w czasie', 'A'),
 (4, 40, 'Jaką rolę pełnią instytucje w teorii rozwoju ekonomicznego?', 'Zabezpieczają prawa własności, egzekwują umowy i regulują działalność gospodarczą', 'Służą do kontrolowania inflacji i deflacji', 'Zachęcają do wzrostu oszczędności', 'Umożliwiają elastyczność rynku pracy', 'A'),
@@ -1291,7 +1291,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (4, 40, 'Co to jest pułapka dochodowa?', 'Sytuacja, w której rozwój gospodarczy kraju utyka na niskim poziomie dochodu per capita przez długi okres czasu', 'Sytuacja, w której rozwój gospodarczy kraju jest bardzo dynamiczny i przekracza możliwości finansowe społeczeństwa', 'Sytuacja, w której wzrost dochodu prowadzi do spadku inwestycji', 'Sytuacja, w której wzrost dochodu prowadzi do wzrostu inflacji', 'A'),
 (4, 40, 'Co to jest teoria kapitału ludzkiego?', 'Teoria zakładająca, że inwestycje w edukację i zdrowie jednostek są kluczowe dla rozwoju gospodarczego', 'Teoria zakładająca, że jednostki nie mają wpływu na swój rozwój', 'Teoria zakładająca, że kapitał ludzki nie ma wpływu na wzrost gospodarczy', 'Teoria zakładająca, że kapitał ludzki jest stały i niezmienny', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (4, 41, 'Czym jest teoria heksagonalnej struktury handlu międzynarodowego?', 'Modelem przedstawiającym relacje handlowe w oparciu o koncentryczne okręgi', 'Modelem przedstawiającym relacje handlowe w oparciu o trójkąt Bermudzki', 'Modelem przedstawiającym relacje handlowe w oparciu o trójkąt bermudzki', 'Modelem przedstawiającym relacje handlowe w oparciu o kształt heksagonu', 'A'),
 (4, 41, 'Która z poniższych teorii handlu międzynarodowego skupia się na przewadze komparatywnej?', 'Teoria przewagi absolutnej', 'Teoria heksagonalnej struktury handlu', 'Teoria nowej konkurencji', 'Teoria stosunków międzynarodowych', 'A'),
 (4, 41, 'Czym jest teoria Mercantilizmu?', 'Polityką gospodarczą skoncentrowaną na maksymalizacji akumulacji bogactwa narodowego', 'Polityką gospodarczą skoncentrowaną na redukcji handlu międzynarodowego', 'Polityką gospodarczą skoncentrowaną na eliminacji podatków', 'Polityką gospodarczą skoncentrowaną na liberalizacji rynku pracy', 'A'),
@@ -1316,7 +1316,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (4, 41, 'Czym jest agresywna polityka handlowa?', 'Polityką gospodarczą polegającą na stosowaniu dużych subwencji w celu promocji eksportu', 'Polityką gospodarczą polegającą na regulacji kontyngentowej', 'Polityką gospodarczą polegającą na eliminacji ceł', 'Polityką gospodarczą polegającą na eliminacji podatków', 'A'),
 (4, 41, 'Które z poniższych jest celem protekcjonizmu?', 'Ochrona krajowych producentów przed konkurencją zagraniczną', 'Zwiększenie handlu międzynarodowego', 'Zwiększenie liberalizacji handlu', 'Zwiększenie importu', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (4, 42, 'Co to jest model Schumpetera?', 'Teoria innowacji zakładająca, że postęp ekonomiczny wynika z działań przedsiębiorczych i procesów twórczych nisz', 'Teoria efektywnego rynku', 'Teoria oczekiwań adaptacyjnych', 'Teoria chaosu', 'A'),
 (4, 42, 'Która z poniższych teorii opisuje "efekt miejscowego zbiórku"?', 'Teoria krachu rynkowego', 'Teoria innowacji', 'Teoria rozwoju gospodarczego', 'Teoria małych światów', 'D'),
 (4, 42, 'Co to jest efekt halo w kontekście innowacji?', 'Tendencja do przypisywania dodatkowych cech lub atrybutów, które nie są związane z produktem lub usługą', 'Efekt, który sprawia, że innowacje zdobywają popularność dzięki masowej reklamie', 'Zjawisko, które sprawia, że innowacje są bardziej akceptowane przez społeczeństwo', 'Tendencja do kopiowania innowacji przez inne firmy', 'A'),
@@ -1342,7 +1342,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (4, 42, 'Co to jest "gamification" (gamifikacja)?', 'Wykorzystanie elementów gier do motywowania i angażowania użytkowników', 'Wykorzystanie elementów sportowych do promocji produktu', 'Wykorzystanie elementów muzycznych do reklamy', 'Wykorzystanie elementów filmowych w strategii marketingowej', 'A'),
 (4, 42, 'Która z poniższych teorii opisuje, że innowacje mogą prowadzić do nierówności ekonomicznych?', 'Teoria nierówności', 'Teoria efektywnego rynku', 'Teoria równowagi rynkowej', 'Teoria kapitału ludzkiego', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) 
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) 
 VALUES
 (4, 43, 'Czym jest przedsiębiorstwo społeczne?', 'Przedsiębiorstwo działające z zyskiem, ale o przeznaczeniu społecznym', 'Przedsiębiorstwo działające wyłącznie na zasadach charytatywnych', 'Przedsiębiorstwo, które nie dąży do osiągania zysku, lecz do rozwiązania problemów społecznych', 'Przedsiębiorstwo, które działa zgodnie z zasadami fair trade', 'C'),
 (4, 43, 'Jakie są główne cele przedsiębiorstw społecznych?', 'Osiąganie maksymalnego zysku dla właścicieli', 'Zwiększanie konkurencyjności na rynku', 'Rozwiązywanie problemów społecznych i środowiskowych', 'Minimalizowanie kosztów produkcji', 'C'),
@@ -1369,7 +1369,7 @@ VALUES
 (4, 43, 'Jakie są główne zasady fair trade?', 'Sprawiedliwe ceny, uczciwe warunki pracy, zrównoważony rozwój, poszanowanie praw człowieka', 'Wyłącznie najniższe ceny dla producentów', 'Wykorzystywanie dzieci do pracy', 'Niedopuszczanie do zrównoważonego rozwoju', 'A'),
 (4, 43, 'Jakie są korzyści fair trade dla producentów z krajów rozwijających się?', 'Sprawiedliwe ceny za ich produkty, lepsze warunki pracy, wsparcie rozwoju społeczności lokalnych', 'Wyłącznie korzyści dla dużych korporacji', 'Brak korzyści dla producentów', 'Wykorzystywanie dzieci do pracy', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (4, 44, 'Co to jest budżet osobisty?', 'Plan wydatków i dochodów jednostki lub rodziny', 'Inwestycja w akcje na giełdzie', 'Ubezpieczenie na życie', 'Kredyt hipoteczny', 'A'),
 (4, 44, 'Co to jest skala potrzeb Maslowa?', 'Hierarchiczne uporządkowanie potrzeb', 'Skala oceny ryzyka finansowego', 'Lista niezbędnych wydatków', 'Wskaźnik dochodów w stosunku do wydatków', 'A'),
 (4, 44, 'Co to jest inflacja?', 'Stopniowy wzrost cen towarów i usług', 'Spadek cen towarów i usług', 'Stabilizacja cen na rynku', 'Wzrost wartości pieniądza', 'A'),
@@ -1396,7 +1396,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (4, 44, 'Co to jest bank centralny?', 'Instytucja odpowiedzialna za politykę monetarną kraju', 'Bank oferujący usługi dla klientów indywidualnych', 'Bank specjalizujący się w obsłudze firm', 'Instytucja finansowa zajmująca się tylko obrotem walut', 'A'),
 (4, 44, 'Co to jest PKB?', 'Produkt Krajowy Brutto, czyli wartość wszystkich dóbr i usług wyprodukowanych w kraju w określonym czasie', 'Podatek od towarów i usług', 'Planowanie Krajowe Budżetu', 'Procentowa kwota bankowa', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (4, 45, 'Co to jest zrównoważony rozwój?', 'Rozwój spełniający potrzeby teraźniejszych pokoleń bez szkody dla przyszłych pokoleń', 'Szybki wzrost gospodarczy kosztem środowiska', 'Kontrolowany wzrost gospodarczy bez uwzględnienia społecznych konsekwencji', 'Stagnacja gospodarcza dla dobra środowiska', 'A'),
 (4, 45, 'Jakie są trzy główne składniki zrównoważonego rozwoju?', 'Wzrost gospodarczy, rozwój społeczny, ochrona środowiska', 'Wzrost gospodarczy, konsumpcjonizm, urbanizacja', 'Wzrost gospodarczy, globalizacja, industrializacja', 'Wzrost gospodarczy, militarystyczne strategie, rozwój technologiczny', 'A'),
 (4, 45, 'Co to jest wskaźnik zrównoważonego rozwoju?', 'Miara oceniająca postęp w zakresie równowagi między aspektami społecznymi, ekonomicznymi i środowiskowymi', 'Miara oceniająca wyłącznie wzrost gospodarczy', 'Miara oceniająca tylko aspekty środowiskowe', 'Miara oceniająca tylko aspekty społeczne', 'A'),
@@ -1421,7 +1421,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (4, 45, 'Co to jest recykling?', 'Proces przetwarzania zużytych materiałów na nowe produkty', 'Proces wytwarzania zużytych materiałów', 'Proces usuwania zużytych materiałów do składowiska', 'Proces spalania zużytych materiałów', 'A'),
 (4, 45, 'Czym jest elektromobilność?', 'Rodzaj transportu wykorzystujący pojazdy zasilane energią elektryczną', 'Rodzaj transportu wykorzystujący wyłącznie pojazdy z silnikiem spalinowym', 'Rodzaj transportu wykorzystujący wyłącznie rowery', 'Rodzaj transportu wykorzystujący wyłącznie pociągi', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (4, 46, 'Jaka teoria ekonomiczna opisuje zachowanie konsumentów jako maksymalizację użyteczności?', 'Teoria wyboru konsumenta', 'Teoria gier', 'Teoria ekonomii behawioralnej', 'Teoria efektywności rynku', 'A'),
 (4, 46, 'W jakim stopniu globalizacja wpływa na nierówności dochodowe między krajami?', 'Zwiększa nierówności dochodowe', 'Redukuje nierówności dochodowe', 'Nie ma wpływu na nierówności dochodowe', 'Wpływ jest zmienny w zależności od regionu', 'A'),
 (4, 46, 'Jakie czynniki przyczyniają się do wzrostu handlu międzynarodowego w ostatnich dziesięcioleciach?', 'Postęp technologiczny i liberalizacja handlu', 'Wzrost protekcjonizmu i ograniczenie barier handlowych', 'Spadek globalizacji i zwiększenie kontroli granicznej', 'Zmniejszenie zainteresowania inwestycjami zagranicznymi', 'A'),
@@ -1446,7 +1446,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (4, 46, 'Jakie są główne metody oszacowania globalnych trendów handlowych?', 'Analiza danych handlowych, badania ankietowe i prognozowanie ekonomiczne', 'Ocenianie na podstawie pojedynczych przypadków i intuicja', 'Zakładanie istnienia jednej uniwersalnej teorii handlu międzynarodowego', 'Brak możliwości oszacowania trendów handlowych', 'A'),
 (4, 46, 'Jaka jest rola innowacji technologicznych w kształtowaniu przyszłości handlu międzynarodowego?', 'Promowanie efektywności i zmiana sposobu prowadzenia biznesu', 'Ograniczanie dostępu do nowych technologii dla krajów rozwijających się', 'Brak wpływu innowacji na handel międzynarodowy', 'Zwiększenie barier dla transferu technologii', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (4, 47, 'Co to jest etyka w biznesie?', 'Zestaw wartości i zasad, które kierują postępowaniem w kontekście biznesowym', 'Wyłącznie przestrzeganie prawa', 'Minimalizacja kosztów', 'Maximizacja zysków', 'A'),
 (4, 47, 'Jakie są główne składniki etyki w biznesie?', 'Zasady moralne, wartości i postawy', 'Zysk, ryzyko, konkurencja', 'Zasady rynku', 'Wpływ na politykę', 'A'),
 (4, 47, 'Czym jest konflikt interesów w kontekście etyki biznesu?', 'Sytuacją, w której interesy jednej strony mogą wpłynąć na uczciwość lub lojalność wobec drugiej strony', 'Normalną praktyką biznesową', 'Metodą negocjacji', 'Droga do sukcesu', 'A'),
@@ -1471,7 +1471,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (4, 47, 'Czym jest kryzys etyczny w biznesie?', 'Sytuacją, w której organizacja staje w obliczu poważnego zagrożenia dla swojej reputacji i funkcjonowania z powodu naruszenia norm etycznych', 'Normą biznesową', 'Droga do sukcesu', 'Tylko zyski', 'A'),
 (4, 47, 'Jakie są skutki kryzysu etycznego dla organizacji?', 'Spadek zaufania klientów, utrata reputacji, straty finansowe oraz ryzyko utraty zaufania inwestorów i pracowników', 'Tylko wzrost zysków', 'Wzrost zaufania klientów', 'Zwiększona sprzedaż', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (5, 48, 'Jaką nazwę nosi najwyższa góra w Europie?', 'Mont Blanc', 'Elbrus', 'Matterhorn', 'Monte Rosa', 'B'),
 (5, 48, 'Które państwo jest najmniejszym pod względem powierzchni w Europie?', 'Monako', 'Andora', 'San Marino', 'Liechtenstein', 'A'),
 (5, 48, 'Które miasto jest stolicą Węgier?', 'Praga', 'Bratysława', 'Budapeszt', 'Belgrad', 'C'),
@@ -1499,7 +1499,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (5, 48, 'Które państwo jest najbardziej na wschód wysunięte na mapie Europy?', 'Rosja', 'Turcja', 'Cypr', 'Grecja', 'A'),
 (5, 48, 'Które miasto jest stolicą Słowenii?', 'Lublana', 'Maribor', 'Celje', 'Kranj', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (5, 49, 'Co to jest erozja?', 'Proces niszczenia i zmywania powierzchni ziemi przez czynniki atmosferyczne', 'Proces osadzania nowych warstw na powierzchni ziemi', 'Proces powstawania nowych form terenowych', 'Proces wzbogacania gleby w substancje odżywcze', 'A'),
 (5, 49, 'Która z następujących formacji geologicznych nie jest efektem działania lodowców?', 'Dolina polodowcowa', 'Morena', 'Równina sandrowa', 'Uwolniony fragment lodowca', 'C'),
 (5, 49, 'Co to jest ria?', 'Forma ukształtowania wybrzeża powstała na skutek zaniku lądu', 'Wąwóz powstały w wyniku erozji rzecznej', 'Jedna z form wydmowych', 'Estuarium rzeki powstałe w wyniku podniesienia poziomu morza', 'D'),
@@ -1525,7 +1525,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (5, 49, 'Co to jest żleb?', 'Ukształtowanie terenu w kształcie rowu wyżłobionego przez erozję wodną', 'Forma geologiczna powstała na skutek erozji wiatru', 'Duża formacja morenowa', 'Jedna z form terenowych powstała na skutek erozji', 'A'),
 (5, 49, 'Co to jest pagórek?', 'Niewielkie wypukłości terenu', 'Forma geologiczna powstała na skutek erozji wiatru', 'Duża formacja morenowa', 'Jedna z form terenowych powstała na skutek erozji', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (5, 50, 'Co to jest PKB (Produkt Krajowy Brutto)?', 'Suma wartości dodanej wszystkich dóbr i usług wyprodukowanych w kraju w danym okresie czasu', 'Suma dochodów wszystkich mieszkańców kraju', 'Wartość eksportu netto', 'Wartość wszystkich aktywów krajowych', 'A'),
 (5, 50, 'Jakie są trzy podstawowe sektory gospodarki?', 'Rolnictwo, przemysł, usługi', 'Eksport, import, turystyka', 'Edukacja, zdrowie, kultura', 'Handel, finanse, transport', 'A'),
 (5, 50, 'Co to jest urbanizacja?', 'Proces wzrostu udziału ludności miejskiej w ogólnej populacji', 'Proces zmniejszania liczby miast', 'Proces zmniejszania liczby ludności w miastach', 'Proces zmniejszania gęstości zaludnienia w miastach', 'A'),
@@ -1551,7 +1551,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (5, 50, 'Co to jest marginalizacja społeczna?', 'Proces wykluczenia społecznego określonych grup ludności', 'Proces integracji społecznej', 'Proces wzrostu jakości życia w społeczeństwie', 'Proces spadku bezrobocia', 'A'),
 (5, 50, 'Co to jest czynnik demograficzny?', 'Czynnik wpływający na strukturę i zmiany w populacji, takie jak urodzenia, śmierci i migracje', 'Czynnik wpływający na zmiany klimatyczne', 'Czynnik wpływający na zmiany gospodarcze', 'Czynnik wpływający na zmiany polityczne', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (5, 51, 'Jaka jest definicja efektu cieplarnianego?', 'Proces, w którym gaz atmosferyczny pochłania promieniowanie podczerwone emitowane przez Ziemię, ogrzewając atmosferę', 'Proces, w którym Ziemia pochłania promieniowanie słoneczne, ogrzewając atmosferę', 'Proces, w którym promieniowanie podczerwone emitowane przez Ziemię jest wchłaniane przez ocean, chłodząc atmosferę', 'Proces, w którym obecność chmur w atmosferze powoduje ochłodzenie klimatu', 'A'),
 (5, 51, 'Co to jest efekt albedo?', 'Zdolność powierzchni do odbijania promieniowania słonecznego', 'Zdolność powierzchni do pochłaniania promieniowania słonecznego', 'Zdolność powierzchni do wytwarzania promieniowania podczerwonego', 'Zdolność powierzchni do pochłaniania promieniowania podczerwonego', 'A'),
 (5, 51, 'Jakie gazy są głównymi składnikami efektu cieplarnianego?', 'Dwutlenek węgla (CO2), metan (CH4), podtlenek azotu (N2O)', 'Tlenek azotu (NOx), ozon (O3), fluorki', 'Tlenek węgla (CO), dwutlenek siarki (SO2), amoniak (NH3)', 'Wodór (H2), argon (Ar), neon (Ne)', 'A'),
@@ -1576,7 +1576,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (5, 51, 'Jakie są główne organy międzynarodowe zajmujące się problematyką zmian klimatu?', 'Międzyrządowy Zespół ds. Zmian Klimatu (IPCC), Ramowa Konwencja Narodów Zjednoczonych w sprawie Zmian Klimatu (UNFCCC), Konwencja o Bioróżnorodności Biologicznej (CBD)', 'Organizacja Narodów Zjednoczonych ds. Żywności i Rolnictwa (FAO), Organizacja Narodów Zjednoczonych ds. Edukacji, Nauki i Kultury (UNESCO), Organizacja Narodów Zjednoczonych ds. Ochrony Środowiska (UNEP)', 'Organizacja ds. Bezpieczeństwa i Współpracy w Europie (OBWE), Organizacja Współpracy Gospodarczej i Rozwoju (OECD), Organizacja Traktatu o Zakazie Prób Nuklearnych (CTBTO)', 'Międzynarodowy Fundusz Walutowy (IMF), Światowa Organizacja Handlu (WTO), Bank Światowy (WB)', 'A'),
 (5, 51, 'Jakie są główne cele porozumienia paryskiego z 2015 roku?', 'Ograniczenie wzrostu średniej temperatury globalnej poniżej 2°C w stosunku do okresu przedprzemysłowego oraz dążenie do utrzymania wzrostu temperatury poniżej 1,5°C', 'Zapewnienie nieograniczonego wzrostu gospodarczego, zwiększenie emisji gazów cieplarnianych, stabilizacja poziomu mórz i oceanów', 'Rozwój nowych technologii wydobywczych, ekspansja gospodarcza krajów rozwijających się, kontrola migracji', 'Promowanie spalania paliw kopalnych, zwiększenie produkcji energii jądrowej, ograniczenie zalesiania', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (5, 52, 'W którym roku został ustanowiony Traktat o Antarktydzie?', '1948', '1959', '1965', '1972', 'B'),
 (5, 52, 'Które z miast leży bliżej równika: Lima czy Nairobi?', 'Lima', 'Nairobi', 'Oba miasta znajdują się w tej samej odległości od równika', 'To nieprawda, żadne z miast nie leży w pobliżu równika', 'A'),
 (5, 52, 'Gdzie znajduje się największy na świecie jaskinia, Mammoth Cave?', 'Stany Zjednoczone', 'Meksyk', 'Chiny', 'Brazylia', 'A'),
@@ -1604,7 +1604,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (5, 52, 'Które państwo ma najdłuższą linię brzegową na świecie?', 'Kanada', 'Norwegia', 'Indonezja', 'Rosja', 'D'),
 (5, 52, 'Gdzie znajduje się najgłębsza na świecie depresja lądowa, Wielki Rów Afrykański?', 'Kenia', 'Kongo', 'Egipt', 'Nigeria', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (5, 53, 'Co to jest Ziggurat?', 'Starożytna mezopotamska świątynia w formie schodkowej wieży', 'Wysoka skała na pustyni', 'Typowy dom mieszkalny w Japonii', 'Piramida w Egipcie', 'A'),
 (5, 53, 'W którym kraju znajduje się Machu Picchu?', 'Peru', 'Boliwia', 'Ekwador', 'Kolumbia', 'A'),
 (5, 53, 'Co to jest Ayers Rock, znany również jako Uluru?', 'Monolityczna formacja skalna w Australii', 'Wysoka góra w Himalajach', 'Wulkan na Hawajach', 'Wielki Kanał w Chinach', 'A'),
@@ -1631,7 +1631,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (5, 53, 'Co to jest Krzemionki?', 'Stan w USA', 'Archeologiczny obszar w Polsce', 'Wyspa w Oceanii', 'Góra w Afryce', 'A'),
 (5, 53, 'Gdzie znajduje się Wielki Kanion Kolorado?', 'W USA', 'W Kanadzie', 'W Meksyku', 'W Australii', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (5, 54, 'Co to jest geopolityka?', 'Analiza wpływu czynników geograficznych na politykę i stosunki międzynarodowe', 'Analiza wpływu czynników ekonomicznych na politykę wewnętrzną', 'Analiza wpływu czynników społecznych na politykę zagraniczną', 'Analiza wpływu czynników kulturowych na politykę obronną', 'A'),
 (5, 54, 'Kim był Alfred Mahan?', 'Amerykański admirał i geostrateg', 'Brytyjski dyplomata i badacz polityki międzynarodowej', 'Niemiecki teoretyk wojny błyskawicznej', 'Rosyjski geopolityk i autor "Geopolityki"', 'A'),
 (5, 54, 'Co to jest teoria serca kontynentów?', 'Teoria sugerująca, że dominujące miejsce na świecie zajmują kraje leżące w centrum kontynentów', 'Teoria sugerująca, że najważniejsze są kraje leżące na obrzeżach kontynentów', 'Teoria sugerująca, że dominującą rolę odgrywają państwa wyspiarskie', 'Teoria sugerująca, że najważniejsze są kraje położone na równiku', 'B'),
@@ -1655,7 +1655,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (5, 54, 'Kim był Rudolf Kjellén?', 'Szwedzki politolog, autor terminu "geopolityka"', 'Norweski historyk, autor koncepcji "imperium morskiego"', 'Duński geograf, autor koncepcji "państwa narodowego"', 'Fiński ekonomista, autor koncepcji "modelu nordyckiego"', 'A'),
 (5, 54, 'Czym charakteryzuje się koncepcja "polarnej hegemonii"?', 'Koncepcją geopolityczną zakładającą dominację jednego państwa w regionie Arktyki', 'Koncepcją geopolityczną zakładającą równowagę sił w regionie Antarktyki', 'Koncepcją geopolityczną zakładającą współpracę wszystkich państw w regionie Arktyki', 'Koncepcją geopolityczną zakładającą dominację państw tropikalnych nad biegunowymi', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (5, 55, 'Co to jest erozja wietrzna?', 'Proces niszczenia i transportu skał i gleby przez działanie wiatru', 'Proces niszczenia skał i gleby przez działanie wody', 'Proces tworzenia skał osadowych', 'Proces formowania wybrzeży', 'A'),
 (5, 55, 'Jak nazywamy proces formowania się rzeźby krasowej?', 'Krasowienie', 'Fliszowanie', 'Morfozacja', 'Glacjacja', 'A'),
 (5, 55, 'Jak nazywa się proces niszczenia skał przez zmiany temperatury?', 'Spągowiec', 'Termoabrazja', 'Glacjaflucja', 'Kriolacja', 'B'),
@@ -1683,7 +1683,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (5, 55, 'Co to jest soliflukcja?', 'Proces zsuwania się mas skalnych wzdłuż stoku pod wpływem grawitacji', 'Proces topnienia i ruchu lodowca', 'Proces transportu materiału skalnego przez wiatr', 'Proces transportu materiału skalnego przez wodę', 'A'),
 (5, 55, 'Jak nazywamy proces formowania się lodowców?', 'Krasowienie', 'Glacjacja', 'Morfozacja', 'Fliszowanie', 'B');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (5, 56, 'Który z poniższych kontynentów jest najmniej zaludniony?', 'Australia', 'Afryka', 'Ameryka Północna', 'Antarktyda', 'D'),
 (5, 56, 'Który z poniższych szczytów jest najwyższy?', 'Mount Everest', 'K2', 'Kangczenjunga', 'Lhotse', 'A'),
 (5, 56, 'Które z poniższych państw nie posiada dostępu do morza?', 'Szwajcaria', 'Boliwia', 'Austria', 'Węgry', 'B'),
@@ -1711,7 +1711,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (5, 56, 'Które z poniższych państw leży w całości na Półwyspie Skandynawskim?', 'Norwegia', 'Szwecja', 'Finlandia', 'Dania', 'A'),
 (5, 56, 'Która z poniższych wysp jest najmniejsza pod względem powierzchni?', 'Nauru', 'Malta', 'Cypr', 'Wyspy Marshalla', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (6, 57, 'Jakie emocje zazwyczaj wywołuje kolor czerwony?', 'Agresja i energia', 'Spokój i relaks', 'Radość i optymizm', 'Smutek i melancholia', 'A'),
 (6, 57, 'Jakie emocje zazwyczaj wywołuje kolor niebieski?', 'Spokój i relaks', 'Agresja i energia', 'Radość i optymizm', 'Smutek i melancholia', 'A'),
 (6, 57, 'Jakie emocje zazwyczaj wywołuje kolor żółty?', 'Radość i optymizm', 'Spokój i relaks', 'Agresja i energia', 'Smutek i melancholia', 'A'),
@@ -1738,7 +1738,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (6, 57, 'Który kolor może wywoływać uczucie radości i optymizmu?', 'Żółty', 'Czerwony', 'Brązowy', 'Szary', 'A'),
 (6, 57, 'Który kolor może być kojarzony z agresją i niepokojem?', 'Czerwony', 'Niebieski', 'Żółty', 'Zielony', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (6, 58, 'Co to jest terapia poznawczo-behawioralna?', 'Terapia skupiająca się na zmianie myślenia i zachowania', 'Terapia oparta na analizie snów', 'Terapia oparta na teorii psychoseksualnej', 'Terapia oparta na interpretacji dzieciństwa', 'A'),
 (6, 58, 'Co to jest terapia poznawcza?', 'Terapia skupiająca się na zmianie myślenia', 'Terapia oparta na analizie snów', 'Terapia oparta na teorii psychoseksualnej', 'Terapia oparta na interpretacji dzieciństwa', 'A'),
 (6, 58, 'Co to jest terapia behawioralna?', 'Terapia skupiająca się na zmianie zachowania', 'Terapia oparta na analizie snów', 'Terapia oparta na teorii psychoseksualnej', 'Terapia oparta na interpretacji dzieciństwa', 'A'),
@@ -1765,7 +1765,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (6, 58, 'Co to jest terapia poznawcza?', 'Terapia skupiająca się na zmianie myślenia', 'Analiza snów', 'Teoria psychoseksualna', 'Interpretacja dzieciństwa', 'A'),
 (6, 58, 'Co to jest terapia poznawczo-behawioralna?', 'Terapia skupiająca się na zmianie myślenia i zachowania', 'Analiza snów', 'Teoria psychoseksualna', 'Interpretacja dzieciństwa', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (6, 59, 'Co to jest efekt podmiotowości?', 'Tendencja do interpretacji zdarzeń w sposób zgodny z własnymi przekonaniami', 'Tendencja do przypisywania innym bardziej pozytywnych cech niż sobie', 'Tendencja do nadmiernego podkreślania roli innych w decyzjach', 'Tendencja do konformizmu z grupą pomimo przekonań osobistych', 'A'),
 (6, 59, 'Co to jest dysonans poznawczy?', 'Niezgodność między przekonaniami a zachowaniami', 'Tendencja do interpretacji zdarzeń w sposób zgodny z własnymi przekonaniami', 'Tendencja do konformizmu z grupą pomimo przekonań osobistych', 'Tendencja do przypisywania innym bardziej pozytywnych cech niż sobie', 'A'),
 (6, 59, 'Co to jest konformizm?', 'Dostosowanie się do norm i oczekiwań grupy pomimo przekonań osobistych', 'Tendencja do nadmiernego podkreślania roli innych w decyzjach', 'Tendencja do interpretacji zdarzeń w sposób zgodny z własnymi przekonaniami', 'Tendencja do przypisywania innym bardziej pozytywnych cech niż sobie', 'A'),
@@ -1789,7 +1789,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (6, 59, 'Co to jest błąd atrybucji fundamentalnej?', 'Tendencja do przypisywania cudzych zachowań cechom osobowości, zaniedbując wpływ czynników sytuacyjnych', 'Tendencja do interpretacji zdarzeń w sposób zgodny z własnymi przekonaniami', 'Tendencja do konformizmu z grupą pomimo przekonań osobistych', 'Tendencja do przypisywania innym bardziej pozytywnych cech niż sobie', 'A'),
 (6, 59, 'Co to jest teoria autopercepcji?', 'Proces wnioskowania o własnych cechach i uczuciach na podstawie obserwacji własnego zachowania', 'Tendencja do interpretacji zdarzeń w sposób zgodny z własnymi przekonaniami', 'Tendencja do nadmiernego podkreślania roli innych w decyzjach', 'Tendencja do konformizmu z grupą pomimo przekonań osobistych', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (6, 60, 'Co to jest osobowość typu A?', 'Osobowość cechująca się wyścigiem z czasem i intensywnym napięciem', 'Osobowość cechująca się spokojem i opanowaniem', 'Osobowość cechująca się skłonnością do introwersji', 'Osobowość cechująca się brakiem empatii', 'A'),
 (6, 60, 'Co to jest osobowość typu B?', 'Osobowość cechująca się spokojem i opanowaniem', 'Osobowość cechująca się wyścigiem z czasem i intensywnym napięciem', 'Osobowość cechująca się skłonnością do introwersji', 'Osobowość cechująca się brakiem empatii', 'A'),
 (6, 60, 'Jakie czynniki składają się na model pięcioczynnikowy osobowości?', 'Neurotyczność, ekstrawersja, otwartość na doświadczenie, ugodowość, sumienność', 'Lęk, agresja, uległość, asertywność, kontrola', 'Ekstrawersja, introwersja, neurotyzm, psychotyzm, otwartość', 'Samorealizacja, empatia, komunikatywność, asertywność, kontemplacja', 'A'),
@@ -1814,7 +1814,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (6, 60, 'Co to jest postkonwencjonalna stadia rozwoju moralnego według Kohlberga?', 'Stadium, w którym moralność opiera się na unikaniu kary i posłuszeństwie wobec władzy', 'Stadium, w którym moralność opiera się na przestrzeganiu abstrakcyjnych zasad i wartości', 'Stadium, w którym moralność opiera się na poszanowaniu innych i zrozumieniu różnic między dobrem a złem', 'Stadium, w którym moralność opiera się na zasadach społecznych i normach', 'B'),
 (6, 60, 'Co to jest teoria integracyjnego rozwoju moralnego?', 'Teoria, która zakłada, że moralność rozwija się poprzez doświadczenia interpersonalne i refleksję', 'Teoria, która zakłada, że moralność rozwija się poprzez przestrzeganie zasad społecznych', 'Teoria, która zakłada, że moralność jest w pełni uwarunkowana biologicznie', 'Teoria, która zakłada, że moralność rozwija się poprzez naśladowanie modeli', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (6, 61, 'Co to jest Neuropsychologia?', 'Dziedzina psychologii zajmująca się związkiem między mózgiem a zachowaniem', 'Dziedzina psychologii zajmująca się badaniem snów', 'Dziedzina psychologii zajmująca się inteligencją', 'Dziedzina psychologii zajmująca się terapią', 'A'),
 (6, 61, 'Co to są neuron?', 'Komórki nerwowe', 'Części mózgu odpowiedzialne za pamięć', 'Części mózgu odpowiedzialne za sen', 'Części mózgu odpowiedzialne za mowę', 'A'),
 (6, 61, 'Co to jest synapsa?', 'Miejsce komunikacji między neuronami', 'Miejsce przechowywania informacji', 'Część mózgu odpowiedzialna za koordynację ruchową', 'Część mózgu odpowiedzialna za widzenie', 'A'),
@@ -1840,7 +1840,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (6, 61, 'Co to jest stres?', 'Reakcja organizmu na wymagające sytuacje', 'Zaburzenie snu', 'Zaburzenie mowy', 'Zaburzenie widzenia', 'A'),
 (6, 61, 'Co to jest psychoza?', 'Zaburzenie psychiczne charakteryzujące się utratą kontaktu z rzeczywistością', 'Zaburzenie snu', 'Zaburzenie mowy', 'Zaburzenie widzenia', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (6, 62, 'Co to jest teoria samokontroli?', 'Teoria sugerująca, że kontrola nad własnym zachowaniem ma wpływ na osiągnięcia sportowe', 'Teoria sugerująca, że wyniki sportowe są determinowane głównie przez czynniki genetyczne', 'Teoria sugerująca, że sukces sportowy zależy wyłącznie od treningu fizycznego', 'Teoria sugerująca, że sukces sportowy zależy wyłącznie od talentu naturalnego', 'A'),
 (6, 62, 'Co to jest teoria optymalnego pobudzenia?', 'Teoria sugerująca, że najlepsze wyniki sportowe osiągane są wtedy, gdy poziom pobudzenia fizycznego i psychicznego jest umiarkowany', 'Teoria sugerująca, że im wyższy poziom pobudzenia fizycznego i psychicznego, tym lepsze wyniki sportowe', 'Teoria sugerująca, że im niższy poziom pobudzenia fizycznego i psychicznego, tym lepsze wyniki sportowe', 'Teoria sugerująca, że najlepsze wyniki sportowe osiągane są wtedy, gdy sportowiec jest w stanie stanu stresu', 'A'),
 (6, 62, 'Co to jest teoria dyspozycyjności?', 'Teoria sugerująca, że jednostki oceniają prawdopodobieństwo wystąpienia zdarzeń na podstawie łatwości, z jaką mogą sobie przypomnieć podobne zdarzenia', 'Teoria sugerująca, że jednostki skupiają się wyłącznie na przyszłości, ignorując przeszłe wydarzenia', 'Teoria sugerująca, że jednostki oceniają zdarzenia na podstawie ich logicznej analizy i wnioskowania', 'Teoria sugerująca, że jednostki oceniają zdarzenia na podstawie emocji i intuicji', 'A'),
@@ -1864,7 +1864,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (6, 62, 'Co to jest teoria przewagi psychologicznej', 'Teoria sugerująca, że sukces sportowy zależy od aspektów psychicznych, takich jak motywacja, pewność siebie i koncentracja', 'Teoria sugerująca, że sukces sportowy zależy wyłącznie od genetycznego talentu', 'Teoria sugerująca, że sukces sportowy zależy wyłącznie od ilości treningu', 'Teoria sugerująca, że sukces sportowy zależy wyłącznie od warunków atmosferycznych', 'A'),
 (6, 62, 'Co to jest teoria wzorców zachowania społecznego', 'Teoria sugerująca, że jednostki uczą się zachowań poprzez obserwację i naśladowanie innych ludzi', 'Teoria sugerująca, że sukces sportowy zależy wyłącznie od genetycznego talentu', 'Teoria sugerująca, że sukces sportowy zależy wyłącznie od ilości treningu', 'Teoria sugerująca, że sukces sportowy zależy wyłącznie od warunków atmosferycznych', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (6, 63, 'Czym jest fenomenologia w psychoterapii?', 'Metoda badawcza skupiająca się na opisie doświadczeń subiektywnych', 'Technika terapeutyczna oparta na analizie snów', 'Terapia oparta na zasadach behawioralnych', 'Metoda terapeutyczna oparta na analizie struktur psychicznych', 'A'),
 (6, 63, 'Jaka jest główna zasada terapii poznawczo-behawioralnej?', 'Zmiana myśli prowadzi do zmiany emocji i zachowań', 'Zmiana zachowań prowadzi do zmiany myśli i emocji', 'Zmiana emocji prowadzi do zmiany zachowań i myśli', 'Zmiana zachowań i myśli prowadzi do zmiany emocji', 'A'),
 (6, 63, 'Co to jest terapia poznawcza?', 'Terapia skupiająca się na zmianie myśli i przekonań', 'Terapia skupiająca się na zmianie zachowań', 'Terapia skupiająca się na zmianie emocji', 'Terapia skupiająca się na analizie relacji', 'A'),
@@ -1889,7 +1889,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (6, 63, 'Czym jest terapia EMDR?', 'Metoda terapeutyczna wykorzystująca ruchy oczu do przetwarzania traumy', 'Metoda terapeutyczna skupiająca się na pracy nad myśleniem irracjonalnym', 'Metoda terapeutyczna skupiająca się na pracy nad relacjami', 'Metoda terapeutyczna skupiająca się na analizie snów', 'A'),
 (6, 63, 'Która z metod terapeutycznych skupia się na pracy nad rozwojem samoświadomości i indywidualnych potrzeb?', 'Terapia humanistyczna', 'Terapia poznawcza', 'Terapia psychoanalityczna', 'Terapia Gestalt', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (6, 64, 'Co to jest zaburzenie osobowości borderline (BPD)?', 'Zaburzenie osobowości charakteryzujące się niestabilnymi relacjami interpersonalnymi, niestabilnym obrazem siebie oraz impulsywnym zachowaniem', 'Zaburzenie osobowości charakteryzujące się paranoją i urojeniami', 'Zaburzenie osobowości charakteryzujące się głęboką apatią i brakiem emocji', 'Zaburzenie osobowości charakteryzujące się niekontrolowanymi napadami paniki', 'A'),
 (6, 64, 'Które z poniższych zjawisk jest charakterystyczne dla schizofrenii paranoidalnej?', 'Urojenia prześladowcze i omamienia słuchowe', 'Niestabilne relacje interpersonalne i impulsywność', 'Nadmierna ekscytacja i nadmierna aktywność ruchowa', 'Odczucie napięcia i lęku bez określonego wydarzenia', 'A'),
 (6, 64, 'Co to jest lęk napadowy (atak paniki)?', 'Nagłe wystąpienie intensywnego lęku lub niepokoju, które osiąga szczyt w ciągu kilku minut', 'Stałe poczucie napięcia i lęku w różnych sytuacjach', 'Poczucie apatii i obojętności wobec otoczenia', 'Zaburzenie towarzyszące depresji, charakteryzujące się smutkiem i brakiem energii', 'A'),
@@ -1915,7 +1915,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (6, 64, 'Co to jest depresja kliniczna?', 'Stan depresyjny charakteryzujący się smutkiem, utratą zainteresowania życiem, zmianami w wadze oraz apatią', 'Stan maniakalny charakteryzujący się nadmiernym podnieceniem, wygórowanym poczuciem własnej wartości oraz nadmierną aktywnością', 'Nagłe wystąpienie intensywnego lęku lub niepokoju, które osiąga szczyt w ciągu kilku minut', 'Stałe poczucie napięcia i lęku w różnych sytuacjach', 'A'),
 (6, 64, 'Co to jest zespół stresu pourazowego (PTSD)?', 'Zaburzenie wynikające z doświadczenia traumatycznego wydarzenia, charakteryzujące się nawracającymi wspomnieniami, unikaniem bodźców z nim związanych oraz hiperaktywnością', 'Zaburzenie charakteryzujące się objadaniem się oraz stosowaniem niezdrowych metod redukcji masy ciała', 'Zaburzenie charakteryzujące się nadmiernym objadaniem się oraz nadmierną aktywnością fizyczną', 'Zaburzenie charakteryzujące się niemożnością utrzymywania stabilnych relacji interpersonalnych', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (6, 65, 'Czym jest teoria inteligencji wielorakich Howarda Gardnera?', 'Teoria zakładająca istnienie wielu niezależnych rodzajów inteligencji', 'Teoria zakładająca istnienie tylko jednego rodzaju inteligencji', 'Teoria zakładająca istnienie inteligencji jako jednostkowej cechy', 'Teoria zakładająca istnienie inteligencji jako podatności na wpływ środowiska', 'A'),
 (6, 65, 'Co to jest efekt Flynn?', 'Zjawisko wzrostu ilorazu inteligencji w populacjach na przestrzeni lat', 'Zjawisko spadku ilorazu inteligencji w populacjach na przestrzeni lat', 'Zjawisko związane z efektem placebo', 'Zjawisko związane z zaburzeniami rozwoju', 'A'),
 (6, 65, 'Czym jest inteligencja emocjonalna?', 'Umiejętność rozpoznawania, oceniania i regulowania własnych emocji oraz emocji innych osób', 'Umiejętność wyłączną dla osób z zaburzeniami emocjonalnymi', 'Umiejętność wyłączną dla osób z wysokim ilorazem inteligencji', 'Umiejętność wyłączną dla osób z niskim ilorazem inteligencji', 'A'),
@@ -1941,7 +1941,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (6, 65, 'Czym jest inteligencja emocjonalna według teorii Howarda Gardnera?', 'Umiejętność rozpoznawania, oceniania i regulowania własnych emocji oraz emocji innych osób', 'Umiejętność zapamiętywania dużej ilości informacji', 'Umiejętność rozumienia złożonych zagadnień matematycznych', 'Umiejętność rozumienia siebie i własnych emocji', 'A'),
 (6, 65, 'Czym jest inteligencja egzystencjalna według teorii Howarda Gardnera?', 'Umiejętność refleksji nad sensami życia i rozumienia filozoficznych zagadnień', 'Umiejętność analizowania, oceniania i krytycznego myślenia', 'Umiejętność rozumienia złożonych zagadnień matematycznych', 'Umiejętność radzenia sobie w codziennych sytuacjach życiowych', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (7, 66, 'Jakie są główne grupy funkcyjne w chemii organicznej?', 'Aminy, kwasy karboksylowe, aldehydy, ketony', 'Alkany, alkeny, alkiny, halogenki alkilowe', 'Estry, eterowe, alkohole, aldehydy', 'Alkohole, aminy, kwasy karboksylowe, estrów', 'A'),
 (7, 66, 'Jakie są podstawowe rodzaje wiązań chemicznych w organicznych związkach chemicznych?', 'Wiązania kowalencyjne, wiązania metaliczne, wiązania wodorowe', 'Wiązania jonowe, wiązania wodorowe, wiązania kowalencyjne', 'Wiązania jonowe, wiązania kowalencyjne, wiązania metaliczne', 'Wiązania wodorowe, wiązania kowalencyjne, wiązania koordynacyjne', 'B'),
 (7, 66, 'Co to jest izomeria w chemii organicznej?', 'Zjawisko polegające na tym, że dwa lub więcej związków chemicznych mają te same wzory sumaryczne, ale różnią się budową przestrzenną lub układem wiązań chemicznych', 'Zjawisko, gdy dwa związki chemiczne mają różne wzory sumaryczne, ale taką samą budowę przestrzenną', 'Zjawisko, w którym dwa związki chemiczne mają takie same wzory sumaryczne i taką samą budowę przestrzenną', 'Zjawisko, gdy dwa związki chemiczne mają takie same wzory sumaryczne, ale różnią się tylko masą molową', 'A'),
@@ -1963,7 +1963,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (7, 66, 'Co to jest reakcja kondensacji w chemii organicznej?', 'Reakcja, w której dwie cząsteczki łączą się ze sobą, tworząc większą cząsteczkę i małe cząsteczki, takie jak woda lub amoniak, są usuwane', 'Reakcja, w której dwa związki chemiczne łączą się ze sobą, tworząc jeden nowy związek', 'Reakcja, w której atom lub grupa atomów jest zastępowana przez elektrofil', 'Reakcja, w której związek chemiczny rozkłada się na prostsze składniki', 'A'),
 (7, 66, 'Co to jest reakcja polimeryzacji w chemii organicznej?', 'Reakcja, w której małe cząsteczki, zwane monomerami, łączą się w łańcuchy, tworząc polimery', 'Reakcja, w której dwa związki chemiczne łączą się ze sobą, tworząc jeden nowy związek', 'Reakcja, w której atom lub grupa atomów jest zastępowana przez elektrofil', 'Reakcja, w której związek chemiczny rozkłada się na prostsze składniki', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (7, 67, 'Jakie są główne grupy pierwiastków chemicznych?', 'Metale, niemetale, metaloidy i gaz szlachetny', 'Metale, kwasy, zasady i sole', 'Metale, kwasy, tlenki i sole', 'Metale alkaliczne, metale ziem alkalicznych, halogeny i gazy szlachetne', 'A'),
 (7, 67, 'Co to jest okres w układzie okresowym pierwiastków?', 'Rząd poziomy w układzie okresowym', 'Grupa pionowa w układzie okresowym', 'Numer atomowy pierwiastka', 'Liczba protonów w jądrze pierwiastka', 'A'),
 (7, 67, 'Ile grup pierwiastków znajduje się w układzie okresowym?', '18', '7', '8', '9', 'A'),
@@ -1988,7 +1988,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (7, 67, 'Co to jest elektroliza?', 'Proces chemiczny polegający na rozkładzie substancji przez prąd elektryczny', 'Proces chemiczny polegający na rozpuszczaniu substancji w wodzie', 'Proces chemiczny polegający na łączeniu się substancji w wyniku reakcji chemicznej', 'Proces chemiczny polegający na krystalizacji substancji', 'A'),
 (7, 67, 'Co to jest przemiana chemiczna?', 'Zmiana składu chemicznego substancji w wyniku reakcji chemicznej', 'Zmiana stanu skupienia substancji', 'Zmiana właściwości fizycznych substancji', 'Zmiana kształtu substancji', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (7, 68, 'Jakie są zastosowania spektrofotometrii UV-Vis w analizie chemicznej?', 'Oznaczanie stężeń substancji', 'Oznaczanie mas cząsteczkowych', 'Oznaczanie temperatury wrzenia substancji', 'Oznaczanie pH roztworów', 'A'),
 (7, 68, 'Jakie są główne składniki spektrofotometru UV-Vis?', 'Źródło światła, monochromator, detektor', 'Próbka, monochromator, detektor', 'Źródło światła, pryzmat, detektor', 'Próbka, pryzmat, detektor', 'A'),
 (7, 68, 'Co to jest absorpcja promieniowania elektromagnetycznego?', 'Pochłanianie energii przez substancję', 'Rozpraszanie energii przez substancję', 'Emisja energii przez substancję', 'Przechodzenie energii przez substancję', 'A'),
@@ -2012,7 +2012,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (7, 68, 'Co to jest spektrometria mas?', 'Technika analizy składu chemicznego substancji na podstawie ich mas cząsteczkowych', 'Technika analizy widma UV-Vis', 'Technika analizy struktury chemicznej cząsteczek', 'Technika oznaczania stężenia substancji w roztworach', 'A'),
 (7, 68, 'Jakie są zastosowania spektrometrii mas?', 'Oznaczanie mas cząsteczkowych, identyfikacja związków chemicznych, analiza próbek biologicznych', 'Oznaczanie stężeń substancji, analiza struktury cząsteczek, kontrola jakości', 'Oznaczanie pH roztworów, identyfikacja zanieczyszczeń, pomiar stężenia jonów', 'Oznaczanie składu izotopowego, analiza składu chemicznego atmosfery, identyfikacja pierwiastków', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (7, 69, 'Co to jest entalpia?', 'Suma wewnętrznej energii układu i iloczynu jego objętości oraz ciśnienia', 'Miara stopnia chaotyczności układu', 'Średnia arytmetyczna energii kinetycznej i potencjalnej', 'Wartość energii kinetycznej w układzie izolowanym', 'A'),
 (7, 69, 'Co to jest równanie stanu?', 'Matematyczne wyrażenie opisujące związek między zmiennymi stanu', 'Wzór na przemianę izobaryczną', 'Wzór na przemianę adiabatyczną', 'Wzór na przemianę izotermiczną', 'A'),
 (7, 69, 'Czym jest reguła van der Waalsa?', 'Korekcyjne równanie stanu gazów uwzględniające objętość cząsteczek i siły przyciągania międzycząsteczkowe', 'Reguła określająca zależność między temperaturą a ciśnieniem', 'Reguła opisująca rozkład energii w układach termodynamicznych', 'Reguła dotycząca przemiany izochorycznej', 'A'),
@@ -2036,7 +2036,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (7, 69, 'Czym jest równowaga chemiczna?', 'Stan, w którym prędkość reakcji w przód jest równoważona przez prędkość reakcji wstecz', 'Stan, w którym substraty reakcji zostały całkowicie przekształcone w produkty', 'Stan, w którym reakcja chemiczna zachodzi w obu kierunkach z taką samą szybkością', 'Stan, w którym energia aktywacji reakcji osiąga maksimum', 'A'),
 (7, 69, 'Czym jest stała równowagi chemicznej?', 'Wartość wyrażająca stosunek stężeń produktów do substratów w stanie równowagi', 'Wartość wyrażająca całkowitą ilość reagentów i produktów w stanie równowagi', 'Wartość wyrażająca ilość energii wymaganej do osiągnięcia stanu równowagi', 'Wartość wyrażająca różnicę energii swobodnej pomiędzy substratami a produktami', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (7, 70, 'Jaka jest główna funkcja dehydrogenaz?', 'Przenoszenie atomu wodoru na koenzym', 'Synteza ATP', 'Utrata grupy fosforanowej z ATP', 'Odczynnik w cyklu Krebsa', 'A'),
 (7, 70, 'Które enzymy przeprowadzają pierwszą i ostatnią reakcję w cyklu kwasu cytrynowego?', 'Acylo-CoA dehydrogenaza i fumarylo-CoA hydrolaza', 'Oksydaza bursztynianowa i oksydaza cytochromowa c', 'Izomeraza malonianowa i dehydrogenaza 3-hydroksybutyrylowa', 'Syntaza NADH i reduktaza białek żelaznych', 'A'),
 (7, 70, 'Który etap oddychania komórkowego jest bezpośrednio związany z wytworzeniem największej ilości ATP?', 'Fosforylacja substratowa', 'Oksydacyjna fosforylacja', 'Fosforylacja oksydacyjna', 'Fosforylacja przez kinazę pirogronianową', 'B'),
@@ -2062,7 +2062,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (7, 70, 'Co to jest kofaktor dehydrogenazy mleczanowej?', 'NAD+', 'ATP', 'NADH', 'ADP', 'A'),
 (7, 70, 'Która reakcja nie występuje w cyklu kwasu cytrynowego?', 'Hydroliza kreatyniny', 'Dekarboksylacja α-ketoglutaranu', 'Oksydacja bursztynylo-CoA', 'Reakcja kondensacji kwasu cytrynowego z acetylo-CoA', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (7, 71, 'Co to jest degradacja biologiczna?', 'Proces rozkładu zanieczyszczeń przy udziale organizmów żywych', 'Proces rozkładu zanieczyszczeń wyłącznie w wyniku reakcji chemicznych', 'Proces, który nie ma wpływu na środowisko', 'Proces rozkładu zanieczyszczeń wyłącznie pod wpływem czynników fizycznych', 'A'),
 (7, 71, 'Co to jest fotodegradacja?', 'Rozkład zanieczyszczeń pod wpływem promieniowania słonecznego', 'Rozkład zanieczyszczeń wyłącznie w wyniku reakcji chemicznych', 'Rozkład zanieczyszczeń wyłącznie w wyniku oddziaływań biologicznych', 'Rozkład zanieczyszczeń wyłącznie pod wpływem czynników fizycznych', 'A'),
 (7, 71, 'Co to jest bioakumulacja?', 'Proces gromadzenia się substancji chemicznych w organizmach żywych', 'Proces rozkładu zanieczyszczeń wyłącznie w wyniku reakcji chemicznych', 'Proces, który nie ma wpływu na środowisko', 'Proces rozkładu zanieczyszczeń wyłącznie pod wpływem czynników fizycznych', 'A'),
@@ -2086,7 +2086,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (7, 71, 'Co to jest kwas solny (HCl)?', 'Kwas nieorganiczny zawierający chlor', 'Kwas organiczny zawierający chlor', 'Kwas nieorganiczny zawierający fluor', 'Kwas organiczny zawierający fluor', 'A'),
 (7, 71, 'Co to jest kwas octowy (CH3COOH)?', 'Kwas organiczny zawierający węgiel i tlen', 'Kwas organiczny zawierający węgiel i azot', 'Kwas nieorganiczny zawierający węgiel i tlen', 'Kwas nieorganiczny zawierający węgiel i azot', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (7, 72, 'Jaka jest definicja chemii medycznej?', 'Dziedzina nauki zajmująca się związkami chemicznymi stosowanymi w medycynie', 'Dziedzina nauki zajmująca się strukturą chemiczną organizmów żywych', 'Dziedzina nauki zajmująca się analizą chemiczną w medycynie', 'Dziedzina nauki zajmująca się chemią środowiskową', 'A'),
 (7, 72, 'Co to jest lek?', 'Substancja chemiczna mająca zdolność do leczenia, zapobiegania lub diagnozowania choroby', 'Naturalny produkt występujący w organizmach żywych mający właściwości lecznicze', 'Substancja chemiczna wykorzystywana jedynie do diagnostyki', 'Substancja chemiczna mająca działanie tylko przeciwbólowe', 'A'),
 (7, 72, 'Jakie są podstawowe grupy leków?', 'Leki na receptę i leki bez recepty', 'Leki syntetyczne i leki naturalne', 'Leki doustne i leki do stosowania zewnętrznego', 'Leki ogólnoustrojowe i leki miejscowe', 'A'),
@@ -2111,7 +2111,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (7, 72, 'Co to jest chemia leków?', 'Dziedzina nauki zajmująca się badaniem struktury chemicznej leków i ich syntezy', 'Dziedzina nauki zajmująca się badaniem interakcji między różnymi lekami', 'Dziedzina nauki zajmująca się badaniem skutków ubocznych leków', 'Dziedzina nauki zajmująca się badaniem metabolizmu leków', 'A'),
 (7, 72, 'Co to jest biofarmaceutyka?', 'Dziedzina nauki zajmująca się wykorzystaniem biotechnologii w produkcji leków', 'Dziedzina nauki zajmująca się produkcją leków naturalnych', 'Dziedzina nauki zajmująca się produkcją leków generycznych', 'Dziedzina nauki zajmująca się produkcją leków syntetycznych', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (7, 73, 'Co to jest katalizator?', 'Substancja przyspieszająca reakcję chemiczną bez zmiany swojej struktury chemicznej', 'Substancja zmieniająca swoją strukturę chemiczną podczas reakcji chemicznej', 'Substancja hamująca reakcję chemiczną', 'Substancja neutralna', 'A'),
 (7, 73, 'Jakie są podstawowe typy reaktorów chemicznych?', 'Reaktory beztlenowe i tlenowe', 'Reaktory ciągłe i dyskretne', 'Reaktory analityczne i preparatywne', 'Reaktory egzotermiczne i endotermiczne', 'B'),
 (7, 73, 'Co to jest entalpia?', 'Funkcja termodynamiczna określająca ilość ciepła dostarczanego lub wydzielanego podczas reakcji chemicznej w stałej objętości', 'Funkcja termodynamiczna określająca ilość ciepła dostarczanego lub wydzielanego podczas reakcji chemicznej w stałej temperaturze', 'Stała równowagowa reakcji chemicznej', 'Wskaźnik szybkości reakcji chemicznej', 'A'),
@@ -2136,7 +2136,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (7, 73, 'Jakie są podstawowe typy polimeryzacji?', 'Polimeryzacja rodnikowa, kationowa, anionowa i koordynacyjna', 'Polimeryzacja adycyjna, kondensacyjna, emulsyjna i fotoinicjowana', 'Polimeryzacja termiczna, fotochemiczna, jonowa i reaktywna', 'Polimeryzacja eteryfikacyjna, esterowana, amidowa i karboksylowa', 'A'),
 (7, 73, 'Co to jest polimeryzacja?', 'Proces tworzenia dużych cząsteczek zwanych polimerami poprzez łączenie się małych cząsteczek zwanych monomerami', 'Proces rozkładu związków chemicznych na prostsze', 'Proces tworzenia nowych związków chemicznych z mniejszej liczby substancji wyjściowych', 'Proces wymiany miejscami jonów w roztworze', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (8, 74, 'Co to jest siła?', 'Wektorowa wielkość fizyczna opisująca oddziaływanie między ciałami', 'Skalarowa wielkość fizyczna opisująca przyspieszenie', 'Wielkość fizyczna opisująca ilość ruchu', 'Wektorowa wielkość fizyczna opisująca prędkość', 'A'),
 (8, 74, 'Jaką jednostkę ma siła w układzie SI?', 'Newton', 'Joule', 'Watt', 'Coulomb', 'A'),
 (8, 74, 'Co to jest zasada zachowania energii mechanicznej?', 'Suma energii kinetycznej i potencjalnej w izolowanym układzie pozostaje stała', 'Energia kinetyczna wzrasta wraz z wysokością', 'Energia potencjalna wzrasta wraz z prędkością', 'Energia mechaniczna jest zawsze zerowa', 'A'),
@@ -2162,7 +2162,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (8, 74, 'Co to jest energia potencjalna?', 'Energia związana z położeniem ciała w polu sił zachowawczych', 'Energia związana z ruchem ciała', 'Energia związana z odkształceniami ciała', 'Energia związana z temperaturą ciała', 'A'),
 (8, 74, 'Jaka jest zasada zachowania energii potencjalnej?', 'W zamkniętym układzie, całkowita energia potencjalna pozostaje stała', 'W zamkniętym układzie, całkowita energia kinetyczna pozostaje stała', 'W zamkniętym układzie, całkowita energia mechaniczna pozostaje stała', 'W zamkniętym układzie, całkowity moment pędu pozostaje stały', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (8, 75, 'Co to jest pierwsza zasada termodynamiki?', 'Zmiana energii wewnętrznej jest równa różnicy między dostarczonym a oddanym ciepłem, pomniejszoną o wykonaną pracę', 'Entropia układu izolowanego zawsze rośnie', 'Wszystkie procesy termodynamiczne zachodzą zawsze w kierunku zwiększania entropii', 'W cieplarnianym eksperymencie obserwujemy wzrost temperatury', 'A'),
 (8, 75, 'Co to jest druga zasada termodynamiki?', 'Entropia układu izolowanego zawsze rośnie', 'Zmiana energii wewnętrznej jest równa różnicy między dostarczonym a oddanym ciepłem, pomniejszoną o wykonaną pracę', 'Wszystkie procesy termodynamiczne zachodzą zawsze w kierunku zwiększania entropii', 'W cieplarnianym eksperymencie obserwujemy wzrost temperatury', 'A'),
 (8, 75, 'Co to jest trzecia zasada termodynamiki?', 'Entropia układu izolowanego zawsze rośnie', 'Wszystkie procesy termodynamiczne zachodzą zawsze w kierunku zwiększania entropii', 'Entropia układu dąży do zera przy zerowej temperaturze', 'W cieplarnianym eksperymencie obserwujemy wzrost temperatury', 'C'),
@@ -2187,7 +2187,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (8, 75, 'Czym jest promieniowanie termiczne?', 'Procesem przenoszenia energii w postaci fal elektromagnetycznych', 'Procesem przenoszenia ciepła poprzez ruch strumieni płynu lub gazu', 'Procesem przenoszenia ciepła poprzez przemieszczanie cząsteczek', 'Procesem przenoszenia ciepła poprzez przekazywanie energii między ciałami w kontakcie', 'A'),
 (8, 75, 'Czym jest izolator termiczny?', 'Materiałem charakteryzującym się niską przewodnością cieplną', 'Materiałem charakteryzującym się wysoką przewodnością cieplną', 'Materiałem, który jest doskonałym przewodnikiem ciepła', 'Materiałem, który zatrzymuje ciepło', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (8, 76, 'Czym jest model Bohra atomu?', 'Modelem atomu, w którym elektrony krążą po określonych orbitach wokół jądra', 'Modelem atomu, w którym elektrony zachowują się jak fale', 'Modelem atomu, w którym elektrony są rozproszone losowo wokół jądra', 'Modelem atomu, w którym elektrony znajdują się w środku jądra', 'A'),
 (8, 76, 'Jakie są składniki jądra atomowego?', 'Protony i neutrony', 'Elektrony i protony', 'Neutrony i elektrony', 'Protony, neutrony i elektrony', 'A'),
 (8, 76, 'Jak nazywamy proces, w którym jądro atomowe rozpada się na lżejsze jądra?', 'Rozpadem jądrowym', 'Syntezą jądrową', 'Promieniowaniem alfa', 'Promieniowaniem beta', 'A'),
@@ -2210,7 +2210,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (8, 76, 'Czym różni się energia jądrowa od energii chemicznej?', 'Energia jądrowa jest wyzwolona podczas reakcji jądrowej, a energia chemiczna podczas reakcji chemicznej', 'Energia jądrowa jest wykorzystywana w przemyśle, a energia chemiczna w medycynie', 'Energia jądrowa jest łatwiejsza do kontrolowania niż energia chemiczna', 'Energia jądrowa ma większą gęstość energetyczną niż energia chemiczna', 'A'),
 (8, 76, 'Czym jest aktywność promieniotwórcza?', 'Tempem, z jakim dany izotop ulega rozpadowi', 'Mocą promieniowania emitowanego przez dany izotop', 'Natężeniem promieniowania w danym obszarze', 'Czasem połowicznego rozpadu danego izotopu', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (8, 77, 'Jakie są równania Maxwella?', 'Równania różniczkowe opisujące zachowanie się pól elektromagnetycznych', 'Równania różniczkowe opisujące zachowanie się ciał w polach elektromagnetycznych', 'Równania algebraiczne opisujące zachowanie się pól elektromagnetycznych', 'Równania algebraiczne opisujące zachowanie się ciał w polach elektromagnetycznych', 'A'),
 (8, 77, 'Co to jest prawo Gaussa w kontekście elektromagnetyzmu?', 'Opisuje rozkład pola elektrycznego na podstawie ładunków elektrycznych', 'Opisuje rozkład pola magnetycznego na podstawie prądów elektrycznych', 'Opisuje siłę oddziaływania między dwoma ładunkami elektrycznymi', 'Opisuje siłę oddziaływania między dwoma magnesami', 'A'),
 (8, 77, 'Jakie są równania Ampère’a w kontekście elektromagnetyzmu?', 'Opisują zależność pól magnetycznych od prądów elektrycznych', 'Opisują zależność pól elektrycznych od ładunków elektrycznych', 'Opisują zmiany pola magnetycznego w czasie', 'Opisują zmiany pola elektrycznego w czasie', 'A'),
@@ -2235,7 +2235,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (8, 77, 'Co to jest antyferromagnetyzm?', 'Zjawisko magnetyczne, w którym momenty magnetyczne są skierowane przeciwnie do siebie, co skutkuje zniesieniem się magnetyzacji', 'Zjawisko polegające na wzmacnianiu się momentów magnetycznych w materiale', 'Zjawisko polegające na braku reakcji na pole magnetyczne', 'Zjawisko polegające na utrzymaniu się namagnesowania nawet po usunięciu pola magnetycznego', 'A'),
 (8, 77, 'Co to jest ferromagnetyk?', 'Materiał wykazujący ferromagnetyzm, czyli zdolność do trwałego namagnesowania', 'Materiał, który nie wykazuje właściwości magnetycznych', 'Materiał wykazujący antyferromagnetyzm, czyli znoszenie się momentów magnetycznych', 'Materiał, który wykazuje zmiany kierunku momentów magnetycznych w polu magnetycznym', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (8, 78, 'Jaka teoria opisuje początek Wszechświata jako gwałtowne rozszerzenie z punktu o bardzo dużej gęstości i temperaturze?', 'Teoria Wielkiego Wybuchu', 'Teoria Wielkiego Zderzenia', 'Teoria Wielkiego Spadku', 'Teoria Wielkiego Skoku', 'A'),
 (8, 78, 'Który z poniższych fizyków jest znany z rozwinięcia teorii Wielkiego Wybuchu?', 'George Gamow', 'Isaac Newton', 'Albert Einstein', 'Stephen Hawking', 'A'),
 (8, 78, 'Co to jest promieniowanie reliktowe?', 'Pozostałość po Wielkim Wybuchu, obecne obecnie w kosmicznym mikrofalowym tle', 'Promieniowanie emitowane przez czarne dziury', 'Promieniowanie pochodzące z centrum galaktyki', 'Promieniowanie odbite od powierzchni księżyca', 'A'),
@@ -2262,7 +2262,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (8, 78, 'Co to jest ciemna energia?', 'Hipotetyczna forma energii odpowiedzialna za przyspieszające rozszerzanie się Wszechświata', 'Energia emitowana przez czarne dziury', 'Energia powstała w wyniku kolapsu gwiazd', 'Energia pochodząca z ciemnej materii', 'A'),
 (8, 78, 'Która z poniższych cząstek jest najbardziej masowa?', 'Proton', 'Elektron', 'Neutron', 'Kwark', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (8, 79, 'Co to jest bozon Higgsa?', 'Hipotetyczna cząstka elementarna nadająca masę innym cząstkom', 'Cząstka elementarna o zerowej masie', 'Cząstka elementarna odpowiedzialna za oddziaływanie elektromagnetyczne', 'Hipotetyczna cząstka elementarna oddziałująca grawitacyjnie z innymi cząstkami', 'A'),
 (8, 79, 'Jaką masę ma elektron w jednostkach eV/c²?', '0.511 MeV/c²', '1.602 x 10^-19 MeV/c²', '9.109 x 10^-31 kg', '1.783 x 10^-36 kg', 'A'),
 (8, 79, 'Co to jest cząstka W i jakie ma znaczenie w fizyce cząstek elementarnych?', 'Boson przenoszący oddziaływanie słabe między cząstkami', 'Fermion o spinie 1/2', 'Cząstka składająca się z kwarków', 'Hipotetyczna cząstka nadprzewodząca', 'A'),
@@ -2289,7 +2289,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (8, 79, 'Co to jest oddziaływanie grawitacyjne w kontekście fizyki cząstek elementarnych?', 'Oddziaływanie między masami cząstek', 'Oddziaływanie między ładunkami elektrycznymi', 'Oddziaływanie między cząstkami naładowanymi', 'Oddziaływanie między cząstkami silnym polem magnetycznym', 'A'),
 (8, 79, 'Jak nazywają się cząstki elementarne, których masa jest pomijalnie mała w porównaniu do ich prędkości?', 'Relatywistyczne', 'Leptonowe', 'Bosonowe', 'Neutrinowe', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (8, 80, 'Czym jest entropia w kontekście fizyki statystycznej?', 'Miara nieuporządkowania lub niepewności w układzie', 'Siła oddziałująca między cząstkami', 'Wartość średnia kwadratu odchylenia', 'Masa względna atomu', 'A'),
 (8, 80, 'Jakie twierdzenie mówi o zwiększaniu się entropii w izolowanym układzie?', 'II zasada termodynamiki', 'I zasada termodynamiki', 'Twierdzenie Carnota', 'Zasada zachowania energii', 'A'),
 (8, 80, 'Czym jest funkcja rozkładu Boltzmanna?', 'Opisuje prawdopodobieństwo wystąpienia danego stanu w układzie termodynamicznym', 'Opisuje siłę oddziałującą między cząstkami', 'Opisuje procesy termodynamiczne w izolowanym układzie', 'Opisuje stosunek entropii do temperatury', 'A'),
@@ -2314,7 +2314,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (8, 80, 'Czym jest zasada zachowania energii w fizyce statystycznej?', 'Energia układu pozostaje stała w czasie ewolucji izolowanego układu', 'Energia układu wzrasta w czasie ewolucji izolowanego układu', 'Energia układu maleje w czasie ewolucji izolowanego układu', 'Energia układu jest równa entropii układu', 'A'),
 (8, 80, 'Czym jest termodynamika statystyczna?', 'Działem fizyki zajmującym się opisem zachowania układów składających się z wielu cząsteczek', 'Działem fizyki zajmującym się opisem ruchu planet', 'Działem fizyki zajmującym się opisem struktury atomowej', 'Działem fizyki zajmującym się opisem struktury jądra atomowego', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (8, 81, 'Czym jest odbicie światła?', 'Zjawiskiem, w którym fale świetlne odbijają się od powierzchni', 'Zjawiskiem, w którym fale świetlne przenikają przez powierzchnię', 'Zjawiskiem, w którym fale świetlne absorbowane są przez powierzchnię', 'Zjawiskiem, w którym fale świetlne uginają się wokół przeszkody', 'A'),
 (8, 81, 'Jakie są prawa odbicia światła?', 'Kąt padania jest równy kątowi załamania', 'Kąt padania jest równy kątowi odbicia', 'Kąt załamania jest równy kątowi odbicia', 'Kąt załamania jest równy kątowi padania', 'B'),
 (8, 81, 'Czym jest załamanie światła?', 'Zjawiskiem, w którym fale świetlne zmieniają kierunek przechodząc przez granicę dwóch ośrodków o różnych współczynnikach załamania', 'Zjawiskiem, w którym fale świetlne odbijają się od powierzchni', 'Zjawiskiem, w którym fale świetlne przenikają przez powierzchnię', 'Zjawiskiem, w którym fale świetlne uginają się wokół przeszkody', 'A'),
@@ -2338,7 +2338,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (8, 81, 'Jakie są rodzaje interferencji światła?', 'Interferencja konstruktywna i destruktywna', 'Interferencja zewnętrzna i wewnętrzna', 'Interferencja górna i dolna', 'Interferencja pozytywna i negatywna', 'A'),
 (8, 81, 'Co to jest rozpraszanie światła?', 'Zjawiskiem, w którym fale świetlne są odbijane w różnych kierunkach', 'Zjawiskiem, w którym światło jest odbijane od powierzchni', 'Zjawiskiem, w którym światło jest załamywane', 'Zjawiskiem, w którym światło uginane jest wokół przeszkody', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (8, 82, 'Jakie jest równanie ruchu harmonicznego?', 'x(t) = A*cos(ωt + φ)', 'x(t) = A*sin(ωt + φ)', 'x(t) = A*t*sin(ωt + φ)', 'x(t) = A*t*cos(ωt + φ)', 'A'),
 (8, 82, 'Co to jest amplituda drgań?', 'Maksymalne wychylenie od położenia równowagi', 'Czas trwania drgań', 'Częstotliwość drgań', 'Prędkość drgań', 'A'),
 (8, 82, 'Co to jest okres drgań?', 'Czas potrzebny na wykonanie jednego pełnego cyklu drgań', 'Maksymalne wychylenie od położenia równowagi', 'Częstotliwość drgań', 'Prędkość drgań', 'A'),
@@ -2363,7 +2363,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (8, 82, 'Co to jest fala stojąca?', 'Fala, w której punkty maksymalne i minimalne nie przemieszczają się', 'Fala, która się rozchodzi', 'Fala, która się odbija', 'Fala, która się załamuje', 'A'),
 (8, 82, 'Jakie jest równanie fali stojącej na strunie?', 'y(x, t) = 2A*sin(kx)cos(ωt)', 'y(x, t) = 2A*cos(kx)sin(ωt)', 'y(x, t) = 2A*sin(kx)sin(ωt)', 'y(x, t) = 2A*cos(kx)cos(ωt)', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (9, 83, 'Kto jest rekordzistą w liczbie zdobytych goli w jednym sezonie ligi hiszpańskiej?', 'Lionel Messi', 'Cristiano Ronaldo', 'Telmo Zarra', 'Hugo Sánchez', 'C'),
 (9, 83, 'Który klub jest najbardziej utytułowany w historii Ligi Mistrzów UEFA?', 'Real Madrid', 'FC Barcelona', 'Bayern Monachium', 'AC Milan', 'A'),
 (9, 83, 'Kto zdobył najwięcej bramek w historii reprezentacji Brazylii?', 'Pelé', 'Ronaldo', 'Romário', 'Neymar', 'A'),
@@ -2390,7 +2390,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (9, 83, 'Który zespół jest rekordzistą pod względem liczby zdobytych tytułów mistrza Włoch?', 'Juventus FC', 'AC Milan', 'Inter Mediolan', 'AS Roma', 'A'),
 (9, 83, 'Kto jest najmłodszym zdobywcą Złotej Piłki FIFA w historii?', 'Lionel Messi', 'Pelé', 'Ronaldo', 'Diego Maradona', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (9, 84, 'Który z koszykarzy jest rekordzistą NBA pod względem liczby punktów zdobytych w karierze?', 'Kareem Abdul-Jabbar', 'LeBron James', 'Michael Jordan', 'Kobe Bryant', 'A'),
 (9, 84, 'Ile wynosi aktualny rekord NBA w liczbie punktów zdobytych w jednym meczu?', '81', '100', '69', '73', 'B'),
 (9, 84, 'Który zespół NBA posiada najwięcej mistrzostw ligowych?', 'Boston Celtics', 'Los Angeles Lakers', 'Chicago Bulls', 'Golden State Warriors', 'A'),
@@ -2417,7 +2417,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (9, 84, 'Który z koszykarzy NBA jest rekordzistą pod względem liczby zdobytych punktów w meczu All-Star?', 'Wilt Chamberlain', 'Michael Jordan', 'Kobe Bryant', 'LeBron James', 'A'),
 (9, 84, 'Kto jest autorem słynnego wsadu "The Dunk" z 1984 roku?', 'Michael Jordan', 'Dominique Wilkins', 'Julius Erving', 'Vince Carter', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (9, 85, 'Jakie są wymiary oficjalnego boiska siatkówki?', '9m x 18m', '8m x 16m', '10m x 20m', '9m x 21m', 'A'),
 (9, 85, 'Która z drużyn zdobyła najwięcej złotych medali olimpijskich w siatkówce mężczyzn?', 'Brazylia', 'Stany Zjednoczone', 'ZSRR', 'Włochy', 'C'),
 (9, 85, 'Kto jest uważany za najlepszego siatkarza wszech czasów?', 'Karch Kiraly', 'Giba', 'Earvin N1Gapeth', 'Kerri Walsh Jennings', 'A'),
@@ -2444,7 +2444,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (9, 85, 'W jakim kraju odbyły się pierwsze mistrzostwa świata w siatkówce mężczyzn?', 'Brazylia', 'ZSRR', 'Czechosłowacja', 'Włochy', 'C'),
 (9, 85, 'Która drużyna zdobyła najwięcej tytułów Mistrzostw Świata w siatkówce mężczyzn od 1990 roku?', 'Brazylia', 'Polska', 'Włochy', 'Rosja', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (9, 86, 'Jakie są podstawowe elementy techniki biegu na 100 metrów?', 'Start, przyspieszenie, utrzymanie prędkości, finisz', 'Start, sprint, bieg na zakręcie, finisz', 'Start, tempo, wytrzymałość, finisz', 'Start, sprint, utrzymanie prędkości, finisz', 'A'),
 (9, 86, 'Który z biegów jest uważany za najbardziej intensywny?', 'Bieg na 400 metrów', 'Bieg na 800 metrów', 'Bieg maratoński', 'Bieg na 100 metrów', 'A'),
 (9, 86, 'Jaka jest długość trasy w biegu maratońskim?', '42.195 kilometra', '21.1 kilometra', '10 kilometrów', '50 kilometrów', 'A'),
@@ -2471,7 +2471,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (9, 86, 'Jakie są korzyści z regularnego biegania?', 'Poprawa kondycji fizycznej, zdrowie psychiczne, kontrola wagi', 'Zwiększenie masy ciała, osłabienie mięśni, obniżenie poziomu energii', 'Zwiększenie stresu, osłabienie zdrowia', 'Poprawa smaku życia, zwiększenie poziomu cholesterolu', 'A'),
 (9, 86, 'Jakie jest znaczenie skrótu DNF w kontekście biegów?', 'Did Not Finish - nie ukończył', 'Distance Not Followed - nieprawidłowy dystans', 'Do Not Fear - nie bój się', 'Did Not Fly - nie poleciał', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (9, 87, 'Jaka jest wysokość najwyższego znanego szczytu do wspinaczki na świecie?', '8848 metrów', '8100 metrów', '7296 metrów', '6962 metrów', 'A'),
 (9, 87, 'Który z tych sportów ekstremalnych polega na skakaniu ze spadochronem z dużych wysokości?', 'Base jumping', 'Snowboarding', 'Skok na bungee', 'Zorbing', 'A'),
 (9, 87, 'Jaka jest nazwa popularnej imprezy związanej z surfowaniem, która odbywa się corocznie na Hawajach?', 'The Eddie', 'The Maverick', 'The Pipeline', 'The Jaws', 'A'),
@@ -2497,7 +2497,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (9, 87, 'Jak nazywa się ekstremalny sport polegający na zjeżdżaniu na desce po wodospadach, rzekach lub strumieniach?', 'Whitewater kayaking', 'Surfing', 'Wakeboarding', 'Kitesurfing', 'A'),
 (9, 87, 'Który z tych sportów ekstremalnych polega na skakaniu ze spadochronem z dużych wysokości, z wykonywaniem akrobacji i formacji w powietrzu?', 'Skydiving', 'Bungee jumping', 'Paragliding', 'Wingsuit flying', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (9, 88, 'Jakie są wymiary standardowego pola golfowego?', '365-445 metrów długości i 275-305 metrów szerokości', '150-200 metrów długości i 100-150 metrów szerokości', '250-300 metrów długości i 150-200 metrów szerokości', '400-500 metrów długości i 300-400 metrów szerokości', 'A'),
 (9, 88, 'Który golfista posiada najwięcej wygranych turniejów Wielkiego Szlema?', 'Jack Nicklaus', 'Tiger Woods', 'Arnold Palmer', 'Rory McIlroy', 'A'),
 (9, 88, 'Który turniej golfowy jest uznawany za najstarszy?', 'The Open Championship', 'Masters Tournament', 'PGA Championship', 'U.S. Open', 'A'),
@@ -2524,7 +2524,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (9, 88, 'Jaki jest rekord świata w najwyższej liczbie wygranych turniejów PGA Tour?', '82', '87', '93', '98', 'A'),
 (9, 88, 'Który golfista jest znany jako "The Shark"?', 'Greg Norman', 'Tiger Woods', 'Phil Mickelson', 'Rory McIlroy', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (9, 89, 'Kto jest uważany za najlepszego strzelca w historii NHL?', 'Wayne Gretzky', 'Mario Lemieux', 'Jaromir Jagr', 'Gordie Howe', 'A'),
 (9, 89, 'Który zespół zdobył najwięcej Pucharów Stanleya?', 'Montreal Canadiens', 'Detroit Red Wings', 'Toronto Maple Leafs', 'Chicago Blackhawks', 'A'),
 (9, 89, 'Ile zawodników jednocześnie może znajdować się na lodzie w drużynie?', '6', '5', '7', '8', 'A'),
@@ -2551,7 +2551,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (9, 89, 'Który zespół wygrał najwięcej Pucharów Stanleya w latach 80. XX wieku?', 'New York Islanders', 'Edmonton Oilers', 'Montreal Canadiens', 'Boston Bruins', 'A'),
 (9, 89, 'Kto jest autorem największej liczby goli w jednym sezonie NHL?', 'Wayne Gretzky', 'Mario Lemieux', 'Jaromir Jagr', 'Bobby Orr', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (9, 90, 'Który sportowiec jest rekordzistą w ilości zdobytych medali olimpijskich?', 'Michael Phelps', 'Usain Bolt', 'Serena Williams', 'Simone Biles', 'A'),
 (9, 90, 'Kto jest uznawany za najlepszego koszykarza wszech czasów?', 'Michael Jordan', 'LeBron James', 'Kobe Bryant', 'Magic Johnson', 'A'),
 (9, 90, 'Który tenisista ma najwięcej wygranych turniejów wielkoszlemowych w historii?', 'Roger Federer', 'Rafael Nadal', 'Novak Djokovic', 'Pete Sampras', 'A'),
@@ -2578,7 +2578,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (9, 90, 'Która z wymienionych siatkarzy jest rekordzistą pod względem ilości zdobytych medali olimpijskich?', 'Sergio Santos', 'Giba', 'Dante Amaral', 'Bruno Rezende', 'B'),
 (9, 90, 'Która z wymienionych pływaczek jest aktualną rekordzistką świata na najdłuższym dystansie?', 'Katie Ledecky', 'Sarah Sjöström', 'Missy Franklin', 'Federica Pellegrini', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (10, 91, 'Jaka jest definicja systemu politycznego?', 'Kompleksowy zbiór instytucji, norm, wartości i działań politycznych w danym państwie', 'Jedynie zbiór instytucji politycznych', 'Wyłącznie zbiór norm i wartości', 'Jedynie zbiór działań politycznych', 'A'),
 (10, 91, 'Co to jest forma rządów autokratycznych?', 'System, w którym władza koncentruje się w rękach jednego autorytetu lub partii', 'System, w którym władza jest równo dzielona między różne organy', 'System, w którym obywatele bezpośrednio decydują o sprawach państwa', 'System, w którym władza jest dziedziczna', 'A'),
 (10, 91, 'Które z poniższych państw charakteryzuje się formą rządów totalitarnych?', 'Korea Północna', 'Niemcy', 'Japonia', 'Szwecja', 'A'),
@@ -2604,7 +2604,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (10, 91, 'Jaka jest różnica między systemem jednopartyjnym a systemem wielopartyjnym?', 'W systemie wielopartyjnym istnieje więcej niż jedna partia polityczna, podczas gdy w systemie jednopartyjnym władzę sprawuje tylko jedna partia', 'W systemie jednopartyjnym istnieje więcej niż jedna partia polityczna, podczas gdy w systemie wielopartyjnym władzę sprawuje tylko jedna partia', 'System jednopartyjny nie istnieje', 'System wielopartyjny nie istnieje', 'A'),
 (10, 91, 'Co to jest system oligarchiczny?', 'System, w którym władza jest skupiona w rękach niewielkiej grupy osób lub rodzin', 'System, w którym władza jest równo dzielona między różne partie', 'System, w którym obywatele bezpośrednio decydują o sprawach państwa', 'System, w którym władza jest dziedziczna', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (10, 92, 'Co to jest doktryna Monroe’a?', 'Doktryna określająca strefę wpływów USA w Ameryce Łacińskiej', 'Doktryna określająca zasady prowadzenia wojny', 'Doktryna dotycząca stosunków między USA a Rosją', 'Doktryna dotycząca rozwoju technologicznego', 'A'),
 (10, 92, 'Kim był założyciel pan-slawizmu?', 'Josip Broz Tito', 'Tadeusz Kościuszko', 'Jan III Sobieski', 'Maksym Gorki', 'A'),
 (10, 92, 'Kto był pierwszym prezydentem Związku Radzieckiego?', 'Władimir Lenin', 'Józef Stalin', 'Michaił Gorbaczow', 'Leonid Breżniew', 'A'),
@@ -2631,7 +2631,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (10, 92, 'Kto był premierem Wielkiej Brytanii podczas II wojny światowej?', 'Winston Churchill', 'Margaret Thatcher', 'Tony Blair', 'David Cameron', 'A'),
 (10, 92, 'Co to jest trójstronny pakt militarny?', 'Pakt wojskowy między Polską, Francją i Wielką Brytanią przed II wojną światową', 'Pakt wojskowy między Niemcami, Włochami i Japonią przed II wojną światową', 'Pakt wojskowy między USA, Wielką Brytanią i ZSRR podczas II wojny światowej', 'Pakt wojskowy między USA, Wielką Brytanią i Francją przed II wojną światową', 'B');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (10, 93, 'Kto był pierwszym prezydentem Stanów Zjednoczonych?', 'George Washington', 'Thomas Jefferson', 'Abraham Lincoln', 'John Adams', 'A'),
 (10, 93, 'Kto był pierwszym premierem Związku Radzieckiego?', 'Vladimir Lenin', 'Joseph Stalin', 'Nikita Chruszczow', 'Mikhail Gorbachev', 'A'),
 (10, 93, 'Kto był przywódcą ChRL podczas rewolucji kulturalnej?', 'Mao Zedong', 'Deng Xiaoping', 'Chiang Kai-shek', 'Xi Jinping', 'A'),
@@ -2658,7 +2658,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (10, 93, 'Kto był premierem Japonii podczas II wojny światowej?', 'Hideki Tojo', 'Hirohito', 'Isoroku Yamamoto', 'Fumimaro Konoe', 'A'),
 (10, 93, 'Kto był premierem Indii w chwili jej uzyskania niepodległości w 1947 roku?', 'Jawaharlal Nehru', 'Mahatma Gandhi', 'Indira Gandhi', 'Rajiv Gandhi', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (10, 94, 'Czym jest polityka społeczna?', 'Zbiór działań podejmowanych przez państwo w celu regulacji życia społecznego i poprawy warunków życia obywateli', 'Zbiór działań podejmowanych przez społeczeństwo w celu samoregulacji', 'Zbiór działań podejmowanych przez rząd w celu kontroli społeczeństwa', 'Zbiór działań podejmowanych przez korporacje w celu zwiększenia zysków', 'A'),
 (10, 94, 'Jakie są główne cele polityki społecznej?', 'Zapewnienie bezpieczeństwa socjalnego, równości szans, sprawiedliwości społecznej oraz poprawa jakości życia obywateli', 'Zwiększenie zysków dla korporacji, kontrola społeczeństwa, dominacja polityczna, rozwój gospodarczy', 'Utrzymywanie niskiego poziomu życia, wzrost bezrobocia, kontrola mediów, dyskryminacja grup społecznych', 'Poprawa konkurencyjności rynkowej, zwiększenie podatków, ograniczenie dostępu do edukacji i opieki zdrowotnej', 'A'),
 (10, 94, 'Co to jest bezpieczeństwo socjalne?', 'Zapewnienie obywatelom ochrony przed ryzykiem utraty dochodów w sytuacjach kryzysowych', 'Zapewnienie bezpieczeństwa narodowego poprzez rozbudowę sił zbrojnych', 'Ograniczenie swobód obywatelskich w celu zwiększenia kontroli społecznej', 'Zapewnienie obywatelom dostępu do broni palnej w celu samoodparcia', 'A'),
@@ -2682,7 +2682,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (10, 94, 'Jakie są główne cele polityki zdrowotnej?', 'Zapewnienie dostępu do opieki zdrowotnej, promocja zdrowego stylu życia, walka z chorobami zakaźnymi i przewlekłymi, edukacja zdrowotna', 'Ograniczanie dostępu do opieki zdrowotnej, promocja chorób, kontrola populacji', 'Promocja szkodliwego stylu życia, promocja substancji psychoaktywnych, promocja przemocy', 'Ograniczanie dostępu do edukacji zdrowotnej, promocja ignorancji, promocja nieodpowiedzialnego zachowania', 'A'),
 (10, 94, 'Co to jest polityka edukacyjna?', 'Zbiór działań podejmowanych przez państwo w celu zapewnienia obywatelom dostępu do edukacji oraz poprawy jakości systemu edukacyjnego', 'Zbiór działań podejmowanych przez korporacje w celu kontrolowania systemu edukacyjnego', 'Zbiór działań podejmowanych przez społeczeństwo w celu samokształcenia', 'Zbiór działań podejmowanych przez rząd w celu indoktrynacji młodzieży', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (10, 95, 'Czym jest demokracja bezpośrednia?', 'Systemem, w którym obywatele podejmują decyzje bezpośrednio poprzez głosowanie', 'Systemem, w którym obywatele wybierają przedstawicieli do reprezentowania ich władzy', 'Systemem, w którym władzę sprawuje pojedyncza osoba lub elita', 'Systemem, w którym władza jest dziedziczona', 'A'),
 (10, 95, 'Jaki jest główny argument przeciwników demokracji bezpośredniej?', 'Może prowadzić do decyzji opartych na emocjach i krótkoterminowych interesach', 'Zbyt skomplikowany proces podejmowania decyzji', 'Nieefektywna forma rządzenia', 'Prowadzi do nadmiernego obciążenia obywateli', 'A'),
 (10, 95, 'Co to jest demokracja przedstawicielska?', 'Systemem, w którym obywatele wybierają przedstawicieli do reprezentowania ich władzy', 'Systemem, w którym władzę sprawuje pojedyncza osoba lub elita', 'Systemem, w którym obywatele podejmują decyzje bezpośrednio poprzez głosowanie', 'Systemem, w którym władza jest dziedziczona', 'A'),
@@ -2706,7 +2706,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (10, 95, 'Co to jest demokracja deliberatywna?', 'Systemem, w którym obywatele uczestniczą w spokojnych, rozważnych dyskusjach nad problemami publicznymi', 'Systemem, w którym władzę sprawuje pojedyncza osoba lub elita', 'Systemem, w którym obywatele wybierają przedstawicieli do reprezentowania ich władzy', 'Systemem, w którym władza jest dziedziczona', 'A'),
 (10, 95, 'Jakie są główne założenia demokracji deliberatywnej?', 'Równość uczestnictwa, dyskusje oparte na racjonalnych argumentach, poszukiwanie konsensusu', 'Dominacja elity, manipulacja informacją, kontrola mediów', 'Centralizacja władzy, ograniczenie wolności słowa, represje wobec opozycji', 'Wielopartyjność, rotacja władzy, społeczna kontrola nad rządem', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (10, 96, 'Czym jest totalitaryzm?', 'Systemem politycznym charakteryzującym się pełną kontrolą państwa nad życiem jednostki', 'Formą rządów opartą na pluralizmie politycznym', 'Modelem demokratycznym', 'Ideologią anarchizmu', 'A'),
 (10, 96, 'Jakie państwa zazwyczaj charakteryzują się totalitaryzmem?', 'Państwa autorytarne lub dyktatorskie', 'Państwa federacyjne', 'Państwa konstytucyjne', 'Państwa bezpartyjne', 'A'),
 (10, 96, 'Kto jest u władzy w systemie totalitarnym?', 'Władza jest skoncentrowana w rękach jednej partii lub jednostki', 'Władza jest równomiernie rozdzielana między partie polityczne', 'Władza jest wyłaniania przez wolne wybory', 'Władza jest dziedziczna', 'A'),
@@ -2732,7 +2732,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (10, 96, 'Dlaczego totalitaryzm jest uważany za zagrożenie dla społeczeństwa?', 'Ze względu na naruszanie praw człowieka, brak wolności, kontrolę społeczeństwa', 'Ze względu na promowanie pluralizmu politycznego, dialogu, tolerancji', 'Ze względu na rozwój demokracji, stabilizację polityczną, wzrost zaufania do władzy', 'Ze względu na wsparcie dla praw człowieka, różnorodności, szacunku dla innych kultur', 'A'),
 (10, 96, 'Jakie są główne kryteria definiujące totalitaryzm?', 'Kontrola państwa nad społeczeństwem, represje wobec opozycji, brak swobód obywatelskich', 'Wolność słowa, pluralizm polityczny, ochrona praw człowieka', 'Rozwój demokracji, dialog międzykulturowy, współpraca', 'Wzrost gospodarczy, stabilizacja polityczna, autonomia regionów', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (10, 97, 'Jaki jest główny cel interwencji międzynarodowej w konfliktach zbrojnych?', 'Zapewnienie bezpieczeństwa i stabilności', 'Osłabienie gospodarki przeciwnika', 'Zdobycie strategicznych zasobów naturalnych', 'Zagwarantowanie przewagi militarno-politycznej', 'A'),
 (10, 97, 'Co to jest koncepcja "interwencji humanitarnej"?', 'Zastosowanie siły w celu ochrony ludności cywilnej przed masakrami i łamaniem praw człowieka', 'Ustanowienie nowego rządu w państwie dotkniętym konfliktem', 'Wykorzystanie handlu bronią w celu finansowania pomocy humanitarnej', 'Wsparcie separatystycznych ruchów narodowych w konfliktach', 'A'),
 (10, 97, 'W jaki sposób różne interesy gospodarcze mogą przyczyniać się do eskalacji konfliktów globalnych?', 'Poprzez rywalizację o kontrolę nad zasobami naturalnymi, takimi jak ropa czy gaz', 'Poprzez ustanawianie sojuszy wojskowych w celu zapewnienia bezpieczeństwa ekonomicznego', 'Poprzez zwiększanie eksportu broni do regionów dotkniętych konfliktami', 'Poprzez ułatwianie międzynarodowej współpracy w dziedzinie handlu i inwestycji', 'A'),
@@ -2755,7 +2755,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (10, 97, 'Co to jest "kolonializm"?', 'Polityka ekspansji terytorialnej i gospodarczej prowadzona przez mocarstwa europejskie w XIX i XX wieku', 'Polityka obrony granic i interesów narodowych prowadzona przez państwa muzułmańskie na Bliskim Wschodzie', 'Strategia obrony praw człowieka i wartości demokratycznych na arenie międzynarodowej', 'Polityka pacyfistyczna zakładająca rezygnację z działań militarystycznych na rzecz współpracy międzynarodowej', 'A'),
 (10, 97, 'Jakie są główne kryteria określające, czy dany konflikt zbrojny jest uznawany za wojnę domową?', 'Istnienie przynajmniej dwóch stron walczących, kontrola terytorialna, przynajmniej 1000 ofiar w ciągu roku', 'Brak zaangażowania państw obcych, brak interwencji międzynarodowej, wolność prasy', 'Istnienie jednej strony walczącej, zbrojne powstanie przeciwko władzy centralnej, liczba ofiar niższa niż w wojnach międzynarodowych', 'Znaczący wpływ na gospodarkę globalną, klęska militarna jednej ze stron, obecność pokojowych sił ONZ', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (11, 98, 'Kim był Augustyn z Hippony?', 'Wczesnochrześcijańskim teologiem i filozofem', 'Świętym patronem miasta Rzymu', 'Papieżem Kościoła katolickiego', 'Wczesnochrześcijańskim misjonarzem w Azji', 'A'),
 (11, 98, 'Co to jest chrzest?', 'Sakrament, który oznacza przyjęcie do wspólnoty chrześcijańskiej', 'Religijny obrzęd oczyszczenia duszy', 'Akt publicznego wyznania wiary', 'Ceremonia pogrzebowa', 'A'),
 (11, 98, 'Kim był Konstantyn Wielki?', 'Rzymskim cesarzem, który zniósł prześladowania chrześcijan', 'Pierwszym papieżem Kościoła katolickiego', 'Misjonarzem chrześcijańskim w Afryce', 'Teologiem kościoła wschodniego', 'A'),
@@ -2782,7 +2782,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (11, 98, 'Co to jest konfesja wiary?', 'Wyznanie wiary, które opisuje podstawowe dogmaty chrześcijaństwa', 'Religijne przeżycie duchowe', 'Nazwa dla chrześcijańskiej modlitwy', 'Religijne spotkanie duszpasterskie', 'A'),
 (11, 98, 'Kto był autorem Księgi Psalmów?', 'Król Dawid', 'Król Salomon', 'Prorok Izajasz', 'Prorok Jeremiasz', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (11, 99, 'Kto był pierwszym kalifem po Mahomecie?', 'Abu Bakr', 'Ali ibn Abi Talib', 'Umar ibn al-Khattab', 'Uthman ibn Affan', 'A'),
 (11, 99, 'Które miasto jest uważane za święte przez wyznawców islamu?', 'Mekka', 'Medinę', 'Jerozolimę', 'Rijad', 'A'),
 (11, 99, 'Jak nazywa się księga święta islamu?', 'Koran', 'Biblią', 'Tanach', 'Księgą Mormona', 'A'),
@@ -2810,7 +2810,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (11, 99, 'Która dynastia sprawowała władzę w Hiszpanii podczas okresu Reconquista?', 'Umajjadzi', 'Abbasydzi', 'Nasrydzi', 'Almorawidzi', 'C'),
 (11, 99, 'Kto był ostatnim kalifem z dynastii Abbasydów?', 'Al-Musta`sim', 'Al-Mustazhir', 'Al-Mu`tadid', 'Al-Qa`im', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (11, 100, 'Co to jest Cztery Szlachetne Prawdy?', 'Prawda, Życie, Miłość, Harmonia', 'Pierwsze, Drugie, Trzecie, Czwarte', 'Prawda o Cierpieniu, Pochodzeniu Cierpienia, Ugaszeniu Cierpienia, Droga do Ugaszenia Cierpienia', 'Cztery Wielkie Odkrycia', 'C'),
 (11, 100, 'Kto jest założycielem buddyzmu?', 'Konfucjusz', 'Budda', 'Mahawira', 'Laozi', 'B'),
 (11, 100, 'Co to jest Nirwana?', 'Stan absolutnego szczęścia i wolności od cierpienia', 'Zmienne, niepewne życie', 'Stan wiecznego cierpienia', 'Brak poczucia celu w życiu', 'A'),
@@ -2839,7 +2839,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (11, 100, 'Kto to jest Arhat?', 'Osoba, która osiągnęła ostateczne wyzwolenie z cyklu reinkarnacji', 'Nauczyciel buddyjski', 'Czciciel Buddy', 'Prorok buddyjski', 'A'),
 (11, 100, 'Co to jest Theravada?', 'Szkoła buddyjska, trzymająca się najściślejszych nauk Buddy', 'Klasyczna literatura buddyjska', 'Modlitwa buddyjska', 'Jeden z wielu buddyjskich sutr', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (11, 101, 'Które z poniższych dzieł jest jednym z głównych tekstów judaizmu?', 'Talmud', 'Bhagawadgita', 'Bhagawata Purana', 'Tripitaka', 'A'),
 (11, 101, 'Jak nazywa się hebrajski zbiór pięciu ksiąg Prawa w judaizmie?', 'Torah', 'Biblia', 'Koran', 'Wedy', 'A'),
 (11, 101, 'Które wydarzenie jest obchodzone w judaizmie w Dniu Pojednania (Jom Kipur)?', 'Ostateczne sądzenie', 'Urodziny Mojżesza', 'Urodziny Abrahama', 'Przypomnienie objawienia Toraha na Synaju', 'A'),
@@ -2867,7 +2867,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (11, 101, 'Co to jest Mezuzah w judaizmie?', 'Zwój zawierający fragmenty Prawa', 'Modlitewna chusta', 'Modlitewny szal', 'Modlitewne buty', 'A'),
 (11, 101, 'Które z poniższych jest świętym dniem w tygodniu w judaizmie?', 'Szabat', 'Niedziela', 'Piątek', 'Sobota', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (11, 102, 'Kim był główny bóg w hinduizmie?', 'Brahma', 'Vishnu', 'Shiva', 'Krishna', 'C'),
 (11, 102, 'Jakie są cztery główne księgi hinduistyczne?', 'Ramajana, Mahabharata, Bhagawadgita, Manusmryti', 'Rigweda, Samaweda, Jadźurweda, Atharwaweda', 'Mahabharata, Ramajana, Vedas, Puranas', 'Bhagawadgita, Mahabharata, Ramajana, Rigweda', 'B'),
 (11, 102, 'Co oznacza termin "dharma" w hinduizmie?', 'Wiedza', 'Prawo', 'Religia', 'Odpowiedzialność', 'B'),
@@ -2894,7 +2894,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (11, 102, 'Co oznacza termin "samsara" w hinduizmie?', 'Ścieżka duchowa', 'Wolność od cierpienia', 'Cykl narodzin i śmierci', 'Stan oświecenia', 'C'),
 (11, 102, 'Która z poniższych rzeczy nie jest typowym atrybutem hinduistycznego boga Shivy?', 'Trójzęb', 'Wąż', 'Jezioro', 'Kij', 'D');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (11, 103, 'Kto był założycielem Sikhizmu?', 'Guru Nanak', 'Guru Gobind Singh', 'Guru Angad Dev', 'Guru Amar Das', 'A'),
 (11, 103, 'Co oznacza słowo "Sikh" pochodzące z sanskrytu?', 'Uczeń', 'Mędrzec', 'Kapłan', 'Wojownik', 'A'),
 (11, 103, 'Który z tekstów świętych jest podstawą Sikhizmu?', 'Guru Granth Sahib', 'Vedas', 'Bhagavad Gita', 'Koran', 'A'),
@@ -2921,7 +2921,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (11, 103, 'Który z Guru Sikhów był uwięziony i torturowany przez władze Mughalów?', 'Guru Hargobind', 'Guru Tegh Bahadur', 'Guru Gobind Singh', 'Guru Arjan Dev', 'A'),
 (11, 103, 'Który z Guru Sikhów był znany ze swojej miłości do natury i zwierząt?', 'Guru Har Rai', 'Guru Gobind Singh', 'Guru Angad Dev', 'Guru Ram Das', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (11, 104, 'Która z religii starożytnych wywodzi się z doliny Indusu?', 'Hinduizm', 'Egipcjanizm', 'Zoroastrianizm', 'Taoizm', 'A'),
 (11, 104, 'Która starożytna religia miała bogów Anu, Enlil i Enki?', 'Sumerianizm', 'Babilończycy', 'Mitologia grecka', 'Starożytny Egipt', 'A'),
 (11, 104, 'Która kultura praktykowała religię związaną z kultem Quetzalcoatla?', 'Majowie', 'Aztekowie', 'Inkowie', 'Olmekowie', 'B'),
@@ -2949,7 +2949,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (11, 104, 'Która starożytna religia miała bogów takich jak Huitzilopochtli i Tlaloc?', 'Aztekowie', 'Majowie', 'Inkowie', 'Olmekowie', 'A'),
 (11, 104, 'Która z religii starożytnych miała koncepcję Dhamma i Samsary?', 'Buddyzm', 'Zoroastrianizm', 'Taoizm', 'Hinduizm', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (11, 105, 'Czy ateizm jest tożsamy z nihilizmem?', 'Tak, ateizm odrzuca wszelkie wartości i sens życia', 'Nie, ateizm to jedynie brak przekonania o istnieniu bogów', 'Tak, ateizm uznaje, że nie ma sensu poszukiwać znaczenia w życiu', 'Nie, ateizm może być łączony z różnymi systemami wartości', 'D'),
 (11, 105, 'Jakie argumenty używane są przez ateistów w dyskusji na temat istnienia bogów?', 'Argument ontologiczny, argument z doskonałości, argument z moralności', 'Argument kosmologiczny, argument teleologiczny, argument z doświadczenia religijnego', 'Argument z niepewności, argument z pluralizmu religijnego, argument z tradycji', 'Argument z cierpienia, argument z niesprawiedliwości, argument z wolnej woli', 'B'),
 (11, 105, 'Co to jest naturalizm metodologiczny w kontekście ateizmu?', 'Podejście badawcze zakładające, że wszystkie zjawiska mogą być wyjaśnione za pomocą naturalnych procesów', 'Doktryna twierdząca, że wszystko w świecie jest naturalne i pochodzi z natury', 'Przekonanie, że nauka jest jedynym źródłem prawdziwej wiedzy o rzeczywistości', 'Stanowisko filozoficzne odrzucające wszelkie formy teizmu', 'A'),
@@ -2973,7 +2973,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (11, 105, 'Czy ateizm jest bardziej popularny wśród naukowców?', 'Tak, większość naukowców jest ateistami', 'Nie, naukowcy mają różne przekonania religijne tak jak inne grupy społeczne', 'Tak, ale tylko w dziedzinach nauk przyrodniczych', 'Nie, naukowcy są zazwyczaj bardziej religijni niż przeciętni ludzie', 'B'),
 (11, 105, 'Czy istnieje korelacja między poziomem edukacji a skłonnościami ateistycznymi?', 'Tak, osoby o wyższym poziomie wykształcenia są bardziej skłonne do bycia ateistami', 'Nie, poziom edukacji nie ma wpływu na przekonania religijne', 'Tak, ale tylko w krajach zachodnich', 'Nie, osoby o wyższym poziomie wykształcenia są zazwyczaj bardziej religijne', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (11, 106, 'Kto był głównym inicjatorem reformacji?', 'Apostoł Paweł', 'Święty Augustyn', 'Jan Hus', 'Marcin Luter', 'D'),
 (11, 106, 'Który z następców Marcina Lutra był znany z wprowadzenia luterańskiej konfesji augsburskiej?', 'Jan Kalwin', 'Jan Hus', 'Filip Melanchton', 'Jan Wespazjan Kochowski', 'C'),
 (11, 106, 'Która doktryna stanowi, że Biblia jest jedynym autorytetem w sprawach wiary i praktyki chrześcijańskiej?', 'Sola Scriptura', 'Sola Fide', 'Sola Gratia', 'Solus Christus', 'A'),
@@ -3000,7 +3000,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (11, 106, 'Który z poniższych ruchów religijnych nie wyrosł z reformacji?', 'Luteranizm', 'Anglikanizm', 'Judaizm', 'Metodyzm', 'C'),
 (11, 106, 'Która z poniższych konfesji chrześcijańskich nie wyrosła z reformacji?', 'Prawosławie', 'Kalwinizm', 'Baptyzm', 'Luteranizm', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (12, 107, 'Jaką planetę Układu Słonecznego określa się mianem "Jowisz trojański"?', 'Mars', 'Saturn', 'Neptun', 'Uran', 'A'),
 (12, 107, 'Która planeta Układu Słonecznego jest najmniejsza pod względem średnicy?', 'Merkury', 'Mars', 'Wenus', 'Ziemia', 'A'),
 (12, 107, 'Która planeta Układu Słonecznego ma największą liczbę księżyców?', 'Jowisz', 'Saturn', 'Neptun', 'Uran', 'A'),
@@ -3028,7 +3028,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (12, 107, 'Która planeta ma najmniejszy kąt nachylenia osi obrotu względem płaszczyzny ekliptyki?', 'Merkury', 'Wenus', 'Mars', 'Jowisz', 'A'),
 (12, 107, 'Która planeta posiada najmniejszy obrót wsteczny?', 'Merkury', 'Wenus', 'Mars', 'Jowisz', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (12, 108, 'Jaka jest największa znana gwiazda?', 'VY Canis Majoris', 'Betelgeza', 'Słońce', 'Antares', 'A'),
 (12, 108, 'Co to jest białe karły?', 'Gwiazdy w stadium końcowym ewolucji', 'Niezwykle jasne gwiazdy', 'Gwiazdy o bardzo wysokiej temperaturze powierzchni', 'Gwiazdy o bardzo dużej masie', 'A'),
 (12, 108, 'Co to jest supernowa?', 'Eksplozja gwiazdy', 'Nowo powstała gwiazda', 'Gwiazda o bardzo wysokiej jasności', 'Gwiazda o niskiej masie', 'A'),
@@ -3056,7 +3056,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (12, 108, 'Jak nazywa się najcieńszy pierścień Saturna?', 'F pierścień', 'D pierścień', 'G pierścień', 'E pierścień', 'A'),
 (12, 108, 'Który z księżyców Jowisza jest największy?', 'Ganymedes', 'Io', 'Europa', 'Kallisto', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (12, 109, 'Co to jest zjawisko czarnej dziury?', 'Punktowe skupienie masy, której grawitacja jest tak silna, że nic, nawet światło, nie może z niej uciec', 'Gazowy obłok zbudowany z materii organicznej', 'Obszar wszechświata pozbawiony gwiazd', 'Rodzaj gromady gwiazd', 'A'),
 (12, 109, 'Jakie są przyczyny wybuchu supernowej?', 'Zakończenie życia olbrzymiej gwiazdy lub zderzenie dwóch gwiazd', 'Wpływ promieniowania kosmicznego', 'Oddziaływanie z innymi planetami', 'Długi czas istnienia gwiazdy', 'A'),
 (12, 109, 'Co to jest efekt Dopplera w kontekście astronomii?', 'Zjawisko zmiany długości fali światła emitowanego przez obiekt poruszający się względem obserwatora', 'Zmiana koloru gwiazd wraz z ich wiekiem', 'Oddziaływanie fal elektromagnetycznych z atmosferą', 'Zmiana kształtu galaktyk w miarę ich ewolucji', 'A'),
@@ -3083,7 +3083,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (12, 109, 'Co to jest czarna dziura?', 'Obszar wszechświata o tak silnym polu grawitacyjnym, że nawet światło nie może z niego uciec', 'Typ gwiazdy, która emituje bardzo jasne błyski świetlne', 'Typ galaktyki, która emituje silne promieniowanie rentgenowskie', 'Rodzaj błysku na niebie widoczny w czasie przelotu komety', 'A'),
 (12, 109, 'Co to jest teoria Wielkiego Wybuchu?', 'Obecnie dominująca teoria na temat początków wszechświata, sugerująca, że wszechświat powstał z gwałtownego rozerwania się i rozprzestrzeniania się materii i energii', 'Teoria zakładająca stałość wszechświata', 'Teoria zakładająca, że wszechświat jest nieskończony i wiecznie istnieje', 'Teoria zakładająca, że wszechświat jest płaski i nieograniczony', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (12, 110, 'Co to jest horyzont zdarzeń czarnej dziury?', 'Granica, po której przekroczeniu nie można uniknąć wpadnięcia do wnętrza czarnej dziury', 'Granica, po której przekroczeniu obserwowane zjawiska ulegają zniekształceniu', 'Granica, po której przekroczeniu grawitacja staje się nieskończona', 'Granica, po której przekroczeniu cząstki stają się czarnymi dziurami', 'A'),
 (12, 110, 'Jakie są trzy główne parametry charakteryzujące czarną dziurę?', 'Masa, ładunek elektryczny, moment pędu', 'Temperatura, gęstość, wielkość', 'Średnica, jasność, wiek', 'Promień Schwarzschilda, horyzont zdarzeń, singularyt centralny', 'D'),
 (12, 110, 'Co to jest singularność w kontekście czarnej dziury?', 'Punkt o nieskończonej gęstości w środku czarnej dziury', 'Granica, po której przekroczeniu nie można uniknąć wpadnięcia do wnętrza czarnej dziury', 'Obszar, gdzie czarne dziury pochłaniają światło', 'Granica, po której przekroczeniu cząstki stają się czarnymi dziurami', 'A'),
@@ -3109,7 +3109,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (12, 110, 'Czy czarne dziury mogą się obracać?', 'Tak, mogą one mieć moment pędu', 'Nie, ponieważ ich grawitacja uniemożliwia jakiekolwiek ruchy obrotowe', 'Tylko małe czarne dziury mogą się obracać', 'Tak, ale tylko w bardzo wolnym tempie', 'A'),
 (12, 110, 'Co to jest czarna dziura supersyzyjna?', 'Czarna dziura o masie większej niż masowe granice stabilności', 'Czarna dziura, która emituje więcej promieniowania Hawkinga niż pochłania', 'Teoretyczna czarna dziura o masie mniejszej niż masa neutronowa', 'Czarna dziura o masie mniejszej niż krytyczna masa', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (12, 111, 'Który astronom uważany jest za ojca nowożytnej astronomii?', 'Nikołaj Kopernik', 'Tycho Brahe', 'Galileusz', 'Johannes Kepler', 'A'),
 (12, 111, 'Kto był pierwszym astronomem, który zaproponował heliocentryczny model wszechświata?', 'Aryabhata', 'Erazm Ciołek', 'Claudius Ptolemaeus', 'Aristarchos z Samos', 'D'),
 (12, 111, 'Który z następujących wynalazków był kluczowy dla rozwoju astronomii?', 'Mikroskop', 'Teleskop', 'Termometr', 'Komputer', 'B'),
@@ -3137,7 +3137,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (12, 111, 'Który z poniższych astronomów był pierwszym, który wyznaczył odległość do innej galaktyki poza Drogą Mleczną?', 'Isaac Newton', 'Galileusz', 'Johannes Kepler', 'Edwin Hubble', 'D'),
 (12, 111, 'Który z poniższych astronomów jest znany ze swojej pracy nad czarnymi dziurami i ich relacją do grawitacji?', 'Stephen Hawking', 'Johannes Kepler', 'Nikołaj Kopernik', 'Albert Einstein', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (12, 112, 'Jakie parametry są istotne dla skuteczności teleskopu kosmicznego?', 'Średnica zwierciadła, rozdzielczość, zakres fal elektromagnetycznych', 'Moc silnika, wytrzymałość konstrukcji, kolor obudowy', 'Waga teleskopu, rodzaj użytej stali, ilość baterii', 'Temperatura otoczenia, kształt obudowy, wielkość ekranu dotykowego', 'A'),
 (12, 112, 'Co to jest krzywa rozdzielczości teleskopu kosmicznego?', 'Graficzna reprezentacja zdolności rozdzielczej w zależności od długości fali', 'Wykres przedstawiający liczbę gwiazd rozdzielonych w zależności od czasu ekspozycji', 'Schemat przedstawiający strukturę lustra głównego', 'Obrazek pokazujący zakres fal elektromagnetycznych widocznych przez teleskop', 'A'),
 (12, 112, 'Jakie są główne cele badań prowadzonych za pomocą teleskopów kosmicznych?', 'Badanie gwiazd, galaktyk, planet, ciemnej materii, czarnych dziur, kosmicznego mikrofalowego tła', 'Badanie życia pozaziemskiego, podróży międzygwiezdnych, eksploracja Księżyca', 'Badanie zjawisk atmosferycznych innych planet, prognozowanie pogody kosmicznej', 'Badanie historii kosmosu, rejestrowanie przechodzących asteroid', 'A'),
@@ -3161,7 +3161,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (12, 112, 'Co to jest aberracja sferyczna, a jak wpływa na obserwacje teleskopów kosmicznych?', 'Zjawisko powodujące rozmycie obrazów spowodowane różnymi ogniskowymi promieni świetlnych; teleskopy kosmiczne stosują korekcję aby uzyskać ostre obrazy', 'Zmniejszenie jasności obserwowanych obiektów spowodowane rozproszeniem światła na powierzchni instrumentów; teleskopy kosmiczne wykorzystują technologie redukcji tego efektu', 'Zjawisko, które powoduje pojawienie się kolorowych obrzeży na zdjęciach obiektów kosmicznych; teleskopy kosmiczne muszą to uwzględnić przy obróbce obrazów', 'Zjawisko polegające na ugięciu fal świetlnych wokół przeszkód; teleskopy kosmiczne muszą stosować odpowiednie apertury aby je ograniczyć', 'A'),
 (12, 112, 'Co to jest adaptacja fal elektromagnetycznych w kontekście teleskopów kosmicznych?', 'Zdolność teleskopu do rejestrowania obrazów w różnych zakresach długości fal', 'Zmiany w polaryzacji fali świetlnej w wyniku oddziaływania z atmosferą', 'Zdolność adaptacji teleskopu do zmiany ogniskowej', 'Proces dostosowania teleskopu do zmiany temperatury otoczenia', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (12, 113, 'Jaką nazwę nosi najjaśniejsza gwiazda na niebie nocnym?', 'Sirius', 'Polaris', 'Alfa Centauri', 'Wega', 'A'),
 (12, 113, 'Która planeta w Układzie Słonecznym jest najbliżej Słońca?', 'Merkury', 'Wenus', 'Ziemia', 'Mars', 'A'),
 (12, 113, 'Jaka jest nazwa największego księżyca Jowisza?', 'Io', 'Europa', 'Ganimedes', 'Kallisto', 'C'),
@@ -3189,7 +3189,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (12, 113, 'Która misja kosmiczna była pierwszą, która dotarła na powierzchnię Wenus?', 'Venera 7', 'Mariner 2', 'Magellan', 'Venus Express', 'A'),
 (12, 113, 'Co to jest astrometria?', 'Dział astronomii zajmujący się pomiarami pozycji i ruchów gwiazd i innych obiektów niebieskich', 'Nazwa sondy kosmicznej', 'Teoria dotycząca czarnej dziury', 'Typ planety pozasłonecznej', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (12, 114, 'Jaką metodą poszukujemy inteligentnych form życia pozaziemskiego?', 'Analiza fal radiowych', 'Obserwacje teleskopowe', 'Poszukiwanie artefaktów', 'Kolonizacja planet', 'A'),
 (12, 114, 'Czym jest równanie Drake\`a?', 'Metodą oszacowania liczby cywilizacji w naszej galaktyce', 'Modelem przewidywania wzrostu populacji', 'Teorią dotyczącą warunków powstania życia', 'Teorią dotyczącą ewolucji gatunków', 'A'),
 (12, 114, 'Co to jest paradoks Fermiego?', 'Pytanie, dlaczego nie spotkaliśmy jeszcze życia pozaziemskiego, pomimo wysiłków poszukiwań', 'Teoria dotycząca przyspieszonej ewolucji życia pozaziemskiego', 'Metoda szacowania wieku cywilizacji pozaziemskich', 'Model opisujący ewolucję atmosfer planetarnych', 'A'),
@@ -3214,7 +3214,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (12, 114, 'Czym jest tzw. "hipoteza silnej zdeterminowania"?', 'Koncepcją zakładającą istnienie wszechobecnej siły kontrolującej rozwój życia we Wszechświecie', 'Teorią opisującą rozwój społeczeństw w kosmosie', 'Hipotezą opisującą zależność między technologią a rozwojem cywilizacji', 'Zjawiskiem związanym z przemieszczaniem się planet wokół gwiazd', 'A'),
 (12, 114, 'Czym jest tzw. "paradoks Astrobiologii"?', 'Pytaniem o poszukiwanie życia w kosmosie przy braku szczegółowej wiedzy na jego temat', 'Zjawiskiem przyspieszonej ewolucji organizmów na obcych planetach', 'Teorią dotyczącą pochodzenia życia na Ziemi', 'Hipotezą opisującą związki między różnymi formami życia we Wszechświecie', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (13, 115, 'Kto jest autorem "Symfonii fantastycznej"?', 'Ludwig van Beethoven', 'Franz Schubert', 'Hector Berlioz', 'Johannes Brahms', 'C'),
 (13, 115, 'Który kompozytor uznawany jest za ojca symfonii?', 'Wolfgang Amadeus Mozart', 'Johann Sebastian Bach', 'Ludwig van Beethoven', 'Joseph Haydn', 'D'),
 (13, 115, 'Który z instrumentów wymienionych poniżej jest instrumentem perkusyjnym?', 'Flet', 'Skrzypce', 'Fortepian', 'Bęben', 'D'),
@@ -3241,7 +3241,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (13, 115, 'Który z tych kompozytorów był związany z klasycyzmem?', 'Antonio Vivaldi', 'Johann Sebastian Bach', 'Ludwig van Beethoven', 'Franz Joseph Haydn', 'D'),
 (13, 115, 'Który z tych utworów został skomponowany przez Johannesa Brahmsa?', 'Rapsodia hiszpańska', 'Wesołe nutki', 'Trwoga', 'Symfonia Nr 3 f-moll', 'D');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (13, 116, 'Który z poniższych gatunków muzycznych wywodzi się z jamajskiej kultury i charakteryzuje się pulsującym rytmem?', 'Reggae', 'Jazz', 'Blues', 'Rock', 'A'),
 (13, 116, 'Który z wymienionych gatunków muzycznych rozwinął się w Nowym Orleanie i odznacza się bogatym brzmieniem instrumentów dętych?', 'Jazz', 'Hip-hop', 'Metal', 'Country', 'A'),
 (13, 116, 'Jakie instrumenty są charakterystyczne dla muzyki country?', 'Skrzypce i gitara akustyczna', 'Saksofon i trąbka', 'Harfa i flet', 'Klawisze i syntezatory', 'A'),
@@ -3267,7 +3267,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (13, 116, 'Który z wymienionych gatunków muzycznych rozwijał się w latach 50. XX wieku w Stanach Zjednoczonych, inspirowany muzyką afroamerykańską i charakteryzujący się energetycznymi rytmami oraz harmoniami wokalnymi?', 'Rock and Roll', 'Blues', 'Salsa', 'Folk', 'A'),
 (13, 116, 'Który z poniższych gatunków muzycznych powstał w latach 70. XX wieku w Nowym Jorku, łącząc elementy funku, soulu, jazzu i afrobeatu, oraz charakteryzujący się rozbudowanymi aranżacjami instrumentalnymi i wokalnymi?', 'Disco', 'Rap', 'Metal', 'Reggae', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (13, 117, 'Kto jest autorem kompozycji "Rhapsody in Blue"?', 'George Gershwin', 'Leonard Bernstein', 'Aaron Copland', 'Igor Stravinsky', 'A'),
 (13, 117, 'Kto skomponował operę "Carmen"?', 'Georges Bizet', 'Giuseppe Verdi', 'Giacomo Puccini', 'Richard Wagner', 'A'),
 (13, 117, 'Który z kompozytorów urodził się w Salzburgu, Austria?', 'Wolfgang Amadeus Mozart', 'Ludwig van Beethoven', 'Johann Sebastian Bach', 'Franz Schubert', 'A'),
@@ -3295,7 +3295,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (13, 117, 'Kto skomponował operę "Barbiere di Siviglia"?', 'Gioachino Rossini', 'Giuseppe Verdi', 'Richard Wagner', 'Giacomo Puccini', 'A'),
 (13, 117, 'Który kompozytor jest znany z "Ave Verum Corpus"?', 'Wolfgang Amadeus Mozart', 'Anton Bruckner', 'Franz Schubert', 'Johannes Brahms', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (13, 118, 'Jaki instrument muzyczny jest znany jako "król instrumentów"?', 'Skrzypce', 'Fortepian', 'Gitara', 'Organy', 'D'),
 (13, 118, 'Który instrument jest charakterystyczny dla muzyki flamenco?', 'Kastaniet', 'Bandżo', 'Ksylofon', 'Gitara flamenco', 'D'),
 (13, 118, 'Który instrument jest największy w rodzinie instrumentów smyczkowych?', 'Kontrabas', 'Wiolonczela', 'Altówka', 'Skrzypce', 'A'),
@@ -3322,7 +3322,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (13, 118, 'Który instrument jest charakterystyczny dla muzyki ludowej w Australii?', 'Didgeridoo', 'Zurna', 'Bouzouki', 'Oud', 'A'),
 (13, 118, 'Który instrument jest popularnym instrumentem perkusyjnym w muzyce latynoamerykańskiej?', 'Conga', 'Darbuka', 'Tabla', 'Bongo', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (13, 119, 'Kto skomponował "Cztery pory roku"?', 'Antonio Vivaldi', 'Wolfgang Amadeus Mozart', 'Ludwig van Beethoven', 'Johann Sebastian Bach', 'A'),
 (13, 119, 'Który kompozytor urodził się jako Fryderyk Chopin?', 'Franciszek Chopin', 'Fryderyk Franciszek Chopin', 'Fryderyk Chopinowski', 'Fryderyk Szopen', 'D'),
 (13, 119, 'Które dzieło jest koncertem skrzypcowym?', 'Symfonia nr 9', 'Koncert skrzypcowy d-moll', 'Sonata dla skrzypiec i fortepianu', 'Requiem', 'B'),
@@ -3350,7 +3350,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (13, 119, 'Który z tych utworów nie jest suitem orkiestrowym?', 'Arabeska', 'Nutcracker Suite', 'Romeo i Julia', 'Dafnis i Chloe', 'A'),
 (13, 119, 'Który z tych kompozytorów nie był przedstawicielem szkoły wiedeńskiej?', 'Wolfgang Amadeus Mozart', 'Joseph Haydn', 'Franz Schubert', 'Ludwig van Beethoven', 'C');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (13, 120, 'Który zespół jest znany z utworu "Stairway to Heaven"?', 'Led Zeppelin', 'The Beatles', 'Pink Floyd', 'The Rolling Stones', 'A'),
 (13, 120, 'Kto jest frontmanem zespołu Queen?', 'Freddie Mercury', 'John Lennon', 'Mick Jagger', 'Robert Plant', 'A'),
 (13, 120, 'Jak nazywa się legendarny gitarzysta, który grał w zespole The Jimi Hendrix Experience?', 'Jimi Hendrix', 'Eric Clapton', 'Jimmy Page', 'Eddie Van Halen', 'A'),
@@ -3377,7 +3377,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (13, 120, 'Który zespół wykonał utwór `Paint It Black`?', 'The Rolling Stones', 'The Beatles', 'The Doors', 'Pink Floyd', 'A'),
 (13, 120, 'Kto jest frontmanem zespołu Pink Floyd?', 'Roger Waters', 'David Gilmour', 'Syd Barrett', 'Nick Mason', 'B');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (13, 121, 'Kto jest uważany za "ojca chrzestnego" muzyki techno?', 'Juan Atkins', 'Kevin Saunderson', 'Derrick May', 'Carl Craig', 'A'),
 (13, 121, 'Który z tych zespołów jest znany z wprowadzenia muzyki elektronicznej do mainstreamu?', 'Kraftwerk', 'Tangerine Dream', 'Yellow Magic Orchestra', 'Depeche Mode', 'A'),
 (13, 121, 'Który album uważany jest za przełomowy dla gatunku IDM (Intelligent Dance Music)?', 'Aphex Twin - "Selected Ambient Works 85-92"', 'Boards of Canada - "Music Has the Right to Children"', 'Autechre - "Incunabula"', 'Squarepusher - "Feed Me Weird Things"', 'A'),
@@ -3404,7 +3404,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (13, 121, 'Który z tych albumów jest uznawany za przełomowy dla gatunku electro?', 'Kraftwerk - "Computer World"', 'Cybotron - "Enter"', 'Afrika Bambaataa & Soulsonic Force - "Planet Rock: The Album"', 'Newcleus - "Jam on Revenge"', 'A'),
 (13, 121, 'Który zespół jest znany z eksperymentowania z muzyką industrialną?', 'Throbbing Gristle', 'Skinny Puppy', 'Nine Inch Nails', 'Ministry', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (13, 122, 'Który z poniższych artystów jest znany jako "Król Popu"?', 'A) Michael Jackson', 'B) Madonna', 'C) Elvis Presley', 'D) Prince', 'A'),
 (13, 122, 'Który zespół był znany z utworu "Bohemian Rhapsody"?', 'A) Queen', 'B) The Beatles', 'C) Led Zeppelin', 'D) Pink Floyd', 'A'),
 (13, 122, 'Który z poniższych artystów jest znany jako "Król Rock and Rolla"?', 'A) Elvis Presley', 'B) Bruce Springsteen', 'C) Mick Jagger', 'D) Bob Dylan', 'A'),
@@ -3431,7 +3431,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (13, 122, 'Który zespół był znany z utworu "Sweet Child o’ Mine"?', 'A) Guns N’ Roses', 'B) AC/DC', 'C) Metallica', 'D) Def Leppard', 'A'),
 (13, 122, 'Który z poniższych artystów jest znany jako "Król R&B"?', 'A) James Brown', 'B) Marvin Gaye', 'C) Prince', 'D) Michael Jackson', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (14, 123, 'Jaka jest największa wyspa na świecie?', 'Australii', 'Madagaskaru', 'Borneo', 'Grönlandia', 'D'),
 (14, 123, 'Który kontynent jest najmniej zaludniony?', 'Afryka', 'Australia', 'Antarktyda', 'Europa', 'C'),
 (14, 123, 'Gdzie znajduje się najwyższy wodospad na świecie?', 'Wenezuela', 'Kanada', 'Zimbabwe', 'Norwegia', 'A'),
@@ -3458,7 +3458,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (14, 123, 'Gdzie znajduje się największa liczba wysp na świecie?', 'Indonezja', 'Filipiny', 'Japonia', 'Grecja', 'A'),
 (14, 123, 'Który kraj ma największą powierzchnię lodowców?', 'Antarktyda', 'Islandia', 'Norwegia', 'Alaska', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (14, 124, 'Które zwierzę jest największe lądowe drapieżniki?', 'Niedźwiedź polarne', 'Tygrys syberyjski', 'Lew afrykański', 'Niedźwiedź brunatny', 'B'),
 (14, 124, 'Które zwierzę posiada najdłuższy okres ciąży?', 'Słoń afrykański', 'Żyrafa', 'Nosorożec', 'Kot domowy', 'C'),
 (14, 124, 'Jaka jest największa jadowita wąż na świecie?', 'Kobra królewska', 'Mamba czarna', 'Wąż tygrysi', 'Anaconda zielona', 'D'),
@@ -3485,7 +3485,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (14, 124, 'Jak nazywa się największy ssak na świecie?', 'Wieloryb błękitny', 'Rekin wielorybi', 'Słoń afrykański', 'Nosorożec biały', 'A'),
 (14, 124, 'Które zwierzęta posiadają największe mózgi w stosunku do swojej masy ciała?', 'Ludzie', 'Słonie', 'Delfiny', 'Papugi', 'B');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (14, 125, 'Która z poniższych budowli jest najwyższa na świecie?', 'Burj Khalifa', 'Shanghai Tower', 'Abraj Al-Bait Clock Tower', 'One World Trade Center', 'A'),
 (14, 125, 'Które z tych państw jest gospodarzem najwyższej budowli na świecie?', 'Zjednoczone Emiraty Arabskie', 'Chiny', 'Arabia Saudyjska', 'Stany Zjednoczone', 'A'),
 (14, 125, 'Jaka jest aktualna wysokość Burj Khalifa w Dubaju?', '828 metrów', '632 metry', '601 metrów', '541 metrów', 'A'),
@@ -3513,7 +3513,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (14, 125, 'Jaka jest wysokość Ping An Finance Centre w Shenzhen, Chinach?', '599 metrów', '598 metrów', '592 metry', '591 metrów', 'A'),
 (14, 125, 'Która z poniższych budowli znajduje się w Dubaju, Zjednoczone Emiraty Arabskie?', 'Burj Khalifa', 'Shanghai Tower', 'Abraj Al-Bait Clock Tower', 'One World Trade Center', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (14, 126, 'Które jezioro jest największe pod względem powierzchni na świecie?', 'Morze Kaspijskie', 'Jezioro Wiktorii', 'Jezioro Górne', 'Jezioro Michigan', 'A'),
 (14, 126, 'Które z tych jezior jest najgłębsze na świecie?', 'Jezioro Bajkał', 'Jezioro Tanganika', 'Jezioro Górne', 'Jezioro Michigan', 'A'),
 (14, 126, 'Jakie jezioro ma najdłuższy brzeg w stosunku do całkowitej powierzchni linii brzegowej?', 'Jezioro Górne', 'Jezioro Wiktorii', 'Jezioro Bajkał', 'Jezioro Michigan', 'B'),
@@ -3540,7 +3540,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (14, 126, 'Które jezioro na świecie ma największą ilość gatunków endemicznych?', 'Jezioro Bajkał', 'Jezioro Tanganyika', 'Jezioro Victoria', 'Jezioro Malawi', 'A'),
 (14, 126, 'Które jezioro w Afryce ma największą różnorodność gatunkową ryb?', 'Jezioro Tanganyika', 'Jezioro Wiktorii', 'Jezioro Niasa', 'Jezioro Turkana', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (14, 127, 'Jaką nazwę nosi najgłębszy rów oceaniczny na Ziemi?', 'Row Ryūkyū', 'Row Tonga', 'Row Mariana', 'Row Filipiński', 'C'),
 (14, 127, 'Który z następujących rowów oceanicznych jest najgłębszy?', 'Row Japoński', 'Row Erytrejski', 'Row Fidżi', 'Row Mariański', 'D'),
 (14, 127, 'Który rów oceaniczny znajduje się na północnym zachodzie Pacyfiku?', 'Row Atacam', 'Row Tonga', 'Row Mariański', 'Row Aleucki', 'D'),
@@ -3568,7 +3568,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (14, 127, 'Który z poniższych rowów oceanicznych jest położony na południowym Atlantyku?', 'Row Tonga', 'Row Kermadec', 'Row Mariański', 'Row Sandwich', 'D'),
 (14, 127, 'Ile wynosi szacowana głębokość Rowu Fidżi?', '10,284 metrów', '9,255 metrów', '10,284 metrów', '9,554 metrów', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (14, 128, 'Jakie miejsce jest uznawane za najgłębsze na Ziemi?', 'Row Marianny', 'Wielka Rafa Koralowa', 'Wielka Dolina Rift', 'Wielka Niecka Afrykańska', 'A'),
 (14, 128, 'Co to jest Wielka Rafa Koralowa?', 'System raf koralowych u wybrzeży Queensland w Australii', 'Największa jaskinia na świecie w Wietnamie', 'Najwyższy łańcuch górski w Himalajach', 'Największy kras na świecie w Chinach', 'A'),
 (14, 128, 'Gdzie znajduje się Wielka Dolina Rift?', 'Afryka Wschodnia', 'Ameryka Południowa', 'Azja Południowo-Wschodnia', 'Europa Zachodnia', 'A'),
@@ -3594,7 +3594,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (14, 128, 'Co to jest Dolina Desolation?', 'Pustynia w USA', 'Jedna z największych jaskiń w Australii', 'Obszar na Antarktydzie, gdzie nigdy nie pada deszcz', 'Jedna z największych jaskiń na Grenlandii', 'A'),
 (14, 128, 'Gdzie znajduje się Jezioro Tekapo?', 'W Nowej Zelandii', 'W Szwajcarii', 'W Kanadzie', 'W Australii', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (14, 129, 'Która plaża znajduje się na pierwszym miejscu rankingu "Najlepsze Plaże Świata" według National Geographic w 2023 roku?', 'Anse Source d''Argent, Seszele', 'Grace Bay, Turks i Caicos', 'Whitehaven Beach, Australia', 'Baia dos Porcos, Brazylia', 'A'),
 (14, 129, 'Jaka plaża jest znana z unikalnych różowych piasków?', 'Elafonissi Beach, Grecja', 'Pink Sands Beach, Bahamy', 'Horseshoe Bay, Bermudy', 'Balos Lagoon, Grecja', 'B'),
 (14, 129, 'Która plaża słynie z widowiskowych skalnych formacji zwanym "The Baths"?', 'Boulders Beach, Republika Południowej Afryki', 'Anse Lazio, Seszele', 'Matira Beach, Polinezja Francuska', 'Devil''s Bay, Brytyjskie Wyspy Dziewicze', 'D'),
@@ -3621,7 +3621,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (14, 129, 'Która plaża słynie z możliwości obserwacji białych rekina wielorybich?', 'Stewart Island, Nowa Zelandia', 'Mossel Bay, RPA', 'Gansbaai, RPA', 'Great White Beach, Australia', 'C'),
 (14, 129, 'Która plaża jest uważana za jedno z najlepszych miejsc do snorkelingu?', 'Hanauma Bay, Hawaje', 'Koh Tao, Tajlandia', 'The Baths, Brytyjskie Wyspy Dziewicze', 'Blue Hole, Belize', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (14, 130, 'Jaka jest definicja hezagonu?', 'Figura geometryczna o sześciu bokach', 'Figura geometryczna o ośmiu bokach', 'Figura geometryczna o dziesięciu bokach', 'Figura geometryczna o czterech bokach', 'A'),
 (14, 130, 'Kto odkrył prawa ruchu planet?', 'Johannes Kepler', 'Isaac Newton', 'Galileusz Galilei', 'Nicolaus Copernicus', 'A'),
 (14, 130, 'Które zjawisko jest opisane równaniem E=mc^2?', 'Zwężanie przestrzeni czasu', 'Zasada nieoznaczoności', 'Energia kinetyczna ciała', 'Związanie masy z energią', 'D'),
@@ -3648,7 +3648,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (14, 130, 'Jak nazywa się największa góra na Marsie?', 'Olympus Mons', 'Mount Sharp', 'Valles Marineris', 'Tharsis Bulge', 'A'),
 (14, 130, 'Która z planet jest najmniejsza?', 'Merkury', 'Mars', 'Pluton', 'Wenus', 'C');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (14, 131, 'Który kompozytor jest uważany za "ojca" muzyki klasycznej?', 'Wolfgang Amadeusz Mozart', 'Ludwig van Beethoven', 'Johann Sebastian Bach', 'Franz Joseph Haydn', 'C'),
 (14, 131, 'Który gatunek muzyczny rozwinął się w XIX wieku w Niemczech?', 'Opera', 'Symfonia', 'Lieder', 'Sonata', 'A'),
 (14, 131, 'Który zespół jest uważany za pioniera gatunku heavy metal?', 'Black Sabbath', 'Led Zeppelin', 'Deep Purple', 'Iron Maiden', 'A'),
@@ -3675,7 +3675,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (14, 131, 'Który gatunek muzyczny rozwijał się w Stanach Zjednoczonych w latach 60. XX wieku, łącząc elementy rock and rolla z innymi stylami?', 'Rock Psychedeliczny', 'Hard Rock', 'Punk Rock', 'Glam Rock', 'A'),
 (14, 131, 'Który kompozytor jest uważany za twórcę gatunku koncertu?', 'Antonio Vivaldi', 'Johann Sebastian Bach', 'Wolfgang Amadeusz Mozart', 'Ludwig van Beethoven', 'A');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (14, 132, 'Który kompozytor uważany jest za twórcę Symfonii fantastycznej?', 'Ludwig van Beethoven', 'Wolfgang Amadeus Mozart', 'Hector Berlioz', 'Franz Schubert', 'C'),
 (14, 132, 'Które dzieło skomponował Fryderyk Chopin?', 'Symfonia Jupitera', 'Requiem', 'Trójkoncert fortepianowy', 'Romeo i Julia', 'C'),
 (14, 132, 'Jakie dzieło jest związane z nazwiskiem Johann Sebastian Bach?', 'Requiem', 'Brandenburg Concertos', 'Carmina Burana', 'Gwiazda wieczorna', 'B'),
@@ -3704,7 +3704,7 @@ INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option
 (14, 132, 'Który kompozytor napisał "Czarodziejski Flet"?', 'Ludwig van Beethoven', 'Franz Schubert', 'Wolfgang Amadeus Mozart', 'Johannes Brahms', 'C'),
 (14, 132, 'Które dzieło nie jest autorstwa Ludwiga van Beethovena?', 'Turecka Marsz', 'Chorał organowy', 'Messa da Requiem', 'La Traviata', 'D');
 
-INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option1`, `option2`, `option3`, `option4`, `correct`) VALUES
+INSERT INTO `quizmaster`.`question` (`category_id`, `topic_id`, `title`, `option-a`, `option-b`, `option-c`, `option-d`, `correct`) VALUES
 (14, 133, 'Kto był wynalazcą żarówki?', 'Thomas Edison', 'Nikola Tesla', 'Alexander Graham Bell', 'Galileo Galilei', 'A'),
 (14, 133, 'Kiedy została wynaleziona pierwsza maszyna parowa?', 'XVIII wiek', 'XIX wiek', 'XVII wiek', 'XX wiek', 'C'),
 (14, 133, 'Co było pierwszym komercyjnie udanym produktem wytworzonym w druku?', 'Biblia Gutenberga', 'Mapa', 'Pismo święte', 'Książka kucharska', 'A'),
