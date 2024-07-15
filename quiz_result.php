@@ -28,8 +28,6 @@
     $queryResult = $connection->query($query);
     $queryResultAssoc = $queryResult->fetchAll(PDO::FETCH_ASSOC);
 
-    // echo count($queryResultAssoc);
-
     for ($i = 0; $i < count($queryResultAssoc); $i++) {
         array_push($correctAnswers, $queryResultAssoc[$i]["correct"]);
     }
@@ -43,6 +41,7 @@
     }
 
     $obtainedResult = (($numberOfCorrectAnswers / $questionCount) * 100);
+    echo $obtainedResult;
     
     session_start();
     $startTime = $_SESSION["quiz-start-time"];
@@ -50,6 +49,20 @@
     $takeTime = $endTime - $startTime;
     $takeTimeMinutes = floor($takeTime / 60);
     $takeTimeSeconds = $takeTime % 60;
+
+    unset($_SESSION["quiz-start-time"]);
+
+    if(isset($_SESSION["user-id"])) {
+        $sqlQuery = 'INSERT INTO `quizmaster`.`solved`(`user_id`, `date`, `duration`, `questions_number`, `score`, `questions_ids`, `answers`) VALUES (:userid, NOW(), :time, :questionnumber, :score, :questionids, :answers)';
+        $stmt = $connection->prepare($sqlQuery);
+        $stmt->bindParam(':userid', $_SESSION['user-id']);
+        $stmt->bindParam(':time', $takeTime);
+        $stmt->bindParam(':questionnumber', $questionCount);
+        $stmt->bindParam(':score', $obtainedResult);
+        $stmt->bindParam(':questionids', $questionIDs);
+        $stmt->bindParam(':answers', implode(',', $userAnswers));
+        $stmt->execute();
+    }
 
     $connection = null;
 ?>
@@ -59,10 +72,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>QuizMaster - Wyniki</title>
-        <link rel="shortcut icon" href="./image/favicon.png" type="image/x-icon">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="stylesheet" href="../styles/style_global.css">
         <link rel="stylesheet" href="../styles/style_quiz_result.css">
+        <link rel="shortcut icon" href="../image/favicon.png" type="image/x-icon">
     </head>
     <body>
         <section class="document">
@@ -77,11 +90,9 @@
                         //echo $takeTimeMinutes;
                         //echo '<br>'. $takeTimeSeconds;
                     ?> -->
-
                     <hr>
                     <h1>Ukończno Quiz! <span>Uzyskany wynik: <?php echo $obtainedResult . '% ('. $numberOfCorrectAnswers . '/' . $questionCount . ')' ?></span></h1>
                     <hr>
-
                 </section>
                 <section class="section-quiz">
                     <?php
@@ -117,7 +128,6 @@
                                 }
                             }
                             echo '</section>';
-
                         }
                     ?>
                 </section>

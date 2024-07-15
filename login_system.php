@@ -11,19 +11,21 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $sqlQuery = "SELECT email, password FROM user WHERE email=:email LIMIT 1";
+        $sqlQuery = "SELECT id, email, password, profileimage FROM user WHERE email=:email LIMIT 1";
         $statement = $connection->prepare($sqlQuery);
         $statement->bindParam(':email', $email);
         $statement->execute();
         $user = $statement->fetch(PDO::FETCH_ASSOC);
         $pass = $user['password'];
 
-        if(password_verify($password, $pass)) {
-            echo 'success';
+        if($user && password_verify($password, $pass)) {
+            session_start();
+            $_SESSION['user-id'] = $user['id'];
+            $_SESSION['profile-image'] = $user['profileimage'];
+            header('Location: ./home/');
         } else {
-            echo 'bad password';
+            echo "ddddd";
         }
-
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register-email'])) {
@@ -35,7 +37,7 @@
         $phone = $_POST['register-phone'];
         $description = $_POST['register-description'];
 
-        $sqlQuery = "INSERT INTO user(`name`, `lastname`, `username`, `email`, `password`, `description`, `phonenumber`, `createdate`, `profileimage`, `lastlogin`) VALUES (:name, :lastname, :username, :email, :password, :description, :phone, NOW(), 0, NOW())";
+        $sqlQuery = "INSERT INTO user(`name`, `lastname`, `username`, `email`, `password`, `description`, `phonenumber`, `createdate`, `profileimage`, `lastlogin`) VALUES (:name, :lastname, :username, :email, :password, :description, :phone, NOW(), 'user.png', NOW())";
         $stmt = $connection->prepare($sqlQuery);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':lastname', $lastname);
@@ -45,6 +47,11 @@
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':phone', $phone);
         $stmt->execute();
+
+        session_start();
+        $_SESSION['user-id'] = $user['id'];
+        $_SESSION['profile-image'] = $user['profileimage'];
+        header('Location: ./home/');
     }
     $connection = null;
 ?>

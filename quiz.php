@@ -15,13 +15,13 @@
     } else {
         if(isset($_GET['t'])) {
             $id = $_GET['t'];
-            $sqlQuery = "SELECT `question`.`id`, `question`.`title`, `question`.`option-a`, `question`.`option-b`, `question`.`option-c`, `question`.`option-d` FROM `question` WHERE `question`.`topic_id`=$id AND `question`.`id` != 1 ORDER BY RAND() LIMIT 5";
+            $sqlQuery = "SELECT `question`.`id`, `question`.`title`, `question`.`option-a`, `question`.`option-b`, `question`.`option-c`, `question`.`option-d` FROM `question` WHERE `question`.`topic_id`=$id ORDER BY RAND() LIMIT 5";
             $queryResult = $connection->query($sqlQuery);
         }
 
         if(isset($_GET['c'])) {
             $id = $_GET['c'];
-            $sqlQuery = "SELECT `question`.`id`, `question`.`title`, `question`.`option-a`, `question`.`option-b`, `question`.`option-c`, `question`.`option-d` FROM `question` WHERE `question`.`category_id`=$id AND `question`.`id` != 1 ORDER BY RAND() LIMIT 5";
+            $sqlQuery = "SELECT `question`.`id`, `question`.`title`, `question`.`option-a`, `question`.`option-b`, `question`.`option-c`, `question`.`option-d` FROM `question` WHERE `question`.`category_id`=$id ORDER BY RAND() LIMIT 5";
             $queryResult = $connection->query($sqlQuery);
         }
     }
@@ -31,6 +31,7 @@
     
     session_start();
     $_SESSION['quiz-start-time'] = time();
+    
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -88,6 +89,7 @@
                                     QUESTION;
 
                                 }
+                                
                                 $strQuestionIDs = implode(',', $questionIDs);
                                 echo "<input type='hidden' name='question-ids' value='$strQuestionIDs'>";
                                 echo "<input type='hidden' name='question-count' value='$i'>";

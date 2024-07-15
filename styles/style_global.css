@@ -83,8 +83,8 @@ nav {
     display: flex;
 }
 
-.nav-logo, .nav-div-login {
-    width: 20%;
+.nav-logo, .nav-div-login, .nav-div-profile {
+    width: 22%;
     height: 100%;
 }
 
@@ -109,7 +109,7 @@ nav {
 }
 
 .nav-links {
-    width: 60%;
+    width: 54%;
     height: 100%;
     justify-content: center;
     align-items: center;
@@ -137,12 +137,25 @@ nav {
     font-size: 22px;
     padding: 10px 5px;
     color: #ccc;
+    text-wrap: nowrap;
     text-decoration: none;
 }
 
 .nav-div-login  {
     justify-content: center;
     align-items: center;
+    margin-right: 10px;
+}
+
+.nav-div-profile {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.nav-div-profile img {
+    height: 55px;
+    max-height: 55px;
     margin-right: 10px;
 }
 

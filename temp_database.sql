@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `quizmaster`.`user` (
   `description` TEXT NULL,
   `phonenumber` VARCHAR(15) NULL,
   `createdate` DATETIME NOT NULL,
-  `profileimage` INT NULL,
+  `profileimage` VARCHAR(15) NOT NULL,
   `lastlogin` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`));
@@ -108,11 +108,11 @@ CREATE TABLE IF NOT EXISTS `quizmaster`.`report` (
 DROP TABLE IF EXISTS `quizmaster`.`solved` ;
 
 CREATE TABLE IF NOT EXISTS `quizmaster`.`solved` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `date` DATETIME NOT NULL,
   `duration` INT NOT NULL,
-  `numberofquestions` INT NOT NULL,
+  `questions_number` INT NOT NULL,
   `score` FLOAT NOT NULL,
   `questions_ids` TEXT NOT NULL,
   `answers` TEXT NOT NULL,
@@ -125,9 +125,9 @@ CREATE TABLE IF NOT EXISTS `quizmaster`.`announcements` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `posted_by` INT NOT NULL,
   `date` DATETIME NOT NULL,
-  `announcementimage` INT NOT NULL,
+  `announcement_images` TEXT,
   `title` VARCHAR(255) NOT NULL,
-  `description` VARCHAR(255) NOT NULL,
+  `description` TEXT NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`posted_by`) REFERENCES user(`id`));
 
@@ -211,8 +211,7 @@ INSERT INTO `quizmaster`.`topic` (`category_id`, `title`) VALUES
    (14, 'Znani Kompozytorzy i Ich Dzieła'),
    (14, 'Historia Wynalazków i Odkryć');
 
-INSERT INTO `quizmaster`.`user` (`name`, `lastname`, `username`, `email`, `password`, `description`, `phonenumber`, `createdate`, `profileimage`, `lastlogin`) VALUES
-    ('Admin', 'Admin', 'root', 'root', '$2y$10$OacZ4bj.H7sz6i04./z1b.zen0CWUXDJvuX/fCARUN.4LWFTadifW', 'Major Admin', '+1122344555', '2024-01-30 14:15:00', 7, '2024-01-30 15:15:00');
+INSERT INTO `quizmaster`.`user` (`name`, `lastname`, `username`, `email`, `password`, `description`, `phonenumber`, `createdate`, `profileimage`, `lastlogin`) VALUES ('Admin', 'Admin', 'Root', 'root@example.com', '$2y$10$2Fv2G.1vikHyyK1EcI6q0uWXxOaPqgEQhrLaMUTcdB4gk6s7McY.a', 'Major Admin', '1122344555', '2024-01-30 14:15:00', "user-1.png", '2024-01-30 15:15:00');
 
 INSERT INTO `quizmaster`.`admin` (`user_id`, `login`, `password`, `lastlogin`) VALUES
     (1, 'root', 'zaq1@WSX', '2024-01-30 12:30:00'); 

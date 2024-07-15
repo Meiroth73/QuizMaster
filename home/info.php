@@ -25,37 +25,14 @@
                 require_once('../elements/header.php');
             ?>
             <section class="menu">
-                <a class="menu-button selected first-option" href="../home/">Główna</a>
-                <a class="menu-button" href="../home/info.php">Informacje</a>
+                <a class="menu-button first-option" href="../home/">Główna</a>
+                <a class="menu-button selected" href="../home/info.php">Informacje</a>
                 <a class="menu-button" href="../home/solved.php">Rozwiązane</a>
                 <a class="menu-button" href="../home/settings.php">Ustawienia</a>
             </section>
              <section class="document-body" id="document-body">
-                <main class="home-main">
-                    <div class="box color-1">
-                        <p class="title">Liczba rozwiaznych quizów:</p>
-                        <p class="value"><?php echo $solvedNumber ?></p>
-                    </div>
-                    <div class="box color-2">
-                        <p class="title">Liczba udzielonych odpowiedzi:</p>
-                        <p class="value"></p>
-                    </div>
-                    <div class="box color-3">
-                        <p class="title">Czas spedzony na quizach:</p>
-                        <p class="value"></p>
-                    </div>
-                    <div class="box color-4">
-                        <p class="title">Czas na platwormie:</p>
-                        <p class="value"></p>
-                    </div>
-                    <div class="box color-5">
-                        <p class="title"></p>
-                        <p class="value"></p>
-                    </div>
-                    <div class="box color-6">
-                        <p class="title">Data dołączenia:</p>
-                        <p class="value"></p>
-                    </div>
+                <main>
+ 
                 </main>
             </section> 
         </section>
