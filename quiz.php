@@ -30,8 +30,14 @@
     ini_set('session.cookie_lifetime', 3600);
     
     session_start();
-    $_SESSION['quiz-start-time'] = time();
+
+    if(isset($_SESSION['user-end-test'])) {
+        unset($_SESSION['user-end-test']);
+        echo "<script> location.reload() </script>";
+    }
     
+    $_SESSION['quiz-start-time'] = time();
+
 ?>
 <!DOCTYPE html>
 <html lang="pl">

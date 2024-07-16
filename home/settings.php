@@ -1,4 +1,11 @@
 <?php
+    session_start();
+    if (isset($_SESSION["user-id"])) {
+        $userid = $_SESSION["user-id"];
+    } else {
+        header("Location: ../login.php");
+    }
+
     require_once('../config/config.php');
 
     try {
@@ -13,7 +20,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>QuizMaster - Strona domowa</title>
+        <title>QuizMaster - Ustawienia</title>
         <link rel="shortcut icon" href="../image/favicon.png" type="image/x-icon">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="stylesheet" href="../styles/style_global.css">

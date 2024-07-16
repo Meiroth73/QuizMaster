@@ -31,7 +31,7 @@
     for ($i = 0; $i < count($queryResultAssoc); $i++) {
         array_push($correctAnswers, $queryResultAssoc[$i]["correct"]);
     }
-
+    
     $numberOfCorrectAnswers = 0;
 
     for($i = 0; $i < $questionCount; $i++) {
@@ -41,28 +41,32 @@
     }
 
     $obtainedResult = (($numberOfCorrectAnswers / $questionCount) * 100);
-    echo $obtainedResult;
     
     session_start();
-    $startTime = $_SESSION["quiz-start-time"];
-    $endTime = time();
-    $takeTime = $endTime - $startTime;
-    $takeTimeMinutes = floor($takeTime / 60);
-    $takeTimeSeconds = $takeTime % 60;
 
-    unset($_SESSION["quiz-start-time"]);
+    if(isset($_SESSION['quiz-start-time'])) {
+        $startTime = $_SESSION["quiz-start-time"];
+        $endTime = time();
+        $takeTime = $endTime - $startTime;
+        $takeTimeMinutes = floor($takeTime / 60);
+        $takeTimeSeconds = $takeTime % 60;
 
-    if(isset($_SESSION["user-id"])) {
-        $sqlQuery = 'INSERT INTO `quizmaster`.`solved`(`user_id`, `date`, `duration`, `questions_number`, `score`, `questions_ids`, `answers`) VALUES (:userid, NOW(), :time, :questionnumber, :score, :questionids, :answers)';
-        $stmt = $connection->prepare($sqlQuery);
-        $stmt->bindParam(':userid', $_SESSION['user-id']);
-        $stmt->bindParam(':time', $takeTime);
-        $stmt->bindParam(':questionnumber', $questionCount);
-        $stmt->bindParam(':score', $obtainedResult);
-        $stmt->bindParam(':questionids', $questionIDs);
-        $stmt->bindParam(':answers', implode(',', $userAnswers));
-        $stmt->execute();
+        $_SESSION['user-end-test'] = true;
+
+        if(isset($_SESSION["user-id"])) {
+            $sqlQuery = 'INSERT INTO `quizmaster`.`solved`(`user_id`, `date`, `duration`, `questions_number`, `score`, `questions_ids`, `answers`) VALUES (:userid, NOW(), :time, :questionnumber, :score, :questionids, :answers)';
+            $stmt = $connection->prepare($sqlQuery);
+            $stmt->bindParam(':userid', $_SESSION['user-id']);
+            $stmt->bindParam(':time', $takeTime);
+            $stmt->bindParam(':questionnumber', $questionCount);
+            $stmt->bindParam(':score', $obtainedResult);
+            $stmt->bindParam(':questionids', $questionIDs);
+            $stmt->bindParam(':answers', implode(',', $userAnswers));
+            $stmt->execute();
+        }
     }
+    
+    unset($_SESSION["quiz-start-time"]);
 
     $connection = null;
 ?>

@@ -1,4 +1,11 @@
 <?php
+    session_start();
+    if (isset($_SESSION["user-id"])) {
+        $userid = $_SESSION["user-id"];
+    } else {
+        header("Location: ../login.php");
+    }
+
     require_once('../config/config.php');
 
     try {
@@ -49,7 +56,7 @@
                         <p class="value"></p>
                     </div>
                     <div class="box color-5">
-                        <p class="title"></p>
+                        <p class="title">Ostatnie logowanie:</p>
                         <p class="value"></p>
                     </div>
                     <div class="box color-6">
