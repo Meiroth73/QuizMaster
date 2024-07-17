@@ -1,15 +1,19 @@
 <?php
-    require_once('./config/config.php');
+    session_start();
+    if (isset($_SESSION['user-id'])) {
+        header('Location: ../home/');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pl">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>QuizMaster - Logowanie</title>
+        <title> <?php if(!isset($_SESSION['register'])) { echo "QuizMaster - Logowanie"; } else { echo "QuizMaster - Rejestracja";}?></title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="stylesheet" href="./styles/style_login.css">
         <link rel="stylesheet" href="./styles/style_global.css">
+        <link rel="shortcut icon" href="./image/favicon.png" type="image/x-icon">
     </head>
     <body>
         <section class="document">
@@ -18,7 +22,7 @@
             ?>
             <section class="document-body">
                 <main>
-                    <div id="div-register">
+                    <div id="div-register" <?php if(isset($_SESSION['register'])) { echo 'style="left: 0;"';}?>>
                         <h2>Zarejestruj się!</h2>
                         <form action="" method="post">
                             <input type="text" id="user-name" placeholder="Nazwa Użytkownika" required>
@@ -40,7 +44,7 @@
                     </div>
                     <div id="div-register-continue">
                     <h2>Kontynuacja rejestracji!</h2>
-                        <form action="<?php $host_name ?>/login_system.php" method="post">
+                        <form action="../login_system.php" method="post">
                             <input type="text" name="register-user-name" id="user-name-in-form" placeholder="Username" class="display-none">
                             <input type="text" name="register-email" id="e-mail-in-form" placeholder="E-mail" class="display-none">
                             <input type="password" name="register-password" id="password-in-form" class="display-none">
@@ -52,15 +56,15 @@
                             <button type="button" id="btn-undo">Cofnij!</button>
                         </form>
                     </div>
-                    <div id="div-text-login">           
+                    <div id="div-text-login" <?php if(isset($_SESSION['register'])) { echo 'style="left: 75%;"';}?>>           
                         <h1 class="login-h1">Witaj Ponownie!</h1>
                         <p class="text">Nie masz jeszcze konta?</p>
                         <p class="text">Utwórz konto poniżej</p>
                         <button id="btn-get-register-form"><p>Zarejestruj się!</p></button>
                     </div>
-                    <div id="div-login">
+                    <div id="div-login" <?php if(isset($_SESSION['register'])) { echo 'style="left: 0; z-index: 0;"';}?>>
                         <h2>Zaloguj się!</h2>
-                        <form action="<?php $host_name ?>/login_system.php" method="post">
+                        <form action="../login_system.php" method="post">
                             <input type="text" name="email" id="email" placeholder="E-mail" required>
                             <span>
                                 <input type="password" name="password" id="password" placeholder="Hasło" required>
@@ -72,7 +76,7 @@
                             <button type="submit">Zaloguj się!</button>
                         </form>
                     </div>
-                    <div id="div-text-register">
+                    <div id="div-text-register" <?php if(isset($_SESSION['register'])) { echo 'style="left: 50%;"';}?>>
                         <h1 class="login-h1">Miło Cię Poznać!</h1>
                         <p class="text">Masz już konto?</p>
                         <p class="text">Zaloguj sie poniżej</p>
@@ -83,17 +87,7 @@
         </section>
         <script src="./scripts/login.js"></script>
         <?php 
-            if(isset($_COOKIE['register'])) {
-                echo <<<SCRIPT
-                <script>
-                    divRegister.style.left = '0';
-                    divTextRegister.style.left = '50%';
-                    divLogin.style.left = '0';
-                    divTextLogin.style.left = '75%';
-                    divLogin.style.zIndex = '0';
-                </script>
-                SCRIPT;
-            }
+            unset($_SESSION['register']);
         ?>
     </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-    require_once('./config/config.php');
-    setcookie("register", "register", time() + 1);
+    session_start();
+    $_SESSION['register'] = true;    
     header("Location: ./login.php");
 ?>
