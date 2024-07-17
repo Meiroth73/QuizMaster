@@ -198,6 +198,16 @@ main.quiz-view {
     align-items: center;
 }
 
+h1 {
+    font-size: 30px;
+    color: rgb(53, 52, 52);
+    line-height: 55px;
+}
+
+h1 span {
+    margin: 10px;
+}
+
 hr {
     width: 130%;
     margin-left: -15%;
@@ -205,7 +215,7 @@ hr {
 
 .question-box {
     display: flex;
-    width: 130%;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;

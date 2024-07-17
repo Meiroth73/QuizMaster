@@ -54,7 +54,7 @@
         $_SESSION['user-end-test'] = true;
 
         if(isset($_SESSION["user-id"])) {
-            $sqlQuery = 'INSERT INTO `quizmaster`.`solved`(`user_id`, `date`, `duration`, `questions_number`, `score`, `questions_ids`, `answers`) VALUES (:userid, NOW(), :time, :questionnumber, :score, :questionids, :answers)';
+            $sqlQuery = 'INSERT INTO `quizmaster`.`solved`(`user_id`, `date`, `duration`, `questions_number`, `score`, `questions_ids`, `answers`, `type`) VALUES (:userid, NOW(), :time, :questionnumber, :score, :questionids, :answers, :type)';
             $stmt = $connection->prepare($sqlQuery);
             $stmt->bindParam(':userid', $_SESSION['user-id']);
             $stmt->bindParam(':time', $takeTime);
@@ -62,6 +62,7 @@
             $stmt->bindParam(':score', $obtainedResult);
             $stmt->bindParam(':questionids', $questionIDs);
             $stmt->bindParam(':answers', implode(',', $userAnswers));
+            $stmt->bindParam(':type', $_SESSION['type']);
             $stmt->execute();
         }
     }
@@ -88,12 +89,6 @@
             ?>
             <section class="document-body">
                 <section class="section-info">
-                    <!-- <?php
-                        //echo "<p>". $numberOfCorrectAnswers ." / ". $questionCount ."(". (($numberOfCorrectAnswers / $questionCount) * 100)."%)</p>";
-                        //echo '<br>';
-                        //echo $takeTimeMinutes;
-                        //echo '<br>'. $takeTimeSeconds;
-                    ?> -->
                     <hr>
                     <h1>Ukończno Quiz! <span>Uzyskany wynik: <?php echo $obtainedResult . '% ('. $numberOfCorrectAnswers . '/' . $questionCount . ')' ?></span></h1>
                     <hr>

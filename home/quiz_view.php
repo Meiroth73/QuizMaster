@@ -21,13 +21,14 @@
 
     try {
         $connection = new PDO("mysql:host=$database_host;dbname=$database_name", $database_user, $database_password);
-        $stmt = $connection->prepare("SELECT `user_id`, `duration`, `questions_number`, `score`, `questions_ids`, `answers` FROM `solved` WHERE `id`=:id");
+        $stmt = $connection->prepare("SELECT `user_id`, `duration`, `questions_number`, `score`, `questions_ids`, `answers`, `type` FROM `solved` WHERE `id`=:id");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
         $queryResult = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $duration = $queryResult['duration'];
         $questionCount = $queryResult['questions_number'];
+        $type = $queryResult['type'];
 
         $score = $queryResult['score'];
         $properCount = (int)($questionCount * ($score / 100));
@@ -37,15 +38,38 @@
         }
 
         $questionIds = $queryResult['questions_ids'];
-   
-        $stmt = $connection->prepare("SELECT `question`.`title`, `question`.`option-a`, `question`.`option-b`, `question`.`option-c`, `question`.`option-d`, `question`.`correct` FROM `question` WHERE id IN($questionIds) ORDER BY FIELD(id, $questionIds)");
+        $questionId;
+        
+        foreach (explode(',', $questionIds) as $row) {
+            $questionId = $row;
+        }
+
+        switch ($type) {
+            case 'c':
+                $type = 'category';
+                break;
+            case 't':
+                $type = 'topic';
+                break;
+        }
+
+        $stmt = $connection->prepare("SELECT `question`.`category_id`, `question`.`topic_id`, `question`.`title`, `question`.`option-a`, `question`.`option-b`, `question`.`option-c`, `question`.`option-d`, `question`.`correct` FROM `question` WHERE id IN($questionIds) ORDER BY FIELD(id, $questionIds)");
         $stmt->execute();
 
         $queryResultAssoc =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        for ($i = 0; $i < 1; $i++) {
+            $id = $queryResultAssoc[$i][$type.'_id'];
+        }
+
+        $stmt = $connection->prepare("SELECT `title` FROM $type WHERE id=$id");
+        $stmt->execute();
+
+        $titleArray = $stmt->fetch(PDO::FETCH_ASSOC);
+        $title = $titleArray["title"];
+
         $userAnswers = explode(",", $queryResult['answers']);
         $questionCount = $queryResult['questions_number'];
-        // echo $questionCount;
 
         for ($i = 0; $i < count($queryResultAssoc); $i++) {
             array_push($correctAnswers, $queryResultAssoc[$i]["correct"]);
@@ -74,10 +98,15 @@
             <section class="menu">
                 <a class="menu-button first-option" href="../home/">Główna</a>
                 <a class="menu-button"href="../home/info.php">Informacje</a>
-                <a class="menu-button" href="../home/solved.php">Rozwiązane</a>
-                <a class="menu-button selected" href="../home/settings.php">Ustawienia</a>
+                <a class="menu-button selected" href="../home/solved.php">Rozwiązane</a>
+                <a class="menu-button" href="../home/settings.php">Ustawienia</a>
             </section>
              <section class="document-body" id="document-body">
+                <section>
+                    <hr>
+                    <h1><?php echo $title ?>! <span>Uzyskany wynik: <?php echo $score . '% ('. $properCount . '/' . $questionCount . ')' ?></span></h1>
+                    <hr>
+                </section>
                 <main class="quiz-view">
                     <?php
                         $options = ['A', 'B', 'C', 'D'];

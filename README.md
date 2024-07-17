@@ -2,7 +2,7 @@
  A simple site with Quizes
 
 # User Login
- E-mail for example user: root@example.com
+ E-mail for example user: root@example.com  
  Password for example user: zaq1@WSX 
 
 ## Icons:

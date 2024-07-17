@@ -9,6 +9,7 @@
     }
 
     $topicId;
+    $type;
 
     if(isset($_GET['t'],$_GET['c'])) {
         header("Location: ./category.php");
@@ -17,12 +18,14 @@
             $id = $_GET['t'];
             $sqlQuery = "SELECT `question`.`id`, `question`.`title`, `question`.`option-a`, `question`.`option-b`, `question`.`option-c`, `question`.`option-d` FROM `question` WHERE `question`.`topic_id`=$id ORDER BY RAND() LIMIT 5";
             $queryResult = $connection->query($sqlQuery);
+            $type = 't';
         }
 
         if(isset($_GET['c'])) {
             $id = $_GET['c'];
             $sqlQuery = "SELECT `question`.`id`, `question`.`title`, `question`.`option-a`, `question`.`option-b`, `question`.`option-c`, `question`.`option-d` FROM `question` WHERE `question`.`category_id`=$id ORDER BY RAND() LIMIT 5";
             $queryResult = $connection->query($sqlQuery);
+            $type = 'c';
         }
     }
 
@@ -34,6 +37,10 @@
     if(isset($_SESSION['user-end-test'])) {
         unset($_SESSION['user-end-test']);
         echo "<script> location.reload() </script>";
+    }
+
+    if(isset($_SESSION['user-id'])) {
+        $_SESSION['type'] = $type;
     }
     
     $_SESSION['quiz-start-time'] = time();
@@ -93,7 +100,6 @@
                                             </span>
                                         </div>
                                     QUESTION;
-
                                 }
                                 
                                 $strQuestionIDs = implode(',', $questionIDs);
