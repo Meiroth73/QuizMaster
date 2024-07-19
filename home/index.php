@@ -41,7 +41,7 @@
                 <main class="home-main">
                     <div class="box color-1">
                         <p class="title">Liczba rozwiaznych quizów:</p>
-                        <p class="value"><?php echo $solvedNumber ?></p>
+                        <p class="value"></p>
                     </div>
                     <div class="box color-2">
                         <p class="title">Liczba udzielonych odpowiedzi:</p>

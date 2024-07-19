@@ -7,6 +7,8 @@
         die("Error: ".$e->getMessage());
     }
 
+    $user;
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'], $_POST['password'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -22,7 +24,7 @@
             session_start();
             $_SESSION['user-id'] = $user['id'];
             $_SESSION['profile-image'] = $user['profileimage'];
-            header('Location: ./home/');
+            header('Location: ../home/');
         } else {
             echo "ddddd";
         }
@@ -49,9 +51,12 @@
         $stmt->execute();
 
         session_start();
-        $_SESSION['user-id'] = $user['id'];
-        $_SESSION['profile-image'] = $user['profileimage'];
-        header('Location: ./home/');
+        $_SESSION['user-id'] = $connection->lastInsertId();
+        $_SESSION['profile-image'] = 'user.png';
+        header('Location: ../home/');
     }
+
     $connection = null;
+
+    header('Location: ../login.php');
 ?>

@@ -152,3 +152,11 @@ button i {
     background-color: #eee;
     color: #5c5a5a;
 }
+
+.error {
+    color: red;
+    margin-top: 9px;
+    margin-bottom: -5px;
+    max-width: 80%;
+    text-align: center;
+}

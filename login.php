@@ -11,8 +11,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title> <?php if(!isset($_SESSION['register'])) { echo "QuizMaster - Logowanie"; } else { echo "QuizMaster - Rejestracja";}?></title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-        <link rel="stylesheet" href="./styles/style_login.css">
         <link rel="stylesheet" href="./styles/style_global.css">
+        <link rel="stylesheet" href="./styles/style_login.css">
         <link rel="shortcut icon" href="./image/favicon.png" type="image/x-icon">
     </head>
     <body>
@@ -26,9 +26,9 @@
                         <h2>Zarejestruj się!</h2>
                         <form action="" method="post">
                             <input type="text" id="user-name" placeholder="Nazwa Użytkownika" required>
-                            <input type="email" id="e-mail" placeholder="E-mail" required>
+                            <input type="email" id="e-mail" placeholder="E-mail" required name="dupsko">
                             <span>
-                                <input type="password" id="register-password" placeholder="Hasło" required>
+                                <input type="password" id="register-password" placeholder="Hasło" required >
                                 <button type="button" id="btn-show-register-password" required>
                                     <i class="fa-regular fa-eye-slash"></i>
                                 </button>
@@ -39,12 +39,13 @@
                                     <i class="fa-regular fa-eye-slash"></i>
                                 </button>
                             </span>
+                            <p id="register-error-1" class="error"></p>
                             <button type="button" id="btn-continue-register">Przejdź dalej!</button>
                         </form>
                     </div>
                     <div id="div-register-continue">
                     <h2>Kontynuacja rejestracji!</h2>
-                        <form action="../login_system.php" method="post">
+                        <form action="../login_system.php" method="post" id="register-form">
                             <input type="text" name="register-user-name" id="user-name-in-form" placeholder="Username" class="display-none">
                             <input type="text" name="register-email" id="e-mail-in-form" placeholder="E-mail" class="display-none">
                             <input type="password" name="register-password" id="password-in-form" class="display-none">
@@ -52,7 +53,8 @@
                             <input type="text" name="register-lastname" id="lastname" placeholder="Nazwisko" required>
                             <input type="text" name="register-phone" id="phone" placeholder="Numer Telefonu" required>
                             <input type="text" name="register-description" id="description" placeholder="Opis">
-                            <button type="submit">Zarejestruj się!</button>
+                            <p id="register-error-2" class="error"></p>
+                            <button type="submit" id="register-button">Zarejestruj się!</button>
                             <button type="button" id="btn-undo">Cofnij!</button>
                         </form>
                     </div>
@@ -72,6 +74,7 @@
                                     <i class="fa-regular fa-eye-slash"></i>
                                 </button>
                             </span>
+                            <p id="login-error" class="error"></p>
                             <p class="reset-password-link"><a href="">Nie pamiętasz hasła?</a></p>
                             <button type="submit">Zaloguj się!</button>
                         </form>
