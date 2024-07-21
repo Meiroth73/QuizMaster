@@ -4,12 +4,45 @@
     try {
         $connection = new PDO("mysql:host=$database_host;dbname=$database_name", $database_user, $database_password);
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $commentView = false;
+        $infoBoxText = "";
 
-        if(isset($_POST['comment-textbox']) && isset($_POST['comments-star'])) {
-            $sqlQuery = "INSERT INTO reviews (`user_id`, `date`, `rate`, `description`) VALUES (1, NOW(), ".$_POST['comments-star'].", '".$_POST['comment-textbox']."');";
-            $connection->query($sqlQuery);
+        if(isset($_POST['comment-textbox'])) {
+            session_start();
+
+            if(!isset($_POST['comments-star'])) {
+                $stars = 0;
+            } else {
+                $stars = $_POST['comments-star'];
+            }
+
+            if(isset($_SESSION['user-id'])) {
+                $stmt = $connection->prepare('SELECT `id`, `description` FROM `reviews` WHERE `user_id`=:uid LIMIT 1');
+                $stmt->bindParam(':uid', $_SESSION['user-id']);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if($result) {
+                    $stmt = $connection->prepare('UPDATE `reviews` SET `description`=:desc, `rate`=:rate WHERE `user_id`=:uid');
+                    $stmt->bindParam(':desc', $_POST['comment-textbox']);
+                    $stmt->bindParam(':rate', $stars);
+                    $stmt->bindParam(':uid', $_SESSION['user-id']);
+                    $stmt->execute();
+                    $infoBoxText = "Zmodyfikowano komentarz";
+                } else {
+                    $stmt = $connection->prepare('INSERT INTO `reviews` (`user_id`, `date`, `rate`, `description`) VALUES (:userid, NOW(), :rate, :desc)');
+                    $stmt->bindParam(':userid', $_SESSION['user-id']);
+                    $stmt->bindParam(':rate', $stars);
+                    $stmt->bindParam(':desc', $_POST['comment-textbox']);
+                    $stmt->execute();
+                    $infoBoxText = "Zapisano komentarz";
+                }                 
+            } else {
+                $infoBoxText = "Aby dodać komentarz trzeba sie zalogować";
+            }
+            
+            $commentView = true;
         }
-
     } catch (PDOException $e) {
         die("Error: ".$e->getMessage());
     }
@@ -35,6 +68,16 @@
         <section class="document">
             <?php 
                 require_once("elements/header.php");
+
+                if($commentView) {
+                    echo <<<INFO
+                        <div class="comment-view" id="comment-view">
+                            <p id="comment-view-text">{$infoBoxText}</p>
+                        </div>
+                    INFO;
+
+                    echo "<script src='../scripts/removeinfo.js'></script>";
+                }
             ?>
             <section class="document-body">
                 <section class="section-motivation">
@@ -116,7 +159,7 @@
                         <div id="comments-div">
                             <?php 
                                 $n = 1;
-                                $sqlQuery = "SELECT reviews.id, reviews.date, reviews.user_id, reviews.rate, reviews.description, user.id, user.username FROM reviews JOIN user ON reviews.user_id = user.id";
+                                $sqlQuery = "SELECT `reviews`.`id`, `reviews`.`date`, `reviews`.`user_id`, `reviews`.`rate`, `reviews`.`description`, `user`.`id`, `user`.`username`, `user`.`profileimage` FROM reviews JOIN user ON reviews.user_id = user.id";
                                 $queryResult = $connection->query($sqlQuery);
                                 foreach($queryResult as $row) {
                                     $date = date("d.m.Y", strtotime($row['date']));
@@ -124,7 +167,7 @@
                                         <div class="reviews" id="review-id-{$n}">
                                             <div class="reviews-profile-wrapper">
                                                 <div class="reviews-div-profile">
-                                                    <img src="./image/istockphoto-1340309186-612x612.jpg" alt="user profile image" class="reviews-user-profile-image">
+                                                    <img src="../image/profiles/{$row['profileimage']}" alt="user profile image" class="reviews-user-profile-image">
                                                     <p class="reviews-user-name">{$row['username']}</p>
                                                 </div>
                                                 <div class="reviews-div-profile-info">
@@ -144,6 +187,7 @@
                                     $n++;
                                 }
                                 $n = null;
+                                //ffffffffffjjjjjj@ffffffffffjjjjjj.pl Filipek18!
                             ?>
                         </div>
                         <button class="button-chevron-right comments-active-button" id="reviews-button-get-move-to-right">
@@ -158,7 +202,39 @@
                     <div id="comments-form">
                         <form action="" method="post">
                             <div>
-                                <textarea name="comment-textbox" id="comment-textbox" cols="43" rows="7"></textarea>
+                                <textarea name="comment-textbox" id="comment-textbox" cols="43" rows="8">
+                                    <?php
+                                        $userPublicOpinion = false;
+                                        if(isset($_SESSION['user-id'])) {
+                                            $stmt = $connection->prepare('SELECT `description` FROM `reviews` WHERE `user_id`=:uid LIMIT 1');
+                                            $stmt->bindParam(':uid', $_SESSION['user-id']);
+                                            $stmt->execute();
+                                            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                            if($result) {
+                                                echo $result['description'];
+                                                $userPublicOpinion = true;
+                                            }
+                                        } else {
+                                            if(isset($_POST['comment-textbox'])) {
+                                                echo $_POST['comment-textbox'];
+                                            }
+                                        }
+                                    ?>
+                                </textarea>
+                                <?php
+                                    if($userPublicOpinion) {
+                                        $boolValue = 'true';
+                                    } else {
+                                        $boolValue = 'false';
+                                    }
+
+                                    echo <<< SCRIPT
+                                        <script>
+                                            let modifyPublishButtonText = {$boolValue};
+                                        </script>
+                                    SCRIPT;
+                                ?>
                                 <span>
                                     <label for="comments-star-1" class="comments-label" id="comment-label-1">&#9733;</label>
                                     <input type="radio" name="comments-star" id="comments-star-1" value="1">
@@ -171,7 +247,8 @@
                                     <label for="comments-star-5" class="comments-label" id="comment-label-5">&#9733;</label>
                                     <input type="radio" name="comments-star" id="comments-star-5" value="5">
                                 </span>
-                                <button type="submit" class="publish-review-button">Opublikuj</button>
+                                <p class="error"><?php if(isset($_POST['comment-textbox']) && !isset($_SESSION['user-id'])) { echo "Aby dodać opinie nalerzy się zalogować!"; } ?></p>
+                                <button type="submit" class="publish-review-button"><?php if($userPublicOpinion) { echo "Modyfikuj"; } else { echo "Opublikuj"; } ?></button>
                             </div>
                         </form>
                     </div>

@@ -1,4 +1,30 @@
 
+/* comment box */
+
+.comment-view {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 185px;
+    left: 50%;
+    width: 330px;
+    height: 120px;
+    background-color: rgb(253, 252, 252);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;    
+    border: 7px solid green;
+    font-size: 20px;
+    border-radius: 22px;
+    font-family: 'Montserrat', sans-serif;
+    transition-duration: 1s;
+}
+
+.comment-view > p {
+    max-width: 75%;
+}
+
 /* motivation section */
 
 .section-motivation {
@@ -350,9 +376,9 @@
     background-color: #41913a;
     border: none;
     height: 70px;
-    width: 270px;
+    width: 310px;
     font-size: 25px;
-    border-radius: 17px;
+    border-radius: 18px;
     display: block;
     position: absolute;
     top: 0;
@@ -362,7 +388,7 @@
 }
 
 #comments-write-own-opinion-btn:hover {
-    border-radius: 5px;
+    border-radius: 14px;
     background-color: #478841;
     color: #fff;
 }
@@ -438,7 +464,7 @@
 }
 
 .publish-review-button {
-    padding: 10px 30px;
+    padding: 125px 30px;
     border: none;
     background-color: #41913a;
     transition-duration: .5s;
@@ -450,4 +476,10 @@
 .publish-review-button:hover {
     background-color: #478841;
     border-radius: 5px;
+}
+
+.error {
+    text-align: center;
+    font-size: 17px;
+    color: red;
 }

@@ -52,7 +52,7 @@ document.getElementById('btn-continue-register').addEventListener('click', () =>
     }
 
     if(document.getElementById('register-password').value !== document.getElementById('register-password-confirm').value) {
-        error.innerHTML = "Hasła nie są takie same"
+        error.innerHTML = "Hasła nie są takie same";
         return false;
     }
 

@@ -4,6 +4,14 @@ document.querySelectorAll('.topic-box i').forEach(box => {
     box.style.color = "rgb(" + Math.floor(Math.random() * 255) + ", "+ Math.floor(Math.random() * 255) + ", "+ Math.floor(Math.random() * 255) + ")";
 });
 
+// trim text in comment box
+document.getElementById('comment-textbox').innerHTML = document.getElementById('comment-textbox').innerHTML.trim();
+
+// modify text on button
+if(modifyPublishButtonText) {
+    document.getElementById('comments-write-own-opinion-btn').innerHTML = "Modyfikuj swoją opinie";
+} 
+
 // show comment form in comments section
 document.querySelector('#comments-write-own-opinion-btn').addEventListener('click', () => {
     document.getElementById('comments-write-own-opinion-btn').style.top = '-100%';
@@ -21,7 +29,6 @@ document.querySelector('#comments-write-own-opinion-btn').addEventListener('clic
         });
     }, 400);
 });
-
 
 document.querySelectorAll('.reviews-div-profile-info > span').forEach((span) => {
     let starCount = span.getAttribute('rate');
