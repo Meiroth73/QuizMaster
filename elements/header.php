@@ -18,7 +18,9 @@
             if (isset($_SESSION["user-id"])) {
                 echo <<<TEXT
                     <div class="nav-div-profile">
-                        <a href="../home/"><img alt="profil uzytkownika" src="../image/profiles/{$_SESSION['profile-image']}"></a>
+                        <div class="profile-wrapper">
+                            <a href="../home/"><img alt="profil uzytkownika" src="../image/profiles/{$_SESSION['profile-image']}"></a>
+                        </div>
                     </div>
                 TEXT;                
             } else {

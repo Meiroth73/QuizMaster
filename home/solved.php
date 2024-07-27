@@ -74,7 +74,7 @@
                                         <td><a href="../home/quiz_view.php?id={$row['id']}">Kliknij aby otworzyć</a></td>
                                         <td>{$dateFormat}</td>
                                         <td>{$time}</td>
-                                        <td>{$row['score']}</td>
+                                        <td>{$row['score']}%</td>
                                         <td>{$row['questions_number']}</td>
                                     </tr>
                                 TABLE;
@@ -84,6 +84,5 @@
                 </main>
             </section> 
         </section>
-        <script src="../scripts/home.js"></script>
     </body>
 </html>

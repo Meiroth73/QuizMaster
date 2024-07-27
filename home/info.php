@@ -43,6 +43,5 @@
                 </main>
             </section> 
         </section>
-        <script src="../scripts/home.js"></script>
     </body>
 </html>

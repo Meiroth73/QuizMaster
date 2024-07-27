@@ -187,7 +187,6 @@
                                     $n++;
                                 }
                                 $n = null;
-                                //ffffffffffjjjjjj@ffffffffffjjjjjj.pl Filipek18!
                             ?>
                         </div>
                         <button class="button-chevron-right comments-active-button" id="reviews-button-get-move-to-right">

@@ -38,7 +38,17 @@
                 <a class="menu-button selected" href="../home/settings.php">Ustawienia</a>
             </section>
              <section class="document-body" id="document-body">
-                <main>
+                <main class="settings">
+                    <h2 class="settings-h2">Zdjęcie profilowe</h2>
+                    <section id="profile-image-wrapper">
+                        <img src="../image/profiles/<?php echo $_SESSION['profile-image'] ?>" alt="profile image" id="profile-image">
+                    </section>
+                    <form action="../home/update_profile.php" method="post" enctype="multipart/form-data">
+                        <button id="load-file-button" class="profile-button">Wybierz plik</button>
+                        <input type="file" name="file-input" id="file-input" class="display-none">
+                        <button id="save-button" type="submit" class="profile-button">Zapisz</button>
+                    </form> 
+                    <p id="file-error"></p>
                     <hr>
                     <section>
                         <a class="button-logout" href="../logout.php">Wyloguj się</a>
@@ -46,6 +56,6 @@
                 </main>
             </section> 
         </section>
-        <script src="../scripts/home.js"></script>
+        <script src="../scripts/settings.js"></script>
     </body>
 </html>

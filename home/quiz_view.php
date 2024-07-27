@@ -103,9 +103,9 @@
             </section>
              <section class="document-body" id="document-body">
                 <section>
-                    <hr>
-                    <h1><?php echo $title ?>! <span>Uzyskany wynik: <?php echo $score . '% ('. $properCount . '/' . $questionCount . ')' ?></span></h1>
-                    <hr>
+                    <hr class="quiz-view">
+                    <h1 class="quiz-view"><?php echo $title ?>! <span>Uzyskany wynik: <?php echo $score . '% ('. $properCount . '/' . $questionCount . ')' ?></span></h1>
+                    <hr class="quiz-view">
                 </section>
                 <main class="quiz-view">
                     <?php
@@ -146,7 +146,6 @@
                 </main>
             </section> 
         </section>
-        <script src="../scripts/home.js"></script>
         <?php
             $connection = null;
         ?>

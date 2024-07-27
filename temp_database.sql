@@ -212,7 +212,7 @@ INSERT INTO `quizmaster`.`topic` (`category_id`, `title`) VALUES
    (14, 'Znani Kompozytorzy i Ich Dzieła'),
    (14, 'Historia Wynalazków i Odkryć');
 
-INSERT INTO `quizmaster`.`user` (`name`, `lastname`, `username`, `email`, `password`, `description`, `phonenumber`, `createdate`, `profileimage`, `lastlogin`) VALUES ('Admin', 'Admin', 'Root', 'root@example.com', '$2y$10$2Fv2G.1vikHyyK1EcI6q0uWXxOaPqgEQhrLaMUTcdB4gk6s7McY.a', 'Major Admin', '1122344555', '2024-01-30 14:15:00', "user-1.png", '2024-01-30 15:15:00');
+INSERT INTO `quizmaster`.`user` (`name`, `lastname`, `username`, `email`, `password`, `description`, `phonenumber`, `createdate`, `profileimage`, `lastlogin`) VALUES ('Admin', 'Admin', 'Root', 'root@example.com', '$2y$10$2Fv2G.1vikHyyK1EcI6q0uWXxOaPqgEQhrLaMUTcdB4gk6s7McY.a', 'Major Admin', '1122344555', '2024-01-30 14:15:00', "user.png", '2024-01-30 15:15:00');
 
 INSERT INTO `quizmaster`.`admin` (`user_id`, `login`, `password`, `lastlogin`) VALUES
     (1, 'root', 'zaq1@WSX', '2024-01-30 12:30:00'); 
