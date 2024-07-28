@@ -11,6 +11,10 @@
     try {
         $connection = new PDO("mysql:host=$database_host;dbname=$database_name", $database_user, $database_password);
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $connection->prepare('SELECT `name`, `lastname`, `username`, `email`, `description` FROM `user` WHERE `id`=:uid');
+        $stmt->bindParam(':uid', $userid);
+        $stmt->execute();
+        $userData = $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         die("Error: ".$e->getMessage());
     }
@@ -33,7 +37,7 @@
             ?>
             <section class="menu">
                 <a class="menu-button first-option" href="../home/">Główna</a>
-                <a class="menu-button"href="../home/info.php">Informacje</a>
+                <a class="menu-button" href="../home/info.php">Informacje</a>
                 <a class="menu-button" href="../home/solved.php">Rozwiązane</a>
                 <a class="menu-button selected" href="../home/settings.php">Ustawienia</a>
             </section>
@@ -49,6 +53,23 @@
                         <button id="save-button" type="submit" class="profile-button">Zapisz</button>
                     </form> 
                     <p id="file-error"></p>
+                    <hr>
+                    <h2 class="settings-h2">Główne dane</h2>
+                    <form action="../home/update_settings.php" method="post" id="settings-form">
+                        <section class="form-items-wrapper">
+                            <label for="name">Imię: </label>    
+                            <input type="text" name="name" id="name" value="<?php echo $userData['name']; ?>">
+                            <label for="lastname">Nazwisko: </label>    
+                            <input type="text" name="lastname" id="lastname" value="<?php echo $userData['lastname'] ?>">
+                            <label for="username">Nazwa uzytkownika: </label>    
+                            <input type="text" name="username" id="username" value="<?php echo $userData['username'] ?>">
+                            <label for="email">Email: </label>    
+                            <input type="email" name="email" id="email" value="<?php echo $userData['email'] ?>">
+                            <label for="description">Opis: </label>    
+                            <input type="text" name="description" id="description" value="<?php echo $userData['description'] ?>">
+                        </section>
+                        <button id="save-settings">Zapisz</button>
+                    </form>
                     <hr>
                     <section>
                         <a class="button-logout" href="../logout.php">Wyloguj się</a>

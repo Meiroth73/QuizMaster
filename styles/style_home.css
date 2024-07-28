@@ -213,12 +213,14 @@ main.settings {
 
 .profile-button {
     margin: 27px 16px 10px 16px;
+    cursor: pointer;
     padding: 14px 23px;
     border: none;
     border-radius: 15px;
     color: white;
     font-size: 18px;
     transition-duration: .5s;
+    font-weight: bold;
 }
 
 #load-file-button {
@@ -249,6 +251,58 @@ hr {
     display: block;
 }
 
+#settings-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form-items-wrapper {
+    display: grid;
+    margin-right: 15%;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+label {
+    text-align: right;
+    margin: 10px;
+    font-size: 17px;
+    align-self: center;
+}
+
+input {
+    margin: 10px;
+    padding: 7px 8px;
+    font-size: 17px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    align-self: center;
+    color: rgb(85, 85, 85);
+}
+
+input:focus {
+    border: 1px solid gray;
+    outline: none;
+}
+
+#save-settings {
+    padding: 15px 40px;
+    background-color: #339b4b;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition-duration: .5s;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 25px 0 10px 0;
+}
+
+#save-settings:hover {
+    background-color: #29853d;
+}
+
 .button-logout {
     background-color: red;
     padding: 16px 37px;
@@ -258,7 +312,7 @@ hr {
     color: white;
     font-weight: bold;
     display: inline;
-    margin: 10px;
+    margin: 25px;
 }
 
 /* quiz view */
