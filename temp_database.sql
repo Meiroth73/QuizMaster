@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `quizmaster`.`announcements` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `posted_by` INT NOT NULL,
   `date` DATETIME NOT NULL,
-  `announcement_images` TEXT,
+  `announcement_image` TEXT,
   `title` VARCHAR(255) NOT NULL,
   `description` TEXT NOT NULL,
   PRIMARY KEY (`id`),
@@ -214,8 +214,11 @@ INSERT INTO `quizmaster`.`topic` (`category_id`, `title`) VALUES
 
 INSERT INTO `quizmaster`.`user` (`name`, `lastname`, `username`, `email`, `password`, `description`, `phonenumber`, `createdate`, `profileimage`, `lastlogin`) VALUES ('Admin', 'Admin', 'Root', 'root@example.com', '$2y$10$2Fv2G.1vikHyyK1EcI6q0uWXxOaPqgEQhrLaMUTcdB4gk6s7McY.a', 'Major Admin', '1122344555', '2024-01-30 14:15:00', "user.png", '2024-01-30 15:15:00');
 
-INSERT INTO `quizmaster`.`admin` (`user_id`, `login`, `password`, `lastlogin`) VALUES
-    (1, 'root', 'zaq1@WSX', '2024-01-30 12:30:00'); 
+INSERT INTO `quizmaster`.`admin` (`user_id`, `login`, `password`, `lastlogin`) VALUES (1, 'root', 'zaq1@WSX', '2024-01-30 12:30:00'); 
+
+INSERT INTO `announcements` (`posted_by`, `date`, `announcement_image`, `title`, `description`) VALUES (1, '2024-02-01 00:00:00', 'istockphoto-1352765164-612x612.jpg', 'Oficjalny start serwisu', 'Serwis został udostępniony dla wszystkich. Powodzenia w rozwiązywaniu quizów!');
+INSERT INTO `announcements` (`posted_by`, `date`, `announcement_image`, `title`, `description`) VALUES (1, '2024-03-18 11:39:47', 'istockphoto-1389157460-612x612.jpg', 'Strona z ogłoszeniami', 'Do serwisu została dodoana Tablica ogłoszeń z informacjami co nowego na stronie.');
+INSERT INTO `announcements` (`posted_by`, `date`, `announcement_image`, `title`, `description`) VALUES (1, '2024-06-23 07:14:09', 'istockphoto-1364223865-612x612.jpg', 'Dodano logowanie', 'Dodano logowanie, dzieki temu można od teraz zapisać swój wynik na koncie on-line.');
 
 INSERT INTO `quizmaster`.`reviews` (`user_id`, `date`, `rate`, `description`) VALUES
     (1, '2024-03-27 12:00:00', 5, 'Strona jest niesamowita! Quizy są świetnie zrobione i bardzo wciągające.'),

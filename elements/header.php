@@ -10,7 +10,7 @@
             <a href="../" class="nav-btn no-select">Start</a>
             <a href="../category.php" class="nav-btn no-select">Quizy</a>
             <a href="../" class="nav-btn no-select">Losuj 1 pytanie</a>
-            <a href="../" class="nav-btn no-select">Ogłoszenia</a>
+            <a href="../announcements.php" class="nav-btn no-select">Ogłoszenia</a>
             <a href="../" class="nav-btn no-select">FAQ</a>
         </div>
         <?php
