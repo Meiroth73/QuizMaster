@@ -13,7 +13,7 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $sqlQuery = "SELECT id, email, password, profileimage FROM user WHERE email=:email LIMIT 1";
+        $sqlQuery = "SELECT `id`, `email`, `password`, `profileimage`, `lastlogin` FROM `user` WHERE `email`=:email LIMIT 1";
         $statement = $connection->prepare($sqlQuery);
         $statement->bindParam(':email', $email);
         $statement->execute();
@@ -24,10 +24,13 @@
             session_start();
             $_SESSION['user-id'] = $user['id'];
             $_SESSION['profile-image'] = $user['profileimage'];
+            $_SESSION['last-login'] = $user['lastlogin'];
             header('Location: ../home/');
-        } else {
-            echo "ddddd";
-        }
+        } 
+
+        $stmt = $connection->prepare('UPDATE `user` SET `lastlogin`=NOW() WHERE `id`=:uid');
+        $stmt->bindParam(':uid', $_SESSION['user-id']);
+        $stmt->execute();
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register-email'])) {
@@ -53,6 +56,8 @@
         session_start();
         $_SESSION['user-id'] = $connection->lastInsertId();
         $_SESSION['profile-image'] = 'user.png';
+        date_default_timezone_set('Europe/Warsaw');
+        $_SESSION['last-login'] = date('d.m.Y');
         header('Location: ../home/');
     }
 

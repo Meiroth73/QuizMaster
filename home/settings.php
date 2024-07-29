@@ -53,7 +53,7 @@
                         <button id="save-button" type="submit" class="profile-button">Zapisz</button>
                     </form> 
                     <p id="file-error"></p>
-                    <hr>
+                    <hr class="settings">
                     <h2 class="settings-h2">Główne dane</h2>
                     <form action="../home/update_settings.php" method="post" id="settings-form">
                         <section class="form-items-wrapper">
@@ -70,7 +70,7 @@
                         </section>
                         <button id="save-settings">Zapisz</button>
                     </form>
-                    <hr>
+                    <hr class="settings">
                     <section>
                         <a class="button-logout" href="../logout.php">Wyloguj się</a>
                     </section>
