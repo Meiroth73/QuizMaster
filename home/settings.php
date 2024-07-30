@@ -68,8 +68,9 @@
                             <label for="description">Opis: </label>    
                             <input type="text" name="description" id="description" value="<?php echo $userData['description'] ?>">
                         </section>
-                        <button id="save-settings">Zapisz</button>
+                        <button id="save-settings" type="submit">Zapisz</button>
                     </form>
+                    <p id="settings-error"></p>
                     <hr class="settings">
                     <section>
                         <a class="button-logout" href="../logout.php">Wyloguj się</a>

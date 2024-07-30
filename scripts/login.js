@@ -28,8 +28,8 @@ getLoginFormButton.addEventListener('click', () => {
 document.getElementById('btn-continue-register').addEventListener('click', () => {
     let error = document.getElementById('register-error-1');
     
-    let userNameregEx = /^[a-zA-Z0-9._-]{3,15}$/;
-    if(!userNameregEx.test(document.getElementById('user-name').value)) {
+    let userNameRegEx = /^[a-zA-Z0-9._-]{3,15}$/;
+    if(!userNameRegEx.test(document.getElementById('user-name').value)) {
         error.innerHTML = "Nazwa użytkowika może zawierac tylko małe i duże litery, cyfry oraz '.', '-', '_'";
         return false;
     }

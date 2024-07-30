@@ -239,7 +239,7 @@ main.settings {
     background-color: #218838;
 }
 
-#file-error {
+#file-error, #settings-error {
     font-size: 17px;
     color: red;
     margin-bottom: -5px;

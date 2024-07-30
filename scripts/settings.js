@@ -29,3 +29,42 @@ document.getElementById('file-input').addEventListener('change', () => {
         error.innerHTML = '';
     }
 });
+
+let isWarningDisplayed = false;
+document.getElementById('save-settings').addEventListener('click', (event) => {
+    event.preventDefault();
+    let error = document.getElementById('settings-error');
+    
+    let name = /^[A-Za-zĄĆĘŁŃÓŚŹŻąćęłńóśźż\s-]{1,50}$/;
+    if(!name.test(document.getElementById('name').value)) {
+        error.innerHTML = "Niepoprawne imie";
+        return false;
+    }
+
+    if(!name.test(document.getElementById('lastname').value)) {
+        error.innerHTML = "Niepoprawne nazwisko";
+        return false;
+    }
+
+    let userNameRegEx = /^[a-zA-Z0-9._-]{3,15}$/;
+    if(!userNameRegEx.test(document.getElementById('username').value)) {
+        error.innerHTML = "Nazwa użytkowika może zawierac tylko małe i duże litery, cyfry oraz '.', '-', '_'";
+        return false;
+    }
+
+    let emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$/;
+    if(!emailRegEx.test(document.getElementById('email').value)) {
+        error.innerHTML = "E-mail jest nie poprawny";
+        return false;
+    }
+
+    if((document.getElementById('description').value.length) == 0) {
+        if(!isWarningDisplayed) {
+            isWarningDisplayed = !isWarningDisplayed;
+            error.innerHTML = "Zaleca się aby opis nie był pusty";
+            return false;
+        }
+    }
+
+    document.getElementById('settings-form').submit();
+});
