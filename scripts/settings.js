@@ -68,3 +68,28 @@ document.getElementById('save-settings').addEventListener('click', (event) => {
 
     document.getElementById('settings-form').submit();
 });
+
+document.getElementById('save-password').addEventListener('click', (event) => {
+    event.preventDefault();
+    let error = document.getElementById('password-error');
+
+    if(document.getElementById('old-password').value == '') {
+        error.innerHTML = "Stare hasło nie może być puste";
+        return false;
+    }
+
+    if(document.getElementById('new-password').value != document.getElementById('confirm-password').value) {
+        error.innerHTML = "Hasła nie są takie same";
+        return false;
+    }
+
+    let passwordRegEx = /^(?=.*[a-ząćęłńóśźż])(?=.*[A-ZĄĆĘŁŃÓŚŹŻ])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ\d!@#$%^&*]{8,}$/;
+    if(!passwordRegEx.test(document.getElementById('new-password').value)) {
+        error.innerHTML = "Hasło powinno mieć minimum 8 znaków, w tym małe i duże litery, cyfry i znaki specjalne";
+        return false;
+    }
+
+    error.innerHTML = "";
+
+    document.getElementById('password-form').submit();
+});

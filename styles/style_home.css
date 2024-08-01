@@ -239,7 +239,7 @@ main.settings {
     background-color: #218838;
 }
 
-#file-error, #settings-error {
+#file-error, #settings-error, #password-error {
     font-size: 17px;
     color: red;
     margin-bottom: -5px;
@@ -251,7 +251,7 @@ hr.settings {
     display: block;
 }
 
-#settings-form {
+#settings-form, #password-form {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -286,7 +286,7 @@ input:focus {
     outline: none;
 }
 
-#save-settings {
+#save-settings, #save-password {
     padding: 15px 40px;
     background-color: #339b4b;
     color: white;
@@ -312,7 +312,7 @@ input:focus {
     color: white;
     font-weight: bold;
     display: inline;
-    margin: 25px;
+    margin: 35px;
 }
 
 /* quiz view */

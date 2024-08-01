@@ -72,6 +72,20 @@
                     </form>
                     <p id="settings-error"></p>
                     <hr class="settings">
+                    <h2 class="settings-h2">Modyfikacja hasła</h2>
+                    <form action="../home/update_password.php" method="post" id="password-form">
+                        <section class="form-items-wrapper">
+                            <label for="old-password">Stare hasło: </label>    
+                            <input type="password" name="old-password" id="old-password">
+                            <label for="new-password">Nowe hasło: </label>    
+                            <input type="password" name="new-password" id="new-password">
+                            <label for="confirm-password">Potwierdź hasło: </label>    
+                            <input type="password" name="confirm-password" id="confirm-password">
+                        </section>
+                        <button id="save-password" type="submit">Modyfikuj</button>
+                    </form>
+                    <p id="password-error"></p>
+                    <hr class="settings">
                     <section>
                         <a class="button-logout" href="../logout.php">Wyloguj się</a>
                     </section>
