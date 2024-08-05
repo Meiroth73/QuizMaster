@@ -39,9 +39,7 @@
         echo "<script> location.reload() </script>";
     }
 
-    if(isset($_SESSION['user-id'])) {
-        $_SESSION['type'] = $type;
-    }
+    $_SESSION['type'] = $type;
     
     $_SESSION['quiz-start-time'] = time();
 

@@ -25,8 +25,6 @@
         } catch (PDOException $e) {
             die("Error: ".$e->getMessage());
         }
-
-
     }
 
     header('Location: ../home/settings.php');

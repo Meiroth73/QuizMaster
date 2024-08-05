@@ -37,7 +37,7 @@
     for($i = 0; $i < $questionCount; $i++) {
         if(strtolower($userAnswers[$i]) == strtolower($correctAnswers[$i])) {
             $numberOfCorrectAnswers++;
-        } 
+        }
     }
 
     $obtainedResult = (($numberOfCorrectAnswers / $questionCount) * 100);
@@ -52,19 +52,28 @@
         $takeTimeSeconds = $takeTime % 60;
 
         $_SESSION['user-end-test'] = true;
+        $sqlQuery;
+        $stmt;
+        $hash;
 
         if(isset($_SESSION["user-id"])) {
             $sqlQuery = 'INSERT INTO `quizmaster`.`solved`(`user_id`, `date`, `duration`, `questions_number`, `score`, `questions_ids`, `answers`, `type`) VALUES (:userid, NOW(), :time, :questionnumber, :score, :questionids, :answers, :type)';
             $stmt = $connection->prepare($sqlQuery);
             $stmt->bindParam(':userid', $_SESSION['user-id']);
-            $stmt->bindParam(':time', $takeTime);
-            $stmt->bindParam(':questionnumber', $questionCount);
-            $stmt->bindParam(':score', $obtainedResult);
-            $stmt->bindParam(':questionids', $questionIDs);
-            $stmt->bindParam(':answers', implode(',', $userAnswers));
-            $stmt->bindParam(':type', $_SESSION['type']);
-            $stmt->execute();
+        } else {
+            $sqlQuery = 'INSERT INTO `quizmaster`.`temp_solved`(`hash`, `date`, `duration`, `questions_number`, `score`, `questions_ids`, `answers`, `type`) VALUES (:hash, NOW(), :time, :questionnumber, :score, :questionids, :answers, :type)';
+            $stmt = $connection->prepare($sqlQuery);
+            $hash = substr(bin2hex(random_bytes(ceil(32/2))),0,32);
+            $stmt->bindParam(':hash', $hash);
         }
+
+        $stmt->bindParam(':time', $takeTime);
+        $stmt->bindParam(':questionnumber', $questionCount);
+        $stmt->bindParam(':score', $obtainedResult);
+        $stmt->bindParam(':questionids', $questionIDs);
+        $stmt->bindParam(':answers', implode(',', $userAnswers));
+        $stmt->bindParam(':type', $_SESSION['type']);
+        $stmt->execute();
     }
     
     unset($_SESSION["quiz-start-time"]);
@@ -130,10 +139,23 @@
                         }
                     ?>
                 </section>
+                    <?php
+                        if(!isset($_SESSION['user-id'])) {
+                            echo <<<hash
+                                <button id="hash-info">
+                                    <p><i id="arrow" class="fa-solid fa-caret-right"></i> Klucz dostępu</p>
+                                </button>
+                                <div id="hash-wrapper">
+                                    <div id="div-hash"><p>{$hash}</p></div>
+                                </div>
+                            hash;
+                        }
+                    ?>
             </section>
             <?php
                 require_once('./elements/footer.html');
             ?>
         </section>
+        <script src="../scripts/quiz_result.js"></script>
     </body>
 </html>
