@@ -124,7 +124,7 @@ DROP TABLE IF EXISTS `quizmaster`.`temp_solved` ;
 
 CREATE TABLE IF NOT EXISTS `quizmaster`.`temp_solved` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `hash` VARCHAR(32) NOT NULL,
+  `key` VARCHAR(32) NOT NULL,
   `date` DATETIME NOT NULL,
   `duration` INT NOT NULL,
   `questions_number` INT NOT NULL,

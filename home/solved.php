@@ -43,6 +43,11 @@
             </section>
              <section class="document-body" id="document-body">
                 <main class="solved">
+                    <form action="../home/add_quiz.php" method="post">
+                        <label for="key-input">Klucz do quizu: </label>
+                        <input type="text" name="key" id="key-input">
+                        <button type="submit" id="add-quiz-button">Dodaj Quiz</button>
+                    </form>
                     <table>
                         <tr>
                             <th>Numer:</th>

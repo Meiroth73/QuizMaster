@@ -54,17 +54,17 @@
         $_SESSION['user-end-test'] = true;
         $sqlQuery;
         $stmt;
-        $hash;
+        $key;
 
         if(isset($_SESSION["user-id"])) {
             $sqlQuery = 'INSERT INTO `quizmaster`.`solved`(`user_id`, `date`, `duration`, `questions_number`, `score`, `questions_ids`, `answers`, `type`) VALUES (:userid, NOW(), :time, :questionnumber, :score, :questionids, :answers, :type)';
             $stmt = $connection->prepare($sqlQuery);
             $stmt->bindParam(':userid', $_SESSION['user-id']);
         } else {
-            $sqlQuery = 'INSERT INTO `quizmaster`.`temp_solved`(`hash`, `date`, `duration`, `questions_number`, `score`, `questions_ids`, `answers`, `type`) VALUES (:hash, NOW(), :time, :questionnumber, :score, :questionids, :answers, :type)';
+            $sqlQuery = 'INSERT INTO `quizmaster`.`temp_solved`(`key`, `date`, `duration`, `questions_number`, `score`, `questions_ids`, `answers`, `type`) VALUES (:key, NOW(), :time, :questionnumber, :score, :questionids, :answers, :type)';
             $stmt = $connection->prepare($sqlQuery);
-            $hash = substr(bin2hex(random_bytes(ceil(32/2))),0,32);
-            $stmt->bindParam(':hash', $hash);
+            $key = substr(bin2hex(random_bytes(ceil(32/2))),0,32);
+            $stmt->bindParam(':key', $key);
         }
 
         $stmt->bindParam(':time', $takeTime);
@@ -128,7 +128,7 @@
                                 } else {
                                     if(strtolower($option) == strtolower($correctAnswers[$i])) {
                                         echo '<span class="answer-box correct-answer"><p class="letter">'.$option.'.</p>'. $queryResultAssoc[$i]['option-'. strtolower($option)] .'</span>';
-                                    } elseif (strtolower($option) == strtolower($userAnswers[$i])) {
+                                    } else if (strtolower($option) == strtolower($userAnswers[$i])) {
                                         echo '<span class="answer-box incorrect-answer"><p class="letter">'.$option.'.</p>'. $queryResultAssoc[$i]['option-'. strtolower($option)] .'</span>';
                                     } else {
                                         echo '<span class="answer-box"><p class="letter">'.$option.'.</p>'. $queryResultAssoc[$i]['option-'. strtolower($option)] .'</span>';
@@ -141,14 +141,14 @@
                 </section>
                     <?php
                         if(!isset($_SESSION['user-id'])) {
-                            echo <<<hash
-                                <button id="hash-info">
+                            echo <<<KEY
+                                <button id="key-info">
                                     <p><i id="arrow" class="fa-solid fa-caret-right"></i> Klucz dostępu</p>
                                 </button>
-                                <div id="hash-wrapper">
-                                    <div id="div-hash"><p>{$hash}</p></div>
+                                <div id="key-wrapper">
+                                    <div id="div-key"><p>{$key}</p></div>
                                 </div>
-                            hash;
+                            KEY;
                         }
                     ?>
             </section>

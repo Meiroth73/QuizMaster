@@ -142,6 +142,7 @@ main.solved {
 
 table {
     width: 49%;
+    margin-top: 30px;
     display: table;
     border-collapse: collapse;
     text-decoration: none;
@@ -161,13 +162,11 @@ tr:nth-child(even) {
 
 tr:nth-child(odd) {
     background-color: rgb(252, 174, 59);
-
 }
 
 tr:nth-child(1) {
     background-color: rgb(168, 168, 168);
     padding: 20px 40px;
-
 }
 
 :is(th, td):nth-child(1),
@@ -180,6 +179,21 @@ tr:nth-child(1) {
 
 :is(th, td):nth-child(2) {
     width: 50%;
+}
+
+#key-input {
+    padding: 9px;
+    width: 340px;
+}
+
+#add-quiz-button {
+    padding: 15px 25px;
+    border: none;
+    background-color: #249115;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 10px;
 }
 
 /* settings */
